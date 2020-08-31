@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.get('/', function (req, res) {
-    res.sendFile('/home/pi/NodeTest/Index.html');
+    res.sendFile('/home/pi/MidiControllerWebApp/Index.html');
 });
 
 
