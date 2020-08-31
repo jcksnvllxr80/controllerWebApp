@@ -18,7 +18,7 @@ After=local-fs.target basic.target
 [Service]
 Type=idle
 User=root
-ExecStart=/usr/bin/nohup /usr/bin/node /home/pi/web-app.js 2>&1 &
+ExecStart=/usr/bin/nohup /usr/bin/node /home/pi/MidiControllerWebApp/web-app.js 2>&1 &
 
 [Install]
 WantedBy=basic.target
