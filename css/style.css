@@ -36,6 +36,12 @@ pre {
     border-radius: 4px
 }
 
+@media screen and (max-width: 767px) {
+    pre {
+        font-size:75%
+    }
+}
+
 .canvas-interactive-wrapper .cta-wrapper a {
     position: relative;
     display: inline-block;
