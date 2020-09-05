@@ -40,5 +40,74 @@
     height: 300px;
     border: solid 2px #eee;
     border-radius: 4px;
-    background-color: #eee;
+    background-color: #eee
 }
+
+.sandbox canvas {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 4px
+}
+
+.sandbox-footer {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    padding: 10px 20px;
+    background-color: #f5f2f0;
+    margin-top: -4px;
+    border-radius: 0 0 4px 4px;
+    z-index: 1
+}
+
+.sandbox-footer .option {
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 15px
+}
+
+.sandbox-footer .option:last-child {
+    margin-right: 0
+}
+
+.sandbox-footer .option input[type=checkbox] {
+    position: relative;
+    top: 2px
+}
+
+.sandbox-footer .option select {
+    margin-left: 5px
+}
+
+.code-wrapper {
+    margin-top: 30px
+}
+
+#canvas-image {
+    background-image: url("../img/bg-forest.jpg");
+    background-position-x: 50%
+}
+
+.canvas-image-wrapper {
+    height: 100px;
+    background-color: #eee;
+    text-align: center
+}
+
+.canvas-image-wrapper .bloc-logo {
+    display: inline-block;
+    margin-top: 25px;
+    float: none
+}
+
+.canvas-interactive-wrapper {
+    text-align: center
+}
+
+
