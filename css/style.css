@@ -119,7 +119,9 @@
 }
 
 .code-wrapper {
-    margin-top: 30px
+    margin-top: 30px;
+    opacity: 0.70;
+    z-index: 1
 }
 
 #canvas-image {
