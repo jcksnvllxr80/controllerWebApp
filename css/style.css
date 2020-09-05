@@ -7,7 +7,7 @@
 }
 
 .bloc {
-    margin-bottom: 0px
+    margin-bottom: 75px
 }
 
 .canvas-interactive-wrapper {
@@ -116,7 +116,7 @@
 
 .canvas-image-wrapper .bloc-logo {
     display: inline-block;
-    margin-top: 0px;
+    margin-top: 25px;
     float: none
 }
 
@@ -148,7 +148,7 @@
 
 .canvas-image-wrapper .bloc-logo {
     display: inline-block;
-    margin-top: 0px;
+    margin-top: 25px;
     float: none
 }
 
