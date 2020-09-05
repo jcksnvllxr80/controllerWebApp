@@ -105,6 +105,7 @@
 
 #canvas-image {
     background-image: url("assets/bg-forest.jpg");
+    width: 100%;
     background-position-x: 50%
 }
 
@@ -123,14 +124,8 @@
     left: 0;
 }
 
-#canvas-image {
-    background-image: url("../img/bg-forest.jpg");
-    background-position-x: 50%
-}
-
 .canvas-image-wrapper {
     height: 100px;
-    width: 100%;
     background-color: #eee;
     text-align: center
 }
