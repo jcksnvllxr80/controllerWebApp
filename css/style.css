@@ -33,14 +33,15 @@
 }
 
 pre {
-    border-radius: 4px
+    border-radius: 4px;
+    align-content: center
 }
 
-@media screen and (max-width: 100px) {
+/* @media screen and (max-width: 100px) {
     pre {
         font-size:75%
     }
-}
+} */
 
 .canvas-interactive-wrapper .cta-wrapper a {
     position: relative;
