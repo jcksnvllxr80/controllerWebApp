@@ -34,3 +34,11 @@
 .canvas-interactive-wrapper .cta-wrapper a.active {
     border-color: #222;
 }
+
+.sandbox {
+    position: relative;
+    height: 300px;
+    border: solid 2px #eee;
+    border-radius: 4px;
+    background-color: #eee;
+}
