@@ -56,6 +56,14 @@
     background-color: #eee
 }
 
+.sandbox1 {
+    position: relative;
+    height: 300px;
+    /* border: solid 2px #eee; */
+    border-radius: 0px;
+    background-color: #eee
+}
+
 .sandbox canvas {
     position: absolute;
     z-index:-1;
