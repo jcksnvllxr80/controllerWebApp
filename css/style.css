@@ -51,7 +51,6 @@
 .sandbox {
     position: relative;
     height: 300px;
-    /* border: solid 2px #eee; */
     border-radius: 0px;
     background-color: #eee
 }
@@ -76,14 +75,14 @@
     padding: 10px 20px;
     background-color: #f5f2f0;
     margin-top: -4px;
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 0px 0px;
     z-index: 1
 }
 
 .sandbox-footer .option {
     font-size: 14px;
     font-weight: bold;
-    margin-right: 15px
+    margin-right: 0px
 }
 
 .sandbox-footer .option:last-child {
@@ -92,7 +91,7 @@
 
 .sandbox-footer .option input[type=checkbox] {
     position: relative;
-    top: 2px
+    top: 0px
 }
 
 .sandbox-footer .option select {
