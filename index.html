@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<title>Midi Controller Config</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
-	<link type="text/css" rel="stylesheet" href="assets/css/style.css">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
-	<style type="text/css">
-		html, body {
-			font-family: Roboto,Helvetica,Arial,sans-serif;
-		  width:  100%;
-		  height: 100%;
-		  margin: 0;
-		}
-	</style>
-	<script src="src/jquery-3.5.1.js"></script>
-	<style type="text/css" rel="stylesheet" href="css/buttons_style.css"></style>
+		<title>Midi Controller Config</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+		<link type="text/css" rel="stylesheet" href="css/style.css">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<style type="text/css">
+			html, body {
+				font-family: Roboto,Helvetica,Arial,sans-serif;
+				width:  100%;
+				height: 100%;
+				margin: 0;
+			}
+		</style>
+		<script src="src/jquery-3.5.1.js"></script>
+		<style type="text/css" rel="stylesheet" href="css/style.css"></style>
   </head>
   <body>
+		<canvas id="canvas-image-blending"></canvas>
 		<div class="container bloc">
-			<h2>Gradients with an image mask</h2>
+			<h2>Midi Controller Config</h2>
 			<div class="sandbox canvas-interactive-wrapper">
 				<script src="src/granim.js"></script>
 				<canvas id="canvas-interactive"></canvas>
@@ -35,7 +36,8 @@
 					</span>
 				</div>
 			</div>
-			<script src="js/do_granim_buttons.js"></script>
+			<script src="js/my_gradient_canvas.js"></script>
+			<script src="js/do_granim_trees.js"></script>
 			<div class="code-wrapper">
 				<ul class="tab-titles">
 						<li class="active">
