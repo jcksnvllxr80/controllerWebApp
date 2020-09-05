@@ -134,3 +134,43 @@
     bottom: 0;
     left: 0;
 }
+
+.tab-titles {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 -2px
+}
+
+.tab-titles li {
+    display: inline-block
+}
+
+.tab-titles li.active {
+    background-color: #f5f2f0;
+    border-radius: 4px 4px 0 0
+}
+
+.tab-titles li.active a {
+    font-weight: bold
+}
+
+.tab-titles li a {
+    display: inline-block;
+    padding: 10px 20px 12px;
+    text-decoration: none;
+    color: #333
+}
+
+.tab-content {
+    background-color: #f5f2f0;
+    border-radius: 4px
+}
+
+.tab-content .tab {
+    padding: 15px;
+    display: none
+}
+
+.tab-content .tab.active {
+    display: block
+}
