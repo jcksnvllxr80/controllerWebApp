@@ -32,6 +32,10 @@
     margin-top: 130px;
 }
 
+pre {
+    border-radius: 4px
+}
+
 .canvas-interactive-wrapper .cta-wrapper a {
     position: relative;
     display: inline-block;
