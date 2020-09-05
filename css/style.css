@@ -108,18 +108,6 @@
     background-position-x: 50%
 }
 
-.canvas-image-wrapper {
-    height: 100px;
-    background-color: #eee;
-    text-align: center
-}
-
-.canvas-image-wrapper .bloc-logo {
-    display: inline-block;
-    margin-top: 25px;
-    float: none
-}
-
 .canvas-interactive-wrapper {
     text-align: center
 }
