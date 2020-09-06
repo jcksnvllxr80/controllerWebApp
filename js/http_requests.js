@@ -1,4 +1,4 @@
-const url='http://192.168.1.100:8081'
+const url='http://midi-controller:8081'
 
 function getResponse(requestUrl) {
   $.getJSON(requestUrl, function(result) {
@@ -6,12 +6,11 @@ function getResponse(requestUrl) {
   });
 }
 
-// get pedals
-getResponse(`${url}/pedals`);
-
 // get sets
 getResponse(`${url}/sets`);
 
-// get parts
-getResponse(`${url}/parts`);
+// get songs
+getResponse(`${url}/songs`);
 
+// get pedals
+getResponse(`${url}/pedals`);
