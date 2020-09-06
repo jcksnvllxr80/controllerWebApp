@@ -7,11 +7,11 @@ function getResponse(requestUrl) {
 }
 
 // get pedals
-getResponse('${url}/pedals');
+getResponse(`${url}/pedals`);
 
 // get sets
-getResponse('${url}/sets');
+getResponse(`${url}/sets`);
 
 // get parts
-getResponse('${url}/parts');
+getResponse(`${url}/parts`);
 
