@@ -1,5 +1,11 @@
 const url='localhost:8083'
 
+function getResponse(requestUrl) {
+  $.getJSON(requestUrl, function (result) {
+    console.log(result);
+  });
+}
+
 // get pedals
 getResponse('${url}/pedals');
 
@@ -9,8 +15,3 @@ getResponse('${url}/sets');
 // get parts
 getResponse('${url}/parts');
 
-function getResponse(requestUrl) {
-  $.getJSON(requestUrl, function (result) {
-    console.log(result);
-  });
-}
