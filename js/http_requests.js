@@ -1,7 +1,7 @@
-const url='file://midi-controller:8081'
+const url='file:///midi-controller:8081'
 
 function getResponse(requestUrl) {
-  $.getJSON(requestUrl, function (result) {
+  $.getJSON(requestUrl, function(result) {
     console.log(result);
   });
 }
