@@ -6,7 +6,7 @@ var granimInstance = new Granim({
     isPausedWhenNotInView: true,
     stateTransitionSpeed: 500,
     states : {
-        "control-state": {
+        "default-state": {
             gradients: [
                 ['#B3FFAB', '#12FFF7'],
                 ['#ADD100', '#7B920A'],
@@ -31,7 +31,7 @@ var granimInstance = new Granim({
 // With jQuery
 $('#control-state-cta').on('click', function(event) {
     event.preventDefault();
-    granimInstance.changeState('control-state');
+    granimInstance.changeState('default-state');
     setClass('#control-state-cta')
     document.getElementById('configure').hidden = true;
 });
