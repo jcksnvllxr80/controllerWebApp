@@ -1,23 +1,55 @@
 const url='http://midi-controller:8081'
-var midi_pedal_config_dict = {};
 
-function getResponse(requestUrl) {
-  $.getJSON(requestUrl, function(result) {
+var sets = null;
+var songs = null;
+var pedals= null;
+var midiPedalConfigDict = {};
+
+
+function getSets() {
+  $.getJSON(`${url}/sets`, function(result) {
+    sets = result.Sets;
     console.log(result);
-    return result;
+  });
+}
+
+function getSongs() {
+  $.getJSON(`${url}/songs`, function(result) {
+    songs = result.Songs;
+    console.log(result);
+  });
+}
+
+function getPedals() {
+  $.getJSON(`${url}/pedals`, function(result) {
+    pedals = result.Pedals;
+    console.log(result);
+  });
+}
+
+function getPedalsDict() {
+  while (pedals == null);
+  pedals.forEach(pedal => {
+     getPedalConfig(pedal);
+  });
+}
+
+function getPedalConfig(pedal) {
+  $.getJSON(`${url}/pedal/${pedal}`, function(result) {
+    midiPedalConfigDict[pedal] = result;
+    console.log(result);
   });
 }
 
 // get midi controller's sets
-var sets = getResponse(`${url}/sets`);
+getSets();
 // get midi controller's songs
-var songs = getResponse(`${url}/songs`);
+getSongs();
 // get midi controller's pedals
-var pedals = getResponse(`${url}/pedals`);
+getPedals();
 
-pedals.array.forEach(midi_pedal => {
-  // get pedal's configuration and store into a dictinary
-  midi_pedal_config_dict[midi_pedal] = getResponse(`${url}/pedal/${midi_pedal}`);
-});
+// setTimeout(function(){}, 1000);
 
-console.log(midi_pedal_config_dict.getJSON)
+getPedalsDict();
+
+// console.log(pedals)
