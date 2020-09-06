@@ -1,4 +1,5 @@
-const url='http://midi-controller:8081'
+const config_api_url='http://midi-controller:8081'
+const control_api_url='http://midi-controller:8090'
 
 var sets = null;
 var songs = null;
@@ -9,7 +10,7 @@ var pedalConfigDict = {};
 
 
 function getSets() {
-  $.getJSON(`${url}/sets`, function(result) {
+  $.getJSON(`${config_api_url}/sets`, function(result) {
     sets = result.Sets;
     console.log(result);
   });
@@ -22,14 +23,14 @@ function getSetsDict() {
 }
 
 function getSetConfig(set) {
-  $.getJSON(`${url}/set/${set}`, function(result) {
+  $.getJSON(`${config_api_url}/set/${set}`, function(result) {
     setConfigDict[set] = result;
     console.log(result);
   });
 }
 
 function getSongs() {
-  $.getJSON(`${url}/songs`, function(result) {
+  $.getJSON(`${config_api_url}/songs`, function(result) {
     songs = result.Songs;
     console.log(result);
   });
@@ -42,14 +43,14 @@ function getSongsDict() {
 }
 
 function getSongConfig(song) {
-  $.getJSON(`${url}/song/${song}`, function(result) {
+  $.getJSON(`${config_api_url}/song/${song}`, function(result) {
     songConfigDict[song] = result;
     console.log(result);
   });
 }
 
 function getPedals() {
-  $.getJSON(`${url}/pedals`, function(result) {
+  $.getJSON(`${config_api_url}/pedals`, function(result) {
     pedals = result.Pedals;
     console.log(result);
   });
@@ -62,7 +63,7 @@ function getPedalsDict() {
 }
 
 function getPedalConfig(pedal) {
-  $.getJSON(`${url}/pedal/${pedal}`, function(result) {
+  $.getJSON(`${config_api_url}/pedal/${pedal}`, function(result) {
     pedalConfigDict[pedal] = result;
     console.log(result);
   });

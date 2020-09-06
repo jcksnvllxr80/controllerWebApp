@@ -6,7 +6,7 @@ var granimInstance = new Granim({
     isPausedWhenNotInView: true,
     stateTransitionSpeed: 500,
     states : {
-        "default-state": {
+        "control-state": {
             gradients: [
                 ['#B3FFAB', '#12FFF7'],
                 ['#ADD100', '#7B920A'],
@@ -14,7 +14,7 @@ var granimInstance = new Granim({
             ],
             transitionSpeed: 10000
         },
-        "violet-state": {
+        "configure-state": {
             gradients: [
                 ['#9D50BB', '#6E48AA'],
                 ['#4776E6', '#8E54E9']
@@ -29,20 +29,25 @@ var granimInstance = new Granim({
 });
 
 // With jQuery
-$('#default-state-cta').on('click', function(event) {
+$('#control-state-cta').on('click', function(event) {
     event.preventDefault();
-    granimInstance.changeState('default-state');
-    setClass('#default-state-cta')
+    granimInstance.changeState('control-state');
+    setClass('#control-state-cta')
+    document.getElementById('configure').hidden = true;
 });
-$('#violet-state-cta').on('click', function(event) {
+
+$('#configure-state-cta').on('click', function(event) {
     event.preventDefault();
-    granimInstance.changeState('violet-state');
-    setClass('#violet-state-cta')
+    granimInstance.changeState('configure-state');
+    setClass('#configure-state-cta')
+    document.getElementById('configure').hidden = false;
 });
+
 $('#orange-state-cta').on('click', function(event) {
     event.preventDefault();
     granimInstance.changeState('orange-state');
     setClass('#orange-state-cta')
+    document.getElementById('configure').hidden = true;
 });
 
 function setClass(element) {
