@@ -3,7 +3,9 @@ const url='http://midi-controller:8081'
 var sets = null;
 var songs = null;
 var pedals= null;
-var midiPedalConfigDict = {};
+var setConfigDict = {};
+var songConfigDict = {};
+var pedalConfigDict = {};
 
 
 function getSets() {
@@ -13,9 +15,35 @@ function getSets() {
   });
 }
 
+function getSetsDict() {
+  sets.forEach(set => {
+     getSetConfig(set);
+  });
+}
+
+function getSetConfig(set) {
+  $.getJSON(`${url}/set/${set}`, function(result) {
+    setConfigDict[set] = result;
+    console.log(result);
+  });
+}
+
 function getSongs() {
   $.getJSON(`${url}/songs`, function(result) {
     songs = result.Songs;
+    console.log(result);
+  });
+}
+
+function getSongsDict() {
+  songs.forEach(song => {
+     getSongConfig(song);
+  });
+}
+
+function getSongConfig(song) {
+  $.getJSON(`${url}/song/${song}`, function(result) {
+    songConfigDict[song] = result;
     console.log(result);
   });
 }
@@ -28,7 +56,6 @@ function getPedals() {
 }
 
 function getPedalsDict() {
-  // while (pedals == null);
   pedals.forEach(pedal => {
      getPedalConfig(pedal);
   });
@@ -36,9 +63,15 @@ function getPedalsDict() {
 
 function getPedalConfig(pedal) {
   $.getJSON(`${url}/pedal/${pedal}`, function(result) {
-    midiPedalConfigDict[pedal] = result;
+    pedalConfigDict[pedal] = result;
     console.log(result);
   });
+}
+
+function getAllDicts() {
+  getSetsDict();
+  getSongsDict();
+  getPedalsDict();
 }
 
 // get midi controller's sets
@@ -48,8 +81,8 @@ getSongs();
 // get midi controller's pedals
 getPedals();
 
-// setTimeout(function(){}, 1000);
+setTimeout(getAllDicts, 4000);
 
-getPedalsDict();
+
 
 // console.log(pedals)
