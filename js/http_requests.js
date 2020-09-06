@@ -28,7 +28,7 @@ function getPedals() {
 }
 
 function getPedalsDict() {
-  while (pedals == null);
+  // while (pedals == null);
   pedals.forEach(pedal => {
      getPedalConfig(pedal);
   });
