@@ -53,6 +53,10 @@ $('#orange-state-cta').on('click', function(event) {
     document.getElementById('configure').hidden = true;
 });
 
+$('#control-state-cta').on('click', function(event) {
+    doShortButtonPress()
+});
+
 function setClass(element) {
     $('.canvas-interactive-wrapper a').removeClass('active');
     $(element).addClass('active');

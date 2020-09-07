@@ -229,10 +229,23 @@ pre {
     margin: 42px 2px;
     cursor: pointer;
     border-radius: 50%;
-    z-index: 1
+    z-index: 1;
 }
 
 .controller-button:hover {
     background-color: #AAAAAA;
     color: blue;
+}
+
+.controller-display {
+    margin: 0px;
+    position: fixed;
+    align-self: center;
+    width: 80%;
+    height: 20%;
+    top:70%;
+    left: 10%;
+    min-width: 300px;
+    font-size: x-large;
+    font-family: ui-monospace;
 }

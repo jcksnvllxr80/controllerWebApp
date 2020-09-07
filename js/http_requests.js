@@ -1,5 +1,5 @@
 const config_api_url='http://midi-controller:8081'
-const control_api_url='http://midi-controller:8090'
+const control_api_url='http://midi-controller:8090/midi_controller'
 
 var sets = null;
 var songs = null;
@@ -65,6 +65,20 @@ function getPedalsDict() {
 function getPedalConfig(pedal) {
   $.getJSON(`${config_api_url}/pedal/${pedal}`, function(result) {
     pedalConfigDict[pedal] = result;
+    console.log(result);
+  });
+}
+
+function doLongButtonPress(button) {
+  $.getJSON(`${control_api_url}/long/${button}`, function(result) {
+    document.getElementById("controller-display").value = result.display_message.replace(" - ","\n");
+    console.log(result);
+  });
+}
+
+function doShortButtonPress(button) {
+  $.getJSON(`${control_api_url}/short/${button}`, function(result) {
+    document.getElementById("controller-display").value = result.display_message.replace(/ - /g,"\n");
     console.log(result);
   });
 }
