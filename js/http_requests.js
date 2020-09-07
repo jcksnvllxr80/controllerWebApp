@@ -71,15 +71,17 @@ function getPedalConfig(pedal) {
   });
 }
 
-function doLongButtonPress(button) {
-  $.getJSON(`${control_api_url}/long/${button}`, function(result) {
+function doLongButtonPress() {
+  console.log(`Button ${this.name} was longpressed/right-clicked. Making API call: ${control_api_url}/long/${parseint(this.name)}.`);
+  $.getJSON(`${control_api_url}/long/${parseint(this.name)}`, function(result) {
     document.getElementById("controller-display").value = result.display_message.replace(" - ","\n");
     console.log(result);
   });
 }
 
-function doShortButtonPress(button) {
-  $.getJSON(`${control_api_url}/short/${button}`, function(result) {
+function doShortButtonPress() {
+  console.log(`Button ${this.name} was pressed. Making API call: ${control_api_url}/short/${parseint(this.name)}.`);
+  $.getJSON(`${control_api_url}/short/${parseint(this.name)}`, function(result) {
     document.getElementById("controller-display").value = result.display_message.replace(/ - /g,"\n");
     console.log(result);
   });
