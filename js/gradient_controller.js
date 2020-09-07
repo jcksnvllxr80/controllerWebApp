@@ -3,7 +3,7 @@ var granimInstance = new Granim({
     direction: 'top-bottom',
     isPausedWhenNotInView: true,
     image : {
-        source: 'assets/bg-forest.jpg',
+        source: 'assets/midi-controller.jpg',
         blendingMode: 'multiply'
     },
     states : {

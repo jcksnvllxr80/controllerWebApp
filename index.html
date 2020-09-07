@@ -17,9 +17,6 @@
 		<style type="text/css" rel="stylesheet" href="css/style.css"></style>
   </head>
   <body>
-		<!-- <div class="sandbox1">
-			<canvas id="canvas-image-blending" height="300" width="775"></canvas>
-		</div> -->
 		<div class="sandbox canvas-interactive-wrapper">
 			<h2 style="margin-top: 0px; margin-bottom: 0px;">Midi Controller Config</h2>
 			<canvas id="canvas-interactive"></canvas>
@@ -35,16 +32,30 @@
 				</span>
 			</div>
 		</div>
+		<div class="container bloc1" id="controller">
+			<div class="sandbox1">
+				<canvas id="canvas-image-blending" height="600" width="1025"></canvas>
+			</div>
+			<!-- <div>
+				<button class="controller-button button4">4</button>
+				<button class="controller-button button5">5</button>
+			</div>
+			<div>
+				<button class="controller-button button1">1</button>
+				<button class="controller-button button2">2</button>
+				<button class="controller-button button3">3</button>
+			</div> -->
+		</div>
 		<div class="config-wrapper" id="configure" hidden="true">
 			<ul class="tab-titles">
 				<li class="active">
-						<a href="#interactive-js" data-toggle="tab">Preset</a>
+					<a href="#interactive-js" data-toggle="tab">Preset</a>
 				</li>
 				<li>
-						<a href="#interactive-html" data-toggle="tab">Parameters</a>
+					<a href="#interactive-html" data-toggle="tab">Parameters</a>
 				</li>
 				<li>
-						<a href="#interactive-css" data-toggle="tab">Engaged</a>
+					<a href="#interactive-css" data-toggle="tab">Engaged</a>
 				</li>
 			</ul>
 			<div class="tab-content">
@@ -53,12 +64,13 @@
 				<div class="tab" id="interactive-css" data-toggle="pill">hello!</div>
 			</div>
 		</div>
+
 		<script src="src/jquery-3.5.1.js"></script>
 		<script src="src/granim.js"></script>
+		<script src="js/gradient_controller.js"></script>
 		<script src="js/gradient_canvas.js"></script>
 		<script src="js/http_requests.js"></script>
 		<script src="src/bootstrap.min.js"></script>
-		<!-- <script src="js/gradient_trees.js"></script> -->
   </body>
 </html>
 

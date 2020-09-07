@@ -33,6 +33,7 @@ $('#control-state-cta').on('click', function(event) {
     event.preventDefault();
     granimInstance.changeState('default-state');
     setClass('#control-state-cta')
+    document.getElementById('controller').hidden = false;
     document.getElementById('configure').hidden = true;
 });
 
@@ -40,6 +41,7 @@ $('#configure-state-cta').on('click', function(event) {
     event.preventDefault();
     granimInstance.changeState('configure-state');
     setClass('#configure-state-cta')
+    document.getElementById('controller').hidden = true;
     document.getElementById('configure').hidden = false;
 });
 
@@ -47,6 +49,7 @@ $('#orange-state-cta').on('click', function(event) {
     event.preventDefault();
     granimInstance.changeState('orange-state');
     setClass('#orange-state-cta')
+    document.getElementById('controller').hidden = true;
     document.getElementById('configure').hidden = true;
 });
 
@@ -69,12 +72,3 @@ function resizeCanvas()
     canvas.css("width", $(window).width());
     canvas.css("height", $(window).height());
 }
-
-
-
-
-
-
-
-
-
