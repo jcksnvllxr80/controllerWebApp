@@ -100,6 +100,6 @@ getPedals();
 
 setTimeout(getAllDicts, 4000);
 
-document.getElementById("controller-display").value = hostProtocol + "\n" + midiController + "\n" + configPort + "\n" + "\n" + config_api_url + "\n" + control_api_url;
+document.getElementById("controller-display").value = hostProtocol + "\n" + midiController  + "\n" + config_api_url + "\n" + control_api_url;
 
 // console.log(pedals)
