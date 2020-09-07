@@ -52,7 +52,8 @@
 }
 
 .control-wrapper .cta-wrapper {
-    margin-top: 100px;
+    margin-top: 66px;
+    margin-bottom: 66px;
 }
 
 pre {
@@ -175,7 +176,6 @@ pre {
     position: relative;
     height: auto;
     text-align: center;
-
     margin-top: 30px;
     opacity: 0.66;
     z-index: 1
