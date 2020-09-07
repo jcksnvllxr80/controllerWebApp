@@ -20,7 +20,7 @@
 
 .canvas-interactive-wrapper {
     position: relative;
-    height: 300px;
+    height: auto;
     text-align: center;
     opacity: 0.85;
 }
@@ -214,9 +214,9 @@ pre {
     align-self: center;
     width: 80%;
     height: 20%;
-    top:55%;
+    top:35%;
     left: 10%;
-    min-width: 300px;
+    min-width: 200px;
     font-size: large;
     font-family: ui-monospace;
 }
