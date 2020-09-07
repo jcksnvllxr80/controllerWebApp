@@ -71,17 +71,19 @@ function getPedalConfig(pedal) {
   });
 }
 
-function doLongButtonPress() {
-  console.log(`Button ${this.name} was longpressed/right-clicked. Making API call: ${control_api_url}/long/${parseint(this.name)}.`);
-  $.getJSON(`${control_api_url}/long/${parseint(this.name)}`, function(result) {
+function doLongButtonPress(btnObj) {
+  request = `${control_api_url}/long/${btnObj.name}`;
+  console.log(`Button ${btnObj.name} (${btnObj.id}) was longpressed/right-clicked. GET request: ${request}`);
+  $.getJSON(request, function(result) {
     document.getElementById("controller-display").value = result.display_message.replace(" - ","\n");
     console.log(result);
   });
 }
 
-function doShortButtonPress() {
-  console.log(`Button ${this.name} was pressed. Making API call: ${control_api_url}/short/${parseint(this.name)}.`);
-  $.getJSON(`${control_api_url}/short/${parseint(this.name)}`, function(result) {
+function doShortButtonPress(btnObj) {
+  request = `${control_api_url}/short/${btnObj.name}`;
+  console.log(`Button ${btnObj.name} (${btnObj.id}) was pressed. GET request: ${request}`);
+  $.getJSON(request, function(result) {
     document.getElementById("controller-display").value = result.display_message.replace(/ - /g,"\n");
     console.log(result);
   });
