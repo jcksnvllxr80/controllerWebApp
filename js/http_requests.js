@@ -1,5 +1,8 @@
-const config_api_url='http://midi-controller:8081'
-const control_api_url='http://midi-controller:8090/midi_controller'
+const hostProtocol=document.location.protocol;
+const midiController=document.location.hostname;
+const configPort=document.location.port;
+const config_api_url=`${hostProtocol}://${midiController}:${configPort}`;
+const control_api_url=`${hostProtocol}://${midiController}:8090/midi_controller`;
 
 var sets = null;
 var songs = null;
@@ -98,6 +101,6 @@ getPedals();
 
 setTimeout(getAllDicts, 4000);
 
-
+document.getElementById("controller-display").value = hostProtocol + "\n" + midiController + "\n" + configPort + "\n" + "\n" + config_api_url + "\n" + control_api_url;
 
 // console.log(pedals)
