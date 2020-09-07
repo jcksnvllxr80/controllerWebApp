@@ -33,29 +33,37 @@ $('#control-state-cta').on('click', function(event) {
     event.preventDefault();
     granimInstance.changeState('default-state');
     setClass('#control-state-cta')
-    document.getElementById('controller').hidden = false;
-    document.getElementById('configure').hidden = true;
+    activateControlState();
 });
 
 $('#configure-state-cta').on('click', function(event) {
     event.preventDefault();
     granimInstance.changeState('configure-state');
     setClass('#configure-state-cta')
-    document.getElementById('controller').hidden = true;
-    document.getElementById('configure').hidden = false;
+    activateConfigureState();
 });
 
 $('#orange-state-cta').on('click', function(event) {
     event.preventDefault();
     granimInstance.changeState('orange-state');
     setClass('#orange-state-cta')
-    document.getElementById('controller').hidden = true;
-    document.getElementById('configure').hidden = true;
+    activateOrangeState();
 });
 
-$('#control-state-cta').on('click', function(event) {
-    doShortButtonPress()
-});
+function activateControlState() {
+    document.getElementById('controller').hidden = false;
+    document.getElementById('configure').hidden = true;
+}
+
+function activateConfigureState() {
+    document.getElementById('controller').hidden = true;
+    document.getElementById('configure').hidden = false;
+}
+
+function activateOrangeState() {
+    document.getElementById('controller').hidden = true;
+    document.getElementById('configure').hidden = true;
+}
 
 function setClass(element) {
     $('.canvas-interactive-wrapper a').removeClass('active');
