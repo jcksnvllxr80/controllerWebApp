@@ -80,17 +80,15 @@ pre {
 
 .sandbox {
     position: relative;
-    height: 300px;
-    /* border: solid 2px #eee; */
+    height: 30%;
     border-radius: 0px;
     background-color: #eee
 }
 
 .sandbox1 {
     position: relative;
-    height: auto;
-    border-radius: 0px;
-    background-color: #eee
+    height: 125px;
+    border-radius: 0px
 }
 
 .sandbox canvas {
@@ -151,13 +149,13 @@ pre {
 
 .config-wrapper {
     margin: 20px;
-    opacity: 0.25;
+    opacity: 0.66;
     z-index: 1
 }
 
 .control-wrapper {
     margin-top: 30px;
-    opacity: 0.50;
+    opacity: 0.66;
     z-index: 1
 }
 
@@ -226,8 +224,12 @@ pre {
 }
 
 .controller-display {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 10px;
-    height: 20%;
+    height: 100px;
+    width: 66%;
     min-width: 200px;
     font-size: large;
     font-family: ui-monospace;
