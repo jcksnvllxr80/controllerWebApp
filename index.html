@@ -35,14 +35,23 @@
 		<div class="control-wrapper"  id="controller">
 			<div class="sandbox1">
 				<textarea class="controller-display" id="controller-display" disabled=""></textarea>
-				<div>
-					<button class="controller-button" onclick="doShortButtonPress(4)" style="position: fixed; top: 60%; left: 10%;">4</button>
-					<button class="controller-button" onclick="doShortButtonPress(5)" style="position: fixed; top: 60%; left: calc(90% - 48px);">5</button>
+				<div class="cta-wrapper">
+					<span>
+						<a href="#song-down" onclick="doShortButtonPress(4)" id="song-down-bttn" class="active">Song Down</a>
+						<!-- <button class="controller-button" onclick="doShortButtonPress(4)" style="position: fixed; top: 60%; left: 10%;">Song Down</button> -->
+					</span>
+					<span>
+						<!-- <a href="#configure-state" id="configure-state-cta">Configure</a> -->
+					</span>
+					<span>
+						<a href="#song-up" onclick="doShortButtonPress(5)" id="song-up-bttn">Song Up</a>
+						<!-- <button class="controller-button" onclick="doShortButtonPress(5)" style="position: fixed; top: 60%; left: calc(90% - 48px);">Song Up</button> -->
+					</span>
 				</div>
 				<div>
-					<button class="controller-button" onclick="doShortButtonPress(1)" style="position: fixed; top: calc(60% + 75px); left: 10%;">1</button>
-					<button class="controller-button" onclick="doShortButtonPress(2)" style="position: fixed; top: calc(60% + 75px); left: calc(50% - 24px);">2</button>
-					<button class="controller-button" onclick="doShortButtonPress(3)" style="position: fixed; top: calc(60% + 75px); left: calc(90% - 48px);">3</button>
+					<button class="controller-button" onclick="doShortButtonPress(1)" style="position: fixed; top: calc(60% + 75px); left: 10%;">Part Down</button>
+					<button class="controller-button" onclick="doShortButtonPress(2)" style="position: fixed; top: calc(60% + 75px); left: calc(50% - 24px);">Select</button>
+					<button class="controller-button" onclick="doShortButtonPress(3)" style="position: fixed; top: calc(60% + 75px); left: calc(90% - 48px);">Part Up</button>
 				</div>
 			</div>
 		</div>

@@ -78,6 +78,23 @@ pre {
     border-color: #222;
 }
 
+.control-wrapper .cta-wrapper a {
+    position: relative;
+    display: inline-block;
+    padding: 3px 7px;
+    border: solid 1px transparent;
+    margin-right: 10px;
+    margin-left: 10px;
+    z-index: 1;
+    text-decoration: none;
+    color: #222;
+    transition: border .3s;
+}
+
+.control-wrapper .cta-wrapper a.active {
+    border-color: #222;
+}
+
 .sandbox {
     position: relative;
     height: 30%;
