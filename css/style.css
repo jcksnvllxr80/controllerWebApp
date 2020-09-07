@@ -36,7 +36,7 @@
     left: 0;
 }
 
-.canvas-interactive-wrapper controller-display {
+.caontrol-wrapper controller-display {
     position: absolute;
     display: block;
     width: 100%;
@@ -150,6 +150,12 @@ pre {
 }
 
 .config-wrapper {
+    margin: 20px;
+    opacity: 0.25;
+    z-index: 1
+}
+
+.control-wrapper {
     margin-top: 30px;
     opacity: 0.50;
     z-index: 1
@@ -220,13 +226,8 @@ pre {
 }
 
 .controller-display {
-    margin: 0px;
-    position: fixed;
-    align-self: center;
-    width: 80%;
+    margin-top: 10px;
     height: 20%;
-    top:35%;
-    left: 10%;
     min-width: 200px;
     font-size: large;
     font-family: ui-monospace;
