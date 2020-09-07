@@ -220,16 +220,3 @@ pre {
     font-size: large;
     font-family: ui-monospace;
 }
-
-.button-row {
-    padding: 15px;
-    display: contents
-}
-
-.bottom-row {
-    padding: 15px;
-}
-
-.top-row {
-    padding: 15px;
-}
