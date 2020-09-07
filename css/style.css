@@ -51,6 +51,10 @@
     margin-top: 130px;
 }
 
+.control-wrapper .cta-wrapper {
+    margin-top: 100px;
+}
+
 pre {
     border-radius: 4px
 }
@@ -89,9 +93,6 @@ pre {
     text-decoration: none;
     color: #222;
     transition: border .3s;
-}
-
-.control-wrapper .cta-wrapper a.active {
     border-color: #222;
 }
 
@@ -171,6 +172,10 @@ pre {
 }
 
 .control-wrapper {
+    position: relative;
+    height: auto;
+    text-align: center;
+
     margin-top: 30px;
     opacity: 0.66;
     z-index: 1
