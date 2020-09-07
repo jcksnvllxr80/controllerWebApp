@@ -1,7 +1,6 @@
 const hostProtocol=document.location.protocol;
 const midiController=document.location.hostname;
-const configPort=document.location.port;
-const config_api_url=`${hostProtocol}://${midiController}:${configPort}`;
+const config_api_url=`${hostProtocol}://${midiController}:8081`;
 const control_api_url=`${hostProtocol}://${midiController}:8090/midi_controller`;
 
 var sets = null;
