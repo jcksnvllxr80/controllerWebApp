@@ -111,13 +111,13 @@ function uiLoad() {
 }
 
 function loadSetlistsContent() {
-  setConfigDict.forEach(set => {
+  sets.forEach(set => {
     document.getElementById("setlists").appendChild(set)
   });
 }
 
 function loadSongsContent() {
-  songConfigDict.forEach(song => {
+  songs.forEach(song => {
     document.getElementById("songs").appendChild(song)
   });
 }
