@@ -112,13 +112,13 @@ function uiLoad() {
 
 function loadSetlistsContent() {
   sets.forEach(set => {
-    document.getElementById("setlists").append('<li>' + set + '</li>')
+    document.getElementById("setlists").append(set + "\n")
   });
 }
 
 function loadSongsContent() {
   songs.forEach(song => {
-    document.getElementById("songs").append('<li>' + song + '</li>')
+    document.getElementById("songs").append(song + "\n")
   });
 }
 
@@ -134,5 +134,5 @@ setTimeout(getAllDicts, 4000);
 // document.getElementById("controller-display").value = hostProtocol + "\n" + midiController  + "\n" + config_api_url + "\n" + control_api_url;
 document.getElementById("controller-display").value = `Hello from:\n${hostProtocol}//${midiController}:8000!!\n` + "Use the \'Select\' button to start.";
 
-setTimeout(uiLoad, 8000);
+setTimeout(uiLoad, 4500);
 // console.log(pedals)
