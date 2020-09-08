@@ -71,18 +71,28 @@ function getPedalConfig(pedal) {
   });
 }
 
-function doLongButtonPress(btnObj) {
-  request = `${control_api_url}/long/${btnObj.name}`;
-  console.log(`Button ${btnObj.name} (${btnObj.id}) was longpressed/right-clicked. GET request: ${request}`);
+// function doLongButtonPress(btnObj) {
+//   request = `${control_api_url}/long/${btnObj.name}`;
+//   console.log(`Button ${btnObj.name} (${btnObj.id}) was longpressed/right-clicked. GET request: ${request}`);
+//   $.getJSON(request, function(result) {
+//     document.getElementById("controller-display").value = result.display_message.replace(/ - /g,"\n");
+//     console.log(result);
+//   });
+// }
+
+function doDpadButtonPress(btnObj) {
+  request = `${control_api_url}/dpad/${btnObj.name}`;
+  console.log(`Button ${btnObj.name} (${btnObj.id}) was pressed/clicked. GET request: ${request}`);
   $.getJSON(request, function(result) {
     document.getElementById("controller-display").value = result.display_message.replace(/ - /g,"\n");
     console.log(result);
   });
 }
 
+
 function doShortButtonPress(btnObj) {
   request = `${control_api_url}/short/${btnObj.name}`;
-  console.log(`Button ${btnObj.name} (${btnObj.id}) was pressed. GET request: ${request}`);
+  console.log(`Button ${btnObj.name} (${btnObj.id}) was pressed/clicked. GET request: ${request}`);
   $.getJSON(request, function(result) {
     document.getElementById("controller-display").value = result.display_message.replace(/ - /g,"\n");
     console.log(result);
