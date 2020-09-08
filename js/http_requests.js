@@ -112,13 +112,13 @@ function uiLoad() {
 
 function loadSetlistsContent() {
   sets.forEach(set => {
-    document.getElementById("setlists").appendChild(set)
+    document.getElementById("setlists").append('<li>' + set + '</li>')
   });
 }
 
 function loadSongsContent() {
   songs.forEach(song => {
-    document.getElementById("songs").appendChild(song)
+    document.getElementById("songs").append('<li>' + song + '</li>')
   });
 }
 
