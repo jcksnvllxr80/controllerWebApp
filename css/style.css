@@ -198,6 +198,7 @@ pre {
 
 .config-wrapper {
     margin: 20px;
+    margin-top: 30px;
     opacity: 0.66;
     z-index: 1
 }
@@ -243,7 +244,8 @@ pre {
 
 .tab-content {
     background-color: #f5f2f0;
-    border-radius: 4px
+    border-radius: 4px;
+    height: 66%;
 }
 
 .tab-content .tab {
@@ -252,7 +254,7 @@ pre {
 }
 
 .tab-content .tab.active {
-    display: block
+    display: block;
 }
 
 .controller-button {

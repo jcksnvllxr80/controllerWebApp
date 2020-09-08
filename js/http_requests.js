@@ -105,6 +105,23 @@ function getAllDicts() {
   getPedalsDict();
 }
 
+function uiLoad() {
+  loadSetlistsContent()
+  loadSongsContent() 
+}
+
+function loadSetlistsContent() {
+  setConfigDict.forEach(set => {
+    document.getElementById("setlists").appendChild(set)
+  });
+}
+
+function loadSongsContent() {
+  songConfigDict.forEach(song => {
+    document.getElementById("songs").appendChild(song)
+  });
+}
+
 // get midi controller's sets
 getSets();
 // get midi controller's songs
@@ -117,4 +134,5 @@ setTimeout(getAllDicts, 4000);
 // document.getElementById("controller-display").value = hostProtocol + "\n" + midiController  + "\n" + config_api_url + "\n" + control_api_url;
 document.getElementById("controller-display").value = `Hello from:\n${hostProtocol}//${midiController}:8000!!\n` + "Use the \'Select\' button to start.";
 
+uiLoad();
 // console.log(pedals)
