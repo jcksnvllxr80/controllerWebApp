@@ -72,7 +72,6 @@ function getPedalConfig(pedal) {
 }
 
 function doLongButtonPress(btnObj) {
-  event.preventDefault()
   request = `${control_api_url}/long/${btnObj.name}`;
   console.log(`Button ${btnObj.name} (${btnObj.id}) was longpressed/right-clicked. GET request: ${request}`);
   $.getJSON(request, function(result) {

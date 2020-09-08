@@ -48,12 +48,17 @@
 }
 
 .canvas-interactive-wrapper .cta-wrapper {
-    margin-top: 130px;
+    margin-top: 50px;
 }
 
 .control-wrapper .cta-wrapper {
-    margin-top: 66px;
-    margin-bottom: 66px;
+    margin-top: 44px;
+    margin-bottom: 44px;
+}
+
+.control-wrapper .cta-wrapper-dpad {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 pre {
@@ -95,11 +100,25 @@ pre {
     color: #222;
     transition: border .3s;
     border-color: #222;
+} 
+
+.control-wrapper .cta-wrapper-dpad a {
+    position: relative;
+    display: inline-block;
+    padding: 3px 7px;
+    border: solid 1px transparent;
+    margin-right: 15px;
+    margin-left: 15px;
+    z-index: 1;
+    text-decoration: none;
+    color: #222;
+    transition: border .3s;
+    border-color: #222;
 }
 
 .sandbox {
     position: relative;
-    height: 30%;
+    height: 16%;
     border-radius: 0px;
     background-color: #eee
 }
@@ -249,7 +268,8 @@ pre {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 40px;
     height: 133px;
     width: 75%;
     min-width: 200px;

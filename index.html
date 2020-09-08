@@ -34,26 +34,41 @@
 		</div>
 		<div class="sandbox1 control-wrapper"  id="controller">
 			<textarea class="controller-display" id="controller-display" disabled=""></textarea>
-			<div class="cta-wrapper">
+			<div class="cta-wrapper-dpad">
 				<span>
-					<a href="#song-down" oncontextmenu="doLongButtonPress(this)" onclick="doShortButtonPress(this)" name=4 id="song-down-bttn">Song Down</a>
+					<a href="#rotary-pb-up" onclick="doShortButtonPress(this)" name="up" id="rotary-pb-up">↑</a>
+				</span>
+			</div>
+			<div class="cta-wrapper-dpad">
+				<span>
+					<a href="#rotary-ccw" onclick="doShortButtonPress(this)" name="CCW" id="rotary-ccw">←</a>
 				</span>
 				<span>
-					<a href="#rotary-pb" id="rotary-encoder-pb"></a>
+					<a href="#rotary-cw" onclick="doShortButtonPress(this)" name="CW" id="rotary-cw">→</a>
 				</span>
+			</div>
+			<div class="cta-wrapper-dpad">
 				<span>
-					<a href="#song-up" oncontextmenu="doLongButtonPress(this)" onclick="doShortButtonPress(this)" name=5 id="song-up-bttn">Song Up</a>
+					<a href="#rotary-pb-down" onclick="doShortButtonPress(this)" name="down" id="rotary-pb-down">↓</a>
 				</span>
 			</div>
 			<div class="cta-wrapper">
 				<span>
-					<a href="#part-down" oncontextmenu="doLongButtonPress(this)" onclick="doShortButtonPress(this)" name=1 id="part-down-bttn">Part Down</a>
+					<a href="#song-down" onclick="doShortButtonPress(this)" name="4" id="song-down-bttn">Song Dn</a>
 				</span>
 				<span>
-					<a href="#select" oncontextmenu="doLongButtonPress(this)" onclick="doShortButtonPress(this)" name=2 id="select-bttn">Select</a>
+					<a href="#song-up" onclick="doShortButtonPress(this)" name=5 id="song-up-bttn">Song Up</a>
+				</span>
+			</div>
+			<div class="cta-wrapper">
+				<span>
+					<a href="#part-down" onclick="doShortButtonPress(this)" name=1 id="part-down-bttn">Part Dn</a>
 				</span>
 				<span>
-					<a href="#part-up" oncontextmenu="doLongButtonPress(this" onclick="doShortButtonPress(this)" name=3 id="part-up-bttn">Part Up</a>
+					<a href="#select" onclick="doShortButtonPress(this)" name=2 id="select-bttn">Select</a>
+				</span>
+				<span>
+					<a href="#part-up" onclick="doShortButtonPress(this)" name=3 id="part-up-bttn">Part Up</a>
 				</span>
 			</div>
 		</div>
