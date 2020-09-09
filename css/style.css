@@ -291,8 +291,12 @@ pre {
     resize: none;
 }
 
-.config-wrapper .tab-content .config-list-item a{
+.config-wrapper .tab-content .config-list-item{
     list-style-type: none;
     padding: 0;
-    /* border: 2px solid #c141f4; */
+    border: 1px solid #111111;
+}
+
+.config-wrapper .tab-content .config-list-item a{
+    padding: 0;
 }
