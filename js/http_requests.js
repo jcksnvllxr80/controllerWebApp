@@ -148,10 +148,10 @@ function showConfigFile(listObj) {
 }
 
 function getJsonConfig(listObj) {
-  if (listObj.name.localCompare('song')) {
+  if (listObj.name.localeCompare('song')) {
     return setConfigDict[listObj.id];
   }
-  else if (listObj.name.localCompare('set')) {
+  else if (listObj.name.localeCompare('set')) {
     return songConfigDict[listObj.id];
   }
   else {
