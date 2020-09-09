@@ -130,15 +130,15 @@ function createListItem(id) {
   var listItem = document.createElement("li");
   listItem.setAttribute('class', 'config-list-item');
   listItem.setAttribute('id', id);
-  listItem.appendChild(createButton(id, fileNameYaml.replace('.yaml', '')));
+  listItem.appendChild(createButton(id));
   return listItem;
 }
 
-function createButton(id, title) {
+function createButton(id) {
   var listButton = document.createElement("button");
-  listButton.setAttribute('class', 'list-button');
+  listButton.setAttribute('class', 'config-list-button');
   listButton.setAttribute('id', id + '-btn');
-  listButton.setAttribute('title', title);
+  listButton.setAttribute('title', id.replace('.yaml', ''));
   return listButton;
 }
 
