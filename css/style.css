@@ -318,5 +318,5 @@ pre {
 
 .config-wrapper .tab-content .config-list-item a:hover {
     padding: 0;
-    opacity: 0;
+    background-blend-mode: color-burn;
 }
