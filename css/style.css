@@ -310,7 +310,7 @@ pre {
     /* min-height: 400; */
     width: 75%;
     min-width: 200px;
-    font-size: large;
+    font-size: small;
     font-family: ui-monospace;
     resize: none;
 }
