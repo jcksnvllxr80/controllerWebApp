@@ -149,10 +149,10 @@ function showConfigFile(listObj) {
 
 function getJsonConfig(listObj) {
   if (listObj.name.localeCompare('song')) {
-    return setConfigDict[listObj.id].toString();
+    return JSON.stringify(setConfigDict[listObj.id]);
   }
   else if (listObj.name.localeCompare('set')) {
-    return songConfigDict[listObj.id].toString();
+    return JSON.stringify(songConfigDict[listObj.id]);
   }
   else {
     errorMessage = `This object type (${listObj.name}) is not handled yet.`
