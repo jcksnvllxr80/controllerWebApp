@@ -21,7 +21,7 @@ var granimInstance = new Granim({
             ],
             transitionSpeed: 2000
         },
-        "orange-state": {
+        "json-view-state": {
             gradients: [ ['#FF4E50', '#F9D423'] ],
             loop: false
         }
@@ -43,26 +43,29 @@ $('#configure-state-cta').on('click', function(event) {
     activateConfigureState();
 });
 
-$('#orange-state-cta').on('click', function(event) {
+$('#json-view-state-cta').on('click', function(event) {
     event.preventDefault();
-    granimInstance.changeState('orange-state');
-    setClass('#orange-state-cta')
-    activateOrangeState();
+    granimInstance.changeState('json-view-state');
+    setClass('#json-view-state-cta')
+    activateJsonViewState();
 });
 
 function activateControlState() {
     document.getElementById('controller').hidden = false;
     document.getElementById('configure').hidden = true;
+    document.getElementById('viewer').hidden = true;
 }
 
 function activateConfigureState() {
     document.getElementById('controller').hidden = true;
     document.getElementById('configure').hidden = false;
+    document.getElementById('viewer').hidden = true;
 }
 
-function activateOrangeState() {
+function activateJsonViewState() {
     document.getElementById('controller').hidden = true;
     document.getElementById('configure').hidden = true;
+    document.getElementById('viewer').hidden = false;
 }
 
 function setClass(element) {

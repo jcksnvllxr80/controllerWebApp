@@ -47,17 +47,6 @@
     left: 0;
 }
 
-.caontrol-wrapper .controller-display {
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
 .canvas-interactive-wrapper .cta-wrapper {
     margin-top: 50px;
 }
@@ -216,6 +205,15 @@ pre {
     z-index: 1
 }
 
+.view-wrapper {
+    position: relative;
+    height: auto;
+    text-align: center;
+    margin-top: 30px;
+    opacity: 0.66;
+    z-index: 1
+}
+
 .canvas-interactive-wrapper {
     text-align: center
 }
@@ -288,6 +286,20 @@ pre {
     margin-top: 40px;
     margin-bottom: 60px;
     height: 133px;
+    width: 75%;
+    min-width: 200px;
+    font-size: large;
+    font-family: ui-monospace;
+    resize: none;
+}
+
+.viewer-display {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    height: 75%;
     width: 75%;
     min-width: 200px;
     font-size: large;

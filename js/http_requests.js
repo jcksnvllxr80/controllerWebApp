@@ -112,33 +112,53 @@ function uiLoad() {
 
 function loadSetlistsContent() {
   sets.forEach(set => {
-    addItemToList(document.getElementById("setlist-list"), set);
+    addItemToList(document.getElementById("setlist-list"), set, 'set');
   });
 }
 
 function loadSongsContent() {
   songs.forEach(song => {
-    addItemToList(document.getElementById("song-list"), song);
+    addItemToList(document.getElementById("song-list"), song, 'song');
   });
 }
 
-function addItemToList(list, fileNameYaml){
-  list.appendChild(createListItem(fileNameYaml));
+function addItemToList(list, fileNameYaml, class_type){
+  list.appendChild(createListItem(fileNameYaml, class_type));
 }
 
-function createListItem(id) {
+function createListItem(id, class_type) {
   var listItem = document.createElement("li");
   listItem.setAttribute('class', 'config-list-item');
-  listItem.appendChild(createLinkA(id));
+  listItem.appendChild(createLinkA(id, class_type));
   return listItem;
 }
 
-function createLinkA(id) {
+function createLinkA(id, class_type) {
   var listLink = document.createElement("a");
-  // listLink.setAttribute('class', 'config-list-link');
+  listLink.setAttribute('onClick', 'showConfigFile(this)');
   listLink.setAttribute('id', id);
+  listLink.setAttribute('name', class_type);
   listLink.textContent = id.replace('.yaml', '');
   return listLink;
+}
+
+function showConfigFile(listObj) {
+  document.getElementById('json-viewer').value = getJsonConfig(listObj);
+  document.getElementById('json-view-state-cta').click();
+}
+
+function newFunction(listObj) {
+  if (listObj.name.localCompare('song')) {
+    return setConfigDict[listObj.id];
+  }
+  else if (listObj.name.localCompare('set')) {
+    return songConfigDict[listObj.id];
+  }
+  else {
+    errorMessage = `This object type (${listObj.name}) is not handled yet.`
+    console.error(errorMessage);
+    return errorMessage;
+  }
 }
 
 // get midi controller's sets
