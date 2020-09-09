@@ -318,5 +318,6 @@ pre {
 
 .config-wrapper .tab-content .config-list-item a:hover {
     padding: 0;
-    background-color: #777777;
+    /* background-color: #777777; */
+    background: -moz-element();
 }
