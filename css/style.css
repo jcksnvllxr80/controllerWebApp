@@ -291,12 +291,22 @@ pre {
     resize: none;
 }
 
-.config-wrapper .tab-content .config-list-item{
-    list-style-type: none;
+.config-wrapper .tab-content .setlist-list {
     padding: 0;
-    border: 1px solid #111111;
+    /* border: 1px solid #111111; */
 }
 
-.config-wrapper .tab-content .config-list-item a{
+.config-wrapper .tab-content .song-list {
+    padding: 0;
+    /* border: 1px solid #111111; */
+}
+
+.config-wrapper .tab-content .config-list-item {
+    list-style-type: none;
+    padding: 0;
+    /* border: 1px solid #111111; */
+}
+
+.config-wrapper .tab-content .config-list-item a {
     padding: 0;
 }
