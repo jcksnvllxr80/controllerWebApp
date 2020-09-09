@@ -123,7 +123,7 @@ function loadSongsContent() {
 }
 
 function addItemToList(list, fileNameYaml){
-  list.appendChild(createListItem(fileNameYaml));
+  list.append(createListItem(fileNameYaml));
 }
 
 function createListItem(id) {
