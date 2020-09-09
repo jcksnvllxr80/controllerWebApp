@@ -122,11 +122,24 @@ function loadSongsContent() {
   });
 }
 
-function addItemToList(list, itemName){
+function addItemToList(list, fileNameYaml){
+  list.appendChild(createListItem(fileNameYaml));
+}
+
+function createListItem(id) {
   var listItem = document.createElement("li");
-  listItem.setAttribute('id', itemName);
-  listItem.appendChild(document.createTextNode(itemName));
-  list.appendChild(listItem);
+  listItem.setAttribute('class', 'config-list-item');
+  listItem.setAttribute('id', id);
+  listItem.appendChild(createButton(id, fileNameYaml.replace('.yaml', '')));
+  return listItem;
+}
+
+function createButton(id, title) {
+  var listButton = document.createElement("button");
+  listButton.setAttribute('class', 'list-button');
+  listButton.setAttribute('id', id + '-btn');
+  listButton.setAttribute('title', title);
+  return listButton;
 }
 
 // get midi controller's sets
@@ -142,4 +155,5 @@ setTimeout(getAllDicts, 4000);
 document.getElementById("controller-display").value = `Hello from:\n${hostProtocol}//${midiController}:8000!!\n` + "Use the \'Select\' button to start.";
 
 setTimeout(uiLoad, 4500);
+
 // console.log(pedals)

@@ -288,4 +288,5 @@ pre {
     min-width: 200px;
     font-size: large;
     font-family: ui-monospace;
+    resize: none;
 }
