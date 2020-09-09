@@ -112,18 +112,18 @@ function uiLoad() {
 
 function loadSetlistsContent() {
   sets.forEach(set => {
-    addItemToList(document.getElementById("setlists"), set);
+    addItemToList(document.getElementById("setlist-list"), set);
   });
 }
 
 function loadSongsContent() {
   songs.forEach(song => {
-    addItemToList(document.getElementById("songs"), song);
+    addItemToList(document.getElementById("song-list"), song);
   });
 }
 
 function addItemToList(list, fileNameYaml){
-  list.append(createListItem(fileNameYaml));
+  list.appendChild(createListItem(fileNameYaml));
 }
 
 function createListItem(id) {
