@@ -131,6 +131,12 @@ pre {
     border-radius: 0px
 }
 
+.sandbox1 {
+    position: relative;
+    height: 70%;
+    border-radius: 0px
+}
+
 .sandbox canvas {
     position: absolute;
     z-index:-1;
