@@ -294,11 +294,13 @@ pre {
 }
 
 .config-wrapper .tab-content .setlist-list {
+    margin-top: 0;
     padding: 0;
     /* border: 1px solid #111111; */
 }
 
 .config-wrapper .tab-content .song-list {
+    margin-top: 0;
     padding: 0;
     /* border: 1px solid #111111; */
 }
