@@ -153,6 +153,6 @@ setTimeout(getAllDicts, 4000);
 // document.getElementById("controller-display").value = hostProtocol + "\n" + midiController  + "\n" + config_api_url + "\n" + control_api_url;
 document.getElementById("controller-display").value = `Hello from:\n${hostProtocol}//${midiController}:8000!!\n` + "Use the \'Select\' button to start.";
 
-setTimeout(uiLoad, 4500);
+setTimeout(uiLoad, 8000);
 
 // console.log(pedals)
