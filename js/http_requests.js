@@ -123,7 +123,7 @@ function loadSongsContent() {
 }
 
 function addItemToList(list, itemName){
-  var li = document.createElement("li");
+  var listItem = document.createElement("li");
   listItem.setAttribute('id', itemName);
   listItem.appendChild(document.createTextNode(itemName));
   list.appendChild(listItem);
