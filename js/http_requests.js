@@ -123,23 +123,15 @@ function loadSongsContent() {
 }
 
 function addItemToList(list, fileNameYaml){
-  list.appendChild(createListItem(fileNameYaml));
+  list.appendChild(createLinkA(fileNameYaml));
 }
 
-function createListItem(id) {
-  var listItem = document.createElement("li");
-  listItem.setAttribute('class', 'config-list-item');
-  listItem.setAttribute('id', id);
-  listItem.appendChild(createButton(id));
-  return listItem;
-}
-
-function createButton(id) {
-  var listButton = document.createElement("button");
-  listButton.setAttribute('class', 'config-list-button');
-  listButton.setAttribute('id', id + '-btn');
-  listButton.setAttribute('title', id.replace('.yaml', ''));
-  return listButton;
+function createLinkA(yamlFile) {
+  var listLink = document.createElement("a");
+  listLink.setAttribute('class', 'config-list-link');
+  listLink.setAttribute('id', yamlFile);
+  listLink.setAttribute('title', yamlFile.replace('.yaml', ''));
+  return listLink;
 }
 
 // get midi controller's sets
