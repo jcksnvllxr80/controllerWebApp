@@ -123,14 +123,21 @@ function loadSongsContent() {
 }
 
 function addItemToList(list, fileNameYaml){
-  list.appendChild(createLinkA(fileNameYaml));
+  list.appendChild(createListItem(fileNameYaml));
 }
 
-function createLinkA(yamlFile) {
+function createListItem(id) {
+  var listItem = document.createElement("li");
+  listItem.setAttribute('class', 'config-list-item');
+  listItem.appendChild(createLinkA(id));
+  return listItem;
+}
+
+function createLinkA(id) {
   var listLink = document.createElement("a");
   listLink.setAttribute('class', 'config-list-link');
-  listLink.setAttribute('id', yamlFile);
-  listLink.setAttribute('title', yamlFile.replace('.yaml', ''));
+  listLink.setAttribute('id', id);
+  listLink.setAttribute('title', id.replace('.yaml', ''));
   return listLink;
 }
 
