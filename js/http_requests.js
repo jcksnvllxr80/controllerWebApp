@@ -137,7 +137,7 @@ function createLinkA(id) {
   var listLink = document.createElement("a");
   listLink.setAttribute('class', 'config-list-link');
   listLink.setAttribute('id', id);
-  listLink.setAttribute('title', id.replace('.yaml', ''));
+  listLink.textContent = id.replace('.yaml', '');
   return listLink;
 }
 
