@@ -318,5 +318,5 @@ pre {
 
 .config-wrapper .tab-content .config-list-item a:hover {
     padding: 0;
-    background: none;
+    background-color: #777777;
 }
