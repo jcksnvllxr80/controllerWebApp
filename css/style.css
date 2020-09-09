@@ -291,7 +291,7 @@ pre {
     resize: none;
 }
 
-.config-list {
+.tab-content .config-list-item {
     list-style-type: none;
     padding: 0;
     border: 2px solid #c141f4;
