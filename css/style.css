@@ -295,22 +295,26 @@ pre {
 
 .config-wrapper .tab-content .setlist-list {
     margin-top: 0;
+    margin-bottom: 0;
     padding: 0;
-    /* border: 1px solid #111111; */
 }
 
 .config-wrapper .tab-content .song-list {
     margin-top: 0;
+    margin-bottom: 0;
     padding: 0;
-    /* border: 1px solid #111111; */
 }
 
 .config-wrapper .tab-content .config-list-item {
     list-style-type: none;
     padding: 0;
-    /* border: 1px solid #111111; */
 }
 
 .config-wrapper .tab-content .config-list-item a {
     padding: 0;
+}
+
+.config-wrapper .tab-content .config-list-item a:hover {
+    padding: 0;
+    font-style: italic;
 }
