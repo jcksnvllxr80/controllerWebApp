@@ -68,8 +68,8 @@
 }
 
 .control-wrapper .cta-wrapper-dpad {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 pre {
@@ -118,8 +118,10 @@ pre {
     display: inline-block;
     padding: 3px 7px;
     border: solid 1px transparent;
-    margin-right: 15px;
-    margin-left: 15px;
+    margin-right: 19px;
+    margin-left: 19px;
+    width: 19px;
+    height: 19px;
     z-index: 1;
     text-decoration: none;
     color: #222;
