@@ -47,7 +47,7 @@
     left: 0;
 }
 
-.caontrol-wrapper controller-display {
+.caontrol-wrapper .controller-display {
     position: absolute;
     display: block;
     width: 100%;
@@ -197,8 +197,10 @@ pre {
 }
 
 .config-wrapper {
-    margin: 20px;
-    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 40px;
+    width: 75%;
     opacity: 0.66;
     z-index: 1
 }
