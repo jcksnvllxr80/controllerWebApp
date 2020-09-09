@@ -147,7 +147,7 @@ function showConfigFile(listObj) {
   document.getElementById('json-view-state-cta').click();
 }
 
-function newFunction(listObj) {
+function getJsonConfig(listObj) {
   if (listObj.name.localCompare('song')) {
     return setConfigDict[listObj.id];
   }
