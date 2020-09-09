@@ -112,14 +112,21 @@ function uiLoad() {
 
 function loadSetlistsContent() {
   sets.forEach(set => {
-    document.getElementById("setlists").append(set + "\n")
+    addItemToList(document.getElementById("setlists"), set);
   });
 }
 
 function loadSongsContent() {
   songs.forEach(song => {
-    document.getElementById("songs").append(song + "\n")
+    addItemToList(document.getElementById("songs"), song);
   });
+}
+
+function addItemToList(list, itemName){
+  var li = document.createElement("li");
+  listItem.setAttribute('id', itemName);
+  listItem.appendChild(document.createTextNode(itemName));
+  list.appendChild(listItem);
 }
 
 // get midi controller's sets
