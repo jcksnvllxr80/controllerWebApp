@@ -19,6 +19,7 @@ function getSets() {
 }
 
 function getSetsDict() {
+  waitForData(sets);
   sets.forEach(set => {
      getSetConfig(set);
   });
@@ -39,6 +40,7 @@ function getSongs() {
 }
 
 function getSongsDict() {
+  waitForData(songs);
   songs.forEach(song => {
      getSongConfig(song);
   });
@@ -59,6 +61,7 @@ function getPedals() {
 }
 
 function getPedalsDict() {
+  waitForData(pedals);
   pedals.forEach(pedal => {
      getPedalConfig(pedal);
   });
@@ -106,7 +109,9 @@ function getAllDicts() {
 }
 
 function uiLoad() {
+  waitForDictData(setConfigDict)
   loadSetlistsContent()
+  waitForDictData(songConfigDict)
   loadSongsContent() 
 }
 
@@ -144,8 +149,7 @@ function createLinkA(id, class_type) {
 
 function showConfigFile(listObj) {
   document.getElementById('json-viewer').value = getJsonConfig(listObj);
-  setTimeout(document.getElementById('json-view-state-cta').click(), 4500);
-  // document.getElementById('json-view-state-cta').click();
+  document.getElementById('json-view-state-cta').click();
 }
 
 function getJsonConfig(listObj) {
@@ -182,6 +186,22 @@ function addNewSet(){
   console.log('adding new set');
 }
 
+function waitForData(dataObj) {
+  if(dataObj === null){
+    setTimeout(waitForData(dataObj), 250);
+  }
+}
+
+function isEmpty(obj) {
+  return Object.keys(obj).length === 0;
+}
+
+function waitForDictData(dictObj) {
+  if(isEmpty(dictObj)){
+      setTimeout(waitForDictData(dictObj), 250);
+  }
+}
+
 // get midi controller's sets
 getSets();
 // get midi controller's songs
@@ -189,11 +209,11 @@ getSongs();
 // get midi controller's pedals
 getPedals();
 
-setTimeout(getAllDicts, 4000);
+getAllDicts();
 
 // document.getElementById("controller-display").value = hostProtocol + "\n" + midiController  + "\n" + config_api_url + "\n" + control_api_url;
 document.getElementById("controller-display").value = `Hello from:\n${hostProtocol}//${midiController}:8000!!\n` + "Use the \'Select\' button to start.";
 
-setTimeout(uiLoad, 4500);
+uiLoad();
 
 // console.log(pedals)
