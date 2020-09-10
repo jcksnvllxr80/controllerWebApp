@@ -135,7 +135,7 @@ function createListItem(id, class_type) {
 
 function createLinkA(id, class_type) {
   var listLink = document.createElement("a");
-  listLink.setAttribute('onClick', 'handleListClick(this)');
+  listLink.setAttribute('onClick', 'showConfigFile(this)');
   listLink.setAttribute('id', id);
   listLink.setAttribute('name', class_type);
   listLink.textContent = id.replace('.yaml', '');
@@ -144,7 +144,8 @@ function createLinkA(id, class_type) {
 
 function showConfigFile(listObj) {
   document.getElementById('json-viewer').value = getJsonConfig(listObj);
-  document.getElementById('json-view-state-cta').click();
+  setTimeout(document.getElementById('json-view-state-cta').click(), 4500);
+  // document.getElementById('json-view-state-cta').click();
 }
 
 function getJsonConfig(listObj) {
@@ -160,17 +161,18 @@ function getJsonConfig(listObj) {
     return errorMessage;
   }
 }
-function handleListClick(btnObj){
-  console.debug(`active element is ${document.activeElement.id}`)
-  console.debug(`clicked button is ${btnObj.id}`)
-  if (btnObj === document.activeElement) {
-    console.debug(`show ${btnObj.textContent} list items configuration.`);
-    showConfigFile(btnObj)
-  } else {
-    console.debug(`set ${btnObj.textContent} list item as focused.`);
-    btnObj.focus();
-  }
-}
+
+// function handleListClick(btnObj){
+//   console.debug(`active element is ${document.activeElement.id}`)
+//   console.debug(`clicked button is ${btnObj.id}`)
+//   if (btnObj === document.activeElement) {
+//     console.debug(`show ${btnObj.textContent} list items configuration.`);
+//     showConfigFile(btnObj)
+//   } else {
+//     console.debug(`set ${btnObj.textContent} list item as focused.`);
+//     btnObj.focus();
+//   }
+// }
 
 function addNewSong(){
   console.log('adding new song');
