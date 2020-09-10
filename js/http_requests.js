@@ -199,8 +199,8 @@ getPedals().then(function(returndata){
 });
 
 document.getElementById("controller-display").value = `Hello from: ${hostProtocol}//${midiController}:` + 
-  `8000!!\n` + "Use the \'Song Up\', \'Song Dn\', \'Part Up\', and \'Part Dn\' to navigate to the desired part, " +
-  "and then use \'Select\' button to activate it.\nThe d-pad buttons: down=into menu, up=out of menu, left and " + 
+  `8000!!\n` + "Use \'Song Up\', \'Song Dn\', \'Part Up\', and \'Part Dn\' to navigate to the desired part, " +
+  "and then use \'Select\' button to activate it.\nD-pad buttons: down=into menu, up=out of menu, left and " + 
   "right=navigate menu";
 
 // console.log(pedals)
