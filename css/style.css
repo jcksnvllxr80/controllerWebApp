@@ -302,6 +302,8 @@ pre {
     font-size: large;
     font-family: ui-monospace;
     resize: none;
+    border-radius: 4px;
+    border: none;
 }
 
 .viewer-display {
@@ -317,6 +319,8 @@ pre {
     font-size: small;
     font-family: ui-monospace;
     resize: none;
+    border-radius: 4px;
+    border: none;
 }
 
 .config-wrapper .tab-content .setlist-list {
