@@ -18,7 +18,7 @@ function getSets() {
   return $.getJSON(`${config_api_url}/sets`).then(function(result) {
     console.log(result);
     return {
-      sets:result.Sets,
+      sets:result.Sets
     }
   });
 }
@@ -37,9 +37,11 @@ function getSetConfig(set) {
 }
 
 function getSongs() {
-  $.getJSON(`${config_api_url}/songs`, function(result) {
-    songs = result.Songs;
+  return $.getJSON(`${config_api_url}/songs`).then(function(result) {
     console.log(result);
+    return {
+      songs:result.Songs
+    }
   });
 }
 
@@ -57,9 +59,11 @@ function getSongConfig(song) {
 }
 
 function getPedals() {
-  $.getJSON(`${config_api_url}/pedals`, function(result) {
-    pedals = result.Pedals;
+  return $.getJSON(`${config_api_url}/pedals`).then(function(result) {
     console.log(result);
+    return {
+      pedals:result.Pedals
+    }
   });
 }
 
@@ -187,21 +191,20 @@ function isEmpty(obj) {
 // get midi controller's sets
 getSets().then(function(returndata){
   sets = returndata.sets;
-  getSetsDict().then(function(moreReturnData){
-    setsLoaded = 1;
-  });
+  getSetsDict();
+  setsLoaded = 1;
 });
 // get midi controller's songs
 getSongs().then(function(returndata){
-  getSongsDict().then(function(moreReturnedData){
-    songsLoaded = 1;
-  });
+  songs = returndata.songs;
+  getSongsDict();
+  songsLoaded = 1;
 });
 // get midi controller's pedals
 getPedals().then(function(returndata){
-  getPedalsDict().then(function(moreReturnedData){
-    pedalsLoaded = 1;
-  });
+  pedals = returndata.pedals;
+  getPedalsDict();
+  pedalsLoaded = 1;
 });
 
 function dataLoaded() {
