@@ -161,7 +161,7 @@ function getJsonConfig(listObj) {
   }
 }
 function handleListClick(btnObj){
-  if ($(btnObj).is(':focus')) {
+  if (btnObj.hasFocus()) {
     console.debug(`show ${btnObj.textContent} list items configuration.`);
     showConfigFile(btnObj)
   } else {
