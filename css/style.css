@@ -356,8 +356,10 @@ pre {
 }
 
 .config-wrapper .tab-content .add-item {
-    list-style-type: none;
-    padding: 0;
+    list-style-type: none
+}
+
+.adder {
     border: #222222;
 }
 
