@@ -52,6 +52,7 @@
 
 .canvas-interactive-wrapper .cta-wrapper {
     margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .control-wrapper .cta-wrapper {
@@ -209,7 +210,7 @@ pre {
     position: relative;
     height: auto;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 40px;
     opacity: 0.66;
     z-index: 1
 }
@@ -218,7 +219,7 @@ pre {
     position: relative;
     height: 75%;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 40px;
     opacity: 0.66;
     z-index: 1
 }
