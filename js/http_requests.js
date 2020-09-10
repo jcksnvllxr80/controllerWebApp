@@ -136,6 +136,7 @@ function createListItem(id, class_type) {
 function createLinkA(id, class_type) {
   var listLink = document.createElement("a");
   listLink.setAttribute('ondblClick', 'showConfigFile(this)');
+  listLink.setAttribute('onClick', 'this.focus()');
   listLink.setAttribute('id', id);
   listLink.setAttribute('name', class_type);
   listLink.textContent = id.replace('.yaml', '');
@@ -162,11 +163,11 @@ function getJsonConfig(listObj) {
 }
 
 function addNewSong(){
-  console.error('adding new song');
+  console.log('adding new song');
 }
 
 function addNewSet(){
-  console.error('adding new set');
+  console.log('adding new set');
 }
 
 // get midi controller's sets
