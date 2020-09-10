@@ -161,9 +161,9 @@ function getJsonConfig(listObj) {
   }
 }
 function handleListClick(btnObj){
+  console.debug(`active element is ${document.activeElement}`)
+  console.debug(`clicked button is ${btnObj}`)
   if (btnObj === document.activeElement) {
-    console.debug(`active element is ${document.activeElement}`)
-    console.debug(`clicked button is ${btnObj}`)
     console.debug(`show ${btnObj.textContent} list items configuration.`);
     showConfigFile(btnObj)
   } else {
