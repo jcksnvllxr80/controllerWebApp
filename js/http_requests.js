@@ -109,7 +109,9 @@ function doShortButtonPress(btnObj) {
 }
 
 function uiLoad() {
-  while (!dataLoaded()) {};
+  if (!dataLoaded()) {
+    console.log(`data loaded is ${dataLoaded()}`);
+  };
   loadSetlistsContent()
   loadSongsContent() 
 }
