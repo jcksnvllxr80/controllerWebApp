@@ -360,7 +360,7 @@ pre {
 }
 
 .config-wrapper .tab-content .add-item .adder {
-    background-color: #777777;
+    background-color: transparent;
     border: solid 1px transparent;
     border-color: #222;
 } 
