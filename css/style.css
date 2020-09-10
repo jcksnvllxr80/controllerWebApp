@@ -354,3 +354,14 @@ pre {
     padding: 0;
     border: #222222;
 }
+
+.config-wrapper .tab-content .add-item {
+    list-style-type: none;
+    padding: 0;
+}
+
+.config-wrapper .tab-content .add-item a {
+    padding: 0;
+    border: #222222;
+    font: large;
+}

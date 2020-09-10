@@ -135,7 +135,7 @@ function createListItem(id, class_type) {
 
 function createLinkA(id, class_type) {
   var listLink = document.createElement("a");
-  listLink.setAttribute('onClick', 'showConfigFile(this)');
+  listLink.setAttribute('onDblClick', 'showConfigFile(this)');
   listLink.setAttribute('id', id);
   listLink.setAttribute('name', class_type);
   listLink.textContent = id.replace('.yaml', '');
@@ -159,6 +159,14 @@ function getJsonConfig(listObj) {
     console.error(errorMessage);
     return errorMessage;
   }
+}
+
+function addNewSong(){
+
+}
+
+function addNewSet(){
+  
 }
 
 // get midi controller's sets
