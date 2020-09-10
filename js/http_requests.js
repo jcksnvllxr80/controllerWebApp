@@ -187,8 +187,8 @@ function addNewSet(){
 }
 
 function waitForData(dataObj) {
-  if(dataObj === null){
-    setTimeout(waitForData(dataObj), 250);
+  while(dataObj === null){
+    setTimeout($.noop, 250);
   }
 }
 
@@ -197,8 +197,8 @@ function isEmpty(obj) {
 }
 
 function waitForDictData(dictObj) {
-  if(isEmpty(dictObj)){
-      setTimeout(waitForDictData(dictObj), 250);
+  while(isEmpty(dictObj)){
+    setTimeout($.noop, 250);
   }
 }
 
