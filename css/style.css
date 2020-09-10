@@ -358,15 +358,10 @@ pre {
 .config-wrapper .tab-content .add-item {
     list-style-type: none;
     padding: 0;
-}
-
-.config-wrapper .tab-content .add-item .adder {
-    /* padding: 0; */
     border: #222222;
 }
 
 .config-wrapper .tab-content .add-item .adder:hover {
-    /* padding: 0; */
     background-color: #777777;
     color: #dddddd;
 } 
