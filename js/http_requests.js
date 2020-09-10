@@ -3,12 +3,9 @@ const midiController=document.location.hostname;
 const config_api_url=`${hostProtocol}//${midiController}:8081`;
 const control_api_url=`${hostProtocol}//${midiController}:8090/midi_controller`;
 
-var songsLoaded = 0;
-var setsLoaded = 0;
-var pedalsLoaded = 0;
 var sets = null;
 var songs = null;
-var pedals= null;
+var pedals = null;
 var setConfigDict = {};
 var songConfigDict = {};
 var pedalConfigDict = {};
@@ -108,14 +105,6 @@ function doShortButtonPress(btnObj) {
   });
 }
 
-function uiLoad() {
-  if (!dataLoaded()) {
-    console.log(`data loaded is ${dataLoaded()}`);
-  };
-  loadSetlistsContent()
-  loadSongsContent() 
-}
-
 function loadSetlistsContent() {
   sets.forEach(set => {
     addItemToList(document.getElementById("setlist-list"), set, 'set');
@@ -195,28 +184,21 @@ function isEmpty(obj) {
 getSets().then(function(returndata){
   sets = returndata.sets;
   getSetsDict();
-  setsLoaded = 1;
+  loadSetlistsContent();
 });
 // get midi controller's songs
 getSongs().then(function(returndata){
   songs = returndata.songs;
   getSongsDict();
-  songsLoaded = 1;
+  loadSongsContent();
 });
 // get midi controller's pedals
 getPedals().then(function(returndata){
   pedals = returndata.pedals;
   getPedalsDict();
-  pedalsLoaded = 1;
 });
-
-function dataLoaded() {
-  return (songsLoaded && setsLoaded && pedalsLoaded);
-} 
 
 // document.getElementById("controller-display").value = hostProtocol + "\n" + midiController  + "\n" + config_api_url + "\n" + control_api_url;
 document.getElementById("controller-display").value = `Hello from:\n${hostProtocol}//${midiController}:8000!!\n` + "Use the \'Select\' button to start.";
-
-uiLoad();
 
 // console.log(pedals)
