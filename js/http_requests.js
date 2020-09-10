@@ -135,7 +135,7 @@ function createListItem(id, class_type) {
 
 function createLinkA(id, class_type) {
   var listLink = document.createElement("a");
-  listLink.setAttribute('onDblClick', 'showConfigFile(this)');
+  listLink.setAttribute('onClick', 'showConfigFile(this)');
   listLink.setAttribute('id', id);
   listLink.setAttribute('name', class_type);
   listLink.textContent = id.replace('.yaml', '');
