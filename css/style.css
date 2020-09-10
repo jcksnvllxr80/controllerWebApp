@@ -359,9 +359,11 @@ pre {
     list-style-type: none
 }
 
-#adder {
-    border: #222222;
-}
+.config-wrapper .tab-content .add-item .adder {
+    background-color: #777777;
+    border: solid 1px transparent;
+    border-color: #222;
+} 
 
 .config-wrapper .tab-content .add-item .adder:hover {
     background-color: #777777;
