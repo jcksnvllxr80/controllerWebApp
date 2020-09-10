@@ -363,5 +363,9 @@ pre {
 .config-wrapper .tab-content .add-item a {
     padding: 0;
     border: #222222;
-    font: large;
 }
+
+.config-wrapper .tab-content .add-item a:focus {
+    padding: 0;
+    border: #222222;
+} 

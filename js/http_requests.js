@@ -135,8 +135,7 @@ function createListItem(id, class_type) {
 
 function createLinkA(id, class_type) {
   var listLink = document.createElement("a");
-  listLink.setAttribute('ondblClick', 'showConfigFile(this)');
-  listLink.setAttribute('onClick', 'this.focus()');
+  listLink.setAttribute('onClick', 'handleListClick(this)');
   listLink.setAttribute('id', id);
   listLink.setAttribute('name', class_type);
   listLink.textContent = id.replace('.yaml', '');
@@ -159,6 +158,13 @@ function getJsonConfig(listObj) {
     errorMessage = `This object type (${listObj.name}) is not handled yet.`
     console.error(errorMessage);
     return errorMessage;
+  }
+}
+function handleListClick(btnObj){
+  if ($(btnObj).is(':focus')) {
+    showConfigFile(btnObj)
+  } else {
+    btnObj.focus();
   }
 }
 
