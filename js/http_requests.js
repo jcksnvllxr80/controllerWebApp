@@ -3,6 +3,9 @@ const midiController=document.location.hostname;
 const config_api_url=`${hostProtocol}//${midiController}:8081`;
 const control_api_url=`${hostProtocol}//${midiController}:8090/midi_controller`;
 
+var songsLoaded = 0;
+var setsLoaded = 0;
+var pedalsLoaded = 0;
 var sets = null;
 var songs = null;
 var pedals= null;
@@ -19,7 +22,6 @@ function getSets() {
 }
 
 function getSetsDict() {
-  waitForData(sets);
   sets.forEach(set => {
      getSetConfig(set);
   });
@@ -40,7 +42,6 @@ function getSongs() {
 }
 
 function getSongsDict() {
-  waitForData(songs);
   songs.forEach(song => {
      getSongConfig(song);
   });
@@ -61,7 +62,6 @@ function getPedals() {
 }
 
 function getPedalsDict() {
-  waitForData(pedals);
   pedals.forEach(pedal => {
      getPedalConfig(pedal);
   });
@@ -102,16 +102,8 @@ function doShortButtonPress(btnObj) {
   });
 }
 
-function getAllDicts() {
-  getSetsDict();
-  getSongsDict();
-  getPedalsDict();
-}
-
 function uiLoad() {
-  waitForDictData(setConfigDict)
   loadSetlistsContent()
-  waitForDictData(songConfigDict)
   loadSongsContent() 
 }
 
@@ -186,30 +178,32 @@ function addNewSet(){
   console.log('adding new set');
 }
 
-function waitForData(dataObj) {
-  while(dataObj === null){
-    setTimeout($.noop, 250);
-  }
-}
-
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
-function waitForDictData(dictObj) {
-  while(isEmpty(dictObj)){
-    setTimeout($.noop, 250);
-  }
-}
-
 // get midi controller's sets
-getSets();
+getSets().then(function(returndata){
+  getSetsDict().then(function(moreReturnedData){
+    setsLoaded = 1;
+  });
+});
 // get midi controller's songs
-getSongs();
+getSongs().then(function(returndata){
+  getSongsDict().then(function(moreReturnedData){
+    songsLoaded = 1;
+  });
+});
 // get midi controller's pedals
-getPedals();
+getPedals().then(function(returndata){
+  getPedalsDict().then(function(moreReturnedData){
+    pedalsLoaded = 1;
+  });
+});
 
-getAllDicts();
+function dataLoaded() {
+  reutrn (songsLoaded && setsLoaded && pedalsLoaded);
+} 
 
 // document.getElementById("controller-display").value = hostProtocol + "\n" + midiController  + "\n" + config_api_url + "\n" + control_api_url;
 document.getElementById("controller-display").value = `Hello from:\n${hostProtocol}//${midiController}:8000!!\n` + "Use the \'Select\' button to start.";
