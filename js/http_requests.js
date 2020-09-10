@@ -209,7 +209,7 @@ getPedals().then(function(returndata){
 });
 
 function dataLoaded() {
-  reutrn (songsLoaded && setsLoaded && pedalsLoaded);
+  return (songsLoaded && setsLoaded && pedalsLoaded);
 } 
 
 // document.getElementById("controller-display").value = hostProtocol + "\n" + midiController  + "\n" + config_api_url + "\n" + control_api_url;
