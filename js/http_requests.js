@@ -15,9 +15,11 @@ var pedalConfigDict = {};
 
 
 function getSets() {
-  $.getJSON(`${config_api_url}/sets`, function(result) {
-    sets = result.Sets;
+  return $.getJSON(`${config_api_url}/sets`).then(function(result) {
     console.log(result);
+    return {
+      sets:result.Sets,
+    }
   });
 }
 
@@ -184,7 +186,8 @@ function isEmpty(obj) {
 
 // get midi controller's sets
 getSets().then(function(returndata){
-  getSetsDict().then(function(moreReturnedData){
+  sets = returndata.sets;
+  getSetsDict().then(function(moreReturnData){
     setsLoaded = 1;
   });
 });
