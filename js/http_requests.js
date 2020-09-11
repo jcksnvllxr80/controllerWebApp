@@ -117,22 +117,35 @@ function loadSongsContent() {
   });
 }
 
-function addItemToList(list, fileNameYaml, class_type){
-  list.appendChild(createListItem(fileNameYaml, class_type));
+function addItemToList(list, fileNameYaml, itemType){
+  list.appendChild(createListItem(fileNameYaml, itemType));
 }
 
-function createListItem(id, class_type) {
+function addItemToWipList(list, fileNameYaml, itemType){
+  list.appendChild(createWipListItem(fileNameYaml, itemType));
+}
+
+function createWipListItem(id, itemType) {
   var listItem = document.createElement("li");
   listItem.setAttribute('class', 'config-list-item');
-  listItem.appendChild(createLinkA(id, class_type));
+  linkA = createLinkA(id, itemType);
+  linkA.setAttribute('class', 'work-in-progress')
+  listItem.appendChild(linkA);
   return listItem;
 }
 
-function createLinkA(id, class_type) {
+function createListItem(id, itemType) {
+  var listItem = document.createElement("li");
+  listItem.setAttribute('class', 'config-list-item');
+  listItem.appendChild(createLinkA(id, itemType));
+  return listItem;
+}
+
+function createLinkA(id, itemType) {
   var listLink = document.createElement("a");
   listLink.setAttribute('onClick', 'showConfigFile(this)');
   listLink.setAttribute('id', id);
-  listLink.setAttribute('name', class_type);
+  listLink.setAttribute('name', itemType);
   listLink.textContent = id.replace('.yaml', '');
   return listLink;
 }
@@ -168,13 +181,18 @@ function getJsonConfig(listObj) {
 //   }
 // }
 
-function addNewListItem(btnObj){
+function addNewListItem(btnObj) {
   itemType = btnObj.id.split('-')[0];
   console.debug(`The add new ${itemType} button was pressed.`);
   itemName = getNameFromUser(itemType);
   if (isValidName(itemType, itemName)) {
-    console.log(`add \'${itemName}\' to the ${itemType} list.`);
+    addWorkInProgressListItem(itemType, itemName);
   }
+}
+
+function addWorkInProgressListItem(itemType, itemName) {
+  console.log(`Adding \'${itemName}\' to the ${itemType} list.`);
+  addItemToWipList(document.getElementById(`${itemType}-list`), `${itemName}.yaml`, itemType);
 }
 
 function isValidName(itemType, itemName) {

@@ -365,6 +365,13 @@ pre {
     border-color: #222;
 } 
 
+.config-wrapper .tab-content .add-item .work-in-progress {
+    background-color: transparent;
+    border: solid 1px transparent;
+    font-style: italic;
+    color: #777777;
+} 
+
 .config-wrapper .tab-content .add-item .adder:hover {
     background-color: #777777;
     color: #dddddd;
