@@ -107,7 +107,7 @@ function doShortButtonPress(btnObj) {
 
 function loadSetlistsContent() {
   sets.forEach(set => {
-    addItemToList(document.getElementById("setlist-list"), set, 'set');
+    addItemToList(document.getElementById("set-list"), set, 'set');
   });
 }
 
