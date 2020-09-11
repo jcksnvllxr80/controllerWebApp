@@ -376,3 +376,8 @@ pre {
     background-color: #777777;
     color: #dddddd;
 } 
+
+.config-wrapper .tab-content .edit {
+    color: cornflowerblue;
+    content: "";
+} 

@@ -131,6 +131,7 @@ function createWipListItem(id, itemType) {
   linkA = createLinkA(id, itemType);
   linkA.setAttribute('class', 'work-in-progress')
   listItem.appendChild(linkA);
+  listItem.appendChild(createEditLinkA(id, itemType));
   return listItem;
 }
 
@@ -138,6 +139,7 @@ function createListItem(id, itemType) {
   var listItem = document.createElement("li");
   listItem.setAttribute('class', 'config-list-item');
   listItem.appendChild(createLinkA(id, itemType));
+  listItem.appendChild(createEditLinkA(id, itemType));
   return listItem;
 }
 
@@ -149,6 +151,26 @@ function createLinkA(id, itemType) {
   listLink.setAttribute('name', itemType);
   listLink.textContent = id.replace('.yaml', '');
   return listLink;
+}
+
+function createEditLinkA(id, itemType) {
+  var editLink = document.createElement("a");
+  editLink.setAttribute('onClick', 'editListItem(this)');
+  editLink.setAttribute('name', itemType);
+  editLink.appendChild(createEditIconSpan(id));
+  return editLink;
+}
+
+function createEditIconSpan(id) {
+  var editItemSpan = document.createElement("span");
+  editItemSpan.setAttribute('name', id);
+  editItemSpan.setAttribute('class', 'edit');
+  return editItemSpan;
+
+function editListItem(btnObj) {
+  editObj = btnObj.childNode.name;
+  editType = btnObj.name;
+  console.debug(`Editing ${editType}, ${editObj}.`)
 }
 
 function showConfigFile(listObj) {
