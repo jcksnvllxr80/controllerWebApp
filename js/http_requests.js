@@ -121,7 +121,7 @@ function addItemToList(list, fileNameYaml, itemType){
   list.appendChild(createListItem(fileNameYaml, itemType));
 }
 
-function addItemToWipList(list, fileNameYaml, itemType){
+function addWipItemToList(list, fileNameYaml, itemType){
   list.appendChild(createWipListItem(fileNameYaml, itemType));
 }
 
@@ -192,16 +192,44 @@ function addNewListItem(btnObj) {
 
 function addWorkInProgressListItem(itemType, itemName) {
   console.log(`Adding \'${itemName}\' to the ${itemType} list.`);
-  addItemToWipList(document.getElementById(`${itemType}-list`), `${itemName}.yaml`, itemType);
+  addWipItemToList(document.getElementById(`${itemType}-list`), `${itemName}.yaml`, itemType);
+  createNewJson(itemType, itemName);
+}
+
+function createNewJson(itemType, itemName) {
+  itemJson = results.json;
+  itemJson.name = itemName;
+  getJsonTemplate(itemType).then(function(results){
+    addNewItemToGlobalVars(itemType, `${itemName}.yaml`, itemJson);
+  });
+}
+
+function addNewItemToGlobalVars(itemType, itemFileName, itemJson) {
+  if (itemType.localeCompare('set')) {
+    sets.push(itemFileName);
+    setConfigDict[itemFileName] = itemJson;
+  } else if (itemType.localeCompare('song')) {
+    songs.push(itemFileName);
+    songConfigDict[itemFileName] = itemJson;
+  }
+}
+
+function getJsonTemplate(itemType) {
+  return $.getJSON(`data/${itemType}.json`).then(function(result) {
+    console.log(result);
+    return {
+      json:result
+    }
+  });
 }
 
 function isValidName(itemType, itemName) {
-  if (itemName == null || itemName == "") {
+  if (itemName == null || itemName.localeCompare("")) {
     console.debug(`User cancelled creating a new ${itemType}.`);
     return false;
   }
-  else if ((itemType == 'set' && sets.includes(itemName + '.yaml')) 
-      || (itemType == 'song' && songs.includes(itemName + '.yaml'))) {
+  else if ((itemType.localeCompare('set') && sets.includes(`${itemName}.yaml`)) 
+      || (itemType.localeCompare('song') && songs.includes(`${itemName}.yaml`))) {
     console.debug(`User tried creating a new ${itemType} with a name that is already in use: 
       \'${itemType}\'.`);
     alert(`A ${itemType} with the name \'${itemName}\' already exists! Please try again.`);
@@ -227,12 +255,14 @@ getSets().then(function(returndata){
   getSetsDict();
   loadSetlistsContent();
 });
+
 // get midi controller's songs
 getSongs().then(function(returndata){
   songs = returndata.songs;
   getSongsDict();
   loadSongsContent();
 });
+
 // get midi controller's pedals
 getPedals().then(function(returndata){
   pedals = returndata.pedals;
