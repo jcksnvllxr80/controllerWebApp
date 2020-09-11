@@ -157,16 +157,26 @@ function createEditLinkA(id, itemType) {
   var editLink = document.createElement("a");
   editLink.setAttribute('class', 'edit-link');
   editLink.setAttribute('name', itemType);
-  editLink.appendChild(createEditIconSpan(id));
+  // editLink.appendChild(createEditIconSpan(id));
+  editLink.appendChild(createEditIconImg(id));
   return editLink;
 }
 
-function createEditIconSpan(id) {
-  var editItemSpan = document.createElement("span");
-  editItemSpan.setAttribute('onClick', 'editListItem(this)');
-  editItemSpan.setAttribute('id', id.replace('.yaml', ''));
-  editItemSpan.setAttribute('class', 'edit glyphicon glyphicon-cog');
-  return editItemSpan;
+// function createEditIconSpan(id) {
+//   var editItemSpan = document.createElement("span");
+//   editItemSpan.setAttribute('onClick', 'editListItem(this)');
+//   editItemSpan.setAttribute('id', id.replace('.yaml', ''));
+//   editItemSpan.setAttribute('class', 'edit');
+//   return editItemSpan;
+// }
+
+function createEditIconImg(id) {
+  var editItemImg = document.createElement("img");
+  editItemImg.setAttribute('onClick', 'editListItem(this)');
+  editItemImg.setAttribute('id', id.replace('.yaml', ''));
+  editItemImg.setAttribute('src', 'assets/Cogwheel.png');
+  editItemImg.setAttribute('class', 'edit');
+  return editItemImg;
 }
 
 function editListItem(btnObj) {
