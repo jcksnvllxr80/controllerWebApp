@@ -224,7 +224,7 @@ function getJsonTemplate(itemType) {
 }
 
 function isValidName(itemType, itemName) {
-  if (itemName == null || itemName.localeCompare("")) {
+  if (itemName == null || itemName == "") {
     console.debug(`User cancelled creating a new ${itemType}.`);
     return false;
   }
