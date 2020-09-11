@@ -182,8 +182,10 @@ function isValidName(itemType, itemName) {
     console.debug(`User cancelled creating a new ${itemType}.`);
     return false;
   }
-  else if ((itemType == 'set' && sets.includes(itemName)) || (itemType == 'song' && songs.includes(itemName))) {
-    console.debug(`User tried creating a new ${itemType} with a name that is already in use: \'${itemType}\'.`);
+  else if ((itemType == 'set' && sets.includes(itemName + '.yaml')) 
+      || (itemType == 'song' && songs.includes(itemName + '.yaml'))) {
+    console.debug(`User tried creating a new ${itemType} with a name that is already in use: 
+      \'${itemType}\'.`);
     alert(`A ${itemType} with the name \'${itemName}\' already exists! Please try again.`);
     return false;
   }
