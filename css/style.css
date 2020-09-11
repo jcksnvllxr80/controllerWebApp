@@ -378,10 +378,10 @@ pre {
     color: #dddddd;
 } 
 
-/* .config-wrapper .tab-content .config-list-item .edit:before {
+.config-wrapper .tab-content .config-list-item .edit {
     display: inline-block;
-} */
+}
 
-.config-wrapper .tab-content .config-list-item .edit-link {
+/* .config-wrapper .tab-content .config-list-item .edit-link {
     align-items: center;
-} 
+}  */
