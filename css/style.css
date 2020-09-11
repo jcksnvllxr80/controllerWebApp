@@ -377,9 +377,9 @@ pre {
     color: #dddddd;
 } 
 
-.config-wrapper .tab-content .config-list-item .edit {
+.config-wrapper .tab-content .config-list-item .edit:before {
     color: cornflowerblue;
-    content: "&#xe019";
+    content: "\e019";
     display: inline-block;
     font-family: "Glyphicons Halflings";
     font-style: normal;
