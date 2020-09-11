@@ -378,14 +378,10 @@ pre {
     color: #dddddd;
 } 
 
-.config-wrapper .tab-content .config-list-item .edit:before {
-    /* color: cornflowerblue;
-    content: "\e019";
+/* .config-wrapper .tab-content .config-list-item .edit:before {
     display: inline-block;
-    font-family: "Glyphicons Halflings";
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased; */
-    size: 15px
-}
+} */
+
+.config-wrapper .tab-content .config-list-item .edit-link {
+    align-items: center;
+} 
