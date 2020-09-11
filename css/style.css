@@ -377,7 +377,7 @@ pre {
     color: #dddddd;
 } 
 
-.config-wrapper .tab-content .edit {
+.config-wrapper .tab-content .config-list-item .edit {
     color: cornflowerblue;
     content: "&#xe019";
     display: inline-block;
