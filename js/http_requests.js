@@ -170,12 +170,26 @@ function getJsonConfig(listObj) {
 
 function addNewListItem(btnObj){
   itemType = btnObj.id.split('-')[0];
-  console.log(`adding new ${itemType}`);
+  console.debug(`The add new ${itemType} button was pressed.`);
   itemName = getNameFromUser(itemType);
+  if (isValidName(itemType, itemName)) {
+    console.log(`add \'${itemName}\' to the ${itemType} list.`);
+  }
+}
+
+function isValidName(itemType, itemName) {
   if (itemName == null || itemName == "") {
     console.debug(`User cancelled creating a new ${itemType}.`);
-  } else {
+    return false;
+  }
+  else if ((itemType == 'set' && sets.includes(itemName)) || (itemType == 'song' && songs.includes(itemName))) {
+    console.debug(`User tried creating a new ${itemType} with a name that is already in use: \'${itemType}\'.`);
+    alert(`A ${itemType} with the name \'${itemName}\' already exists! Please try again.`);
+    return false;
+  }
+  else {
     console.debug(`User created a new ${itemType} named ${itemName}.`);
+    return true;
   }
 }
 
@@ -184,7 +198,7 @@ function addNewListItem(btnObj){
 // }
 
 function getNameFromUser(itemType) {
-  return prompt(`Please enter the ${itemType} name:`, `My New ${itemType}`);
+  return prompt(`Please enter the ${itemType} name:`, `My new ${itemType}`);
 }
 
 // get midi controller's sets
