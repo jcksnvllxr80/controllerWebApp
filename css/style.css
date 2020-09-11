@@ -342,6 +342,7 @@ pre {
 
 .config-wrapper .tab-content .config-list-item a {
     padding: 0;
+    color: black;
 }
 
 .config-wrapper .tab-content .config-list-item a:hover {
@@ -388,7 +389,6 @@ pre {
     -webkit-font-smoothing: antialiased;
 }
 
-/* .config-wrapper .tab-content .config-list-item  */
-.edit-link {
+.config-wrapper .tab-content .config-list-item .edit-link {
     align-items: center;
 } 
