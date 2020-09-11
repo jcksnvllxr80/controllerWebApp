@@ -388,7 +388,3 @@ pre {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
 }
-
-.config-wrapper .tab-content .config-list-item .edit-link {
-    align-items: center;
-} 
