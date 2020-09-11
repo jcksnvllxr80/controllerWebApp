@@ -170,7 +170,7 @@ function createEditIconSpan(id) {
 
 function editListItem(btnObj) {
   editType = btnObj.parentNode.name;
-  editObj = btnObj.name;
+  editObj = btnObj.id;
   console.debug(`Editing ${editType}, ${editObj}.`)
 }
 
