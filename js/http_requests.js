@@ -155,7 +155,6 @@ function createLinkA(id, itemType) {
 
 function createEditLinkA(id, itemType) {
   var editLink = document.createElement("a");
-  editLink.setAttribute('onClick', 'editListItem(this)');
   editLink.setAttribute('name', itemType);
   editLink.appendChild(createEditIconSpan(id));
   return editLink;
@@ -163,14 +162,15 @@ function createEditLinkA(id, itemType) {
 
 function createEditIconSpan(id) {
   var editItemSpan = document.createElement("span");
+  editItemSpan.setAttribute('onClick', 'editListItem(this)');
   editItemSpan.setAttribute('name', id);
   editItemSpan.setAttribute('class', 'edit');
   return editItemSpan;
 }
 
 function editListItem(btnObj) {
-  editObj = btnObj.childNode.name;
-  editType = btnObj.name;
+  editType = btnObj.parentNode.name;
+  editObj = btnObj.name;
   console.debug(`Editing ${editType}, ${editObj}.`)
 }
 
