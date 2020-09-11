@@ -168,16 +168,23 @@ function getJsonConfig(listObj) {
 //   }
 // }
 
-function addNewSong(){
-  console.log('adding new song');
+function addNewListItem(btnObj){
+  itemType = btnObj.id.split('-')[0];
+  console.log(`adding new ${itemType}`);
+  itemName = getNameFromUser(itemType);
+  if (itemName == null || itemName == "") {
+    console.debug(`User cancelled creating a new ${itemType}.`);
+  } else {
+    console.debug(`User created a new ${itemType} named ${itemName}.`);
+  }
 }
 
-function addNewSet(){
-  console.log('adding new set');
-}
+// function isEmpty(obj) {
+//   return Object.keys(obj).length === 0;
+// }
 
-function isEmpty(obj) {
-  return Object.keys(obj).length === 0;
+function getNameFromUser(itemType) {
+  return prompt(`Please enter the ${itemType} name:`, `My New ${itemType}`);
 }
 
 // get midi controller's sets
@@ -202,5 +209,4 @@ document.getElementById("controller-display").value = `Hello from: ${hostProtoco
   `8000!!\n` + "Use \'Song Up\', \'Song Dn\', \'Part Up\', and \'Part Dn\' to navigate to the desired part, " +
   "and then use \'Select\' button to activate it.\nD-pad buttons: down=into menu, up=out of menu, left and " + 
   "right=navigate menu";
-
 // console.log(pedals)
