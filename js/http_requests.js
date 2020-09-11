@@ -197,9 +197,9 @@ function addWorkInProgressListItem(itemType, itemName) {
 }
 
 function createNewJson(itemType, itemName) {
-  itemJson = results.json;
-  itemJson.name = itemName;
-  getJsonTemplate(itemType).then(function(results){
+  getJsonTemplate(itemType).then(function(results) {
+    itemJson = results.json;
+    itemJson.name = itemName;
     addNewItemToGlobalVars(itemType, `${itemName}.yaml`, itemJson);
   });
 }
