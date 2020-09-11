@@ -166,6 +166,7 @@ function createEditIconSpan(id) {
   editItemSpan.setAttribute('name', id);
   editItemSpan.setAttribute('class', 'edit');
   return editItemSpan;
+}
 
 function editListItem(btnObj) {
   editObj = btnObj.childNode.name;
@@ -186,7 +187,7 @@ function getJsonConfig(listObj) {
     return JSON.stringify(songConfigDict[listObj.id], undefined, 2);
   }
   else {
-    errorMessage = `This object type (${listObj.name}) is not handled yet.`
+    errorMessage = `This object type (${listObj.name}) is not handled yet.`;
     console.error(errorMessage);
     return errorMessage;
   }
@@ -273,21 +274,21 @@ function getNameFromUser(itemType) {
 }
 
 // get midi controller's sets
-getSets().then(function(returndata){
+getSets().then(function(returndata) {
   sets = returndata.sets;
   getSetsDict();
   loadSetlistsContent();
 });
 
 // get midi controller's songs
-getSongs().then(function(returndata){
+getSongs().then(function(returndata) {
   songs = returndata.songs;
   getSongsDict();
   loadSongsContent();
 });
 
 // get midi controller's pedals
-getPedals().then(function(returndata){
+getPedals().then(function(returndata) {
   pedals = returndata.pedals;
   getPedalsDict();
 });
