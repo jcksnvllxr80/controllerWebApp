@@ -379,5 +379,11 @@ pre {
 
 .config-wrapper .tab-content .edit {
     color: cornflowerblue;
-    content: "";
+    content: "&#xe019";
+    display: inline-block;
+    font-family: "Glyphicons Halflings";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
 } 
