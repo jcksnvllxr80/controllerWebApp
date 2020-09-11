@@ -386,4 +386,15 @@ pre {
     font-weight: 400;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
+}
+
+.config-wrapper .tab-content .config-list-item .edit-link {
+    color: cornflowerblue;
+    content: "\e019";
+    display: inline-block;
+    font-family: "Glyphicons Halflings";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
 } 

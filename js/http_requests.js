@@ -155,6 +155,7 @@ function createLinkA(id, itemType) {
 
 function createEditLinkA(id, itemType) {
   var editLink = document.createElement("a");
+  editLink.setAttribute('class', 'edit-link');
   editLink.setAttribute('name', itemType);
   editLink.appendChild(createEditIconSpan(id));
   return editLink;
