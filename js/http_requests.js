@@ -163,7 +163,7 @@ function createEditLinkA(id, itemType) {
 function createEditIconSpan(id) {
   var editItemSpan = document.createElement("span");
   editItemSpan.setAttribute('onClick', 'editListItem(this)');
-  editItemSpan.setAttribute('name', id);
+  editItemSpan.setAttribute('id', id.replace('.yaml', ''));
   editItemSpan.setAttribute('class', 'edit');
   return editItemSpan;
 }
