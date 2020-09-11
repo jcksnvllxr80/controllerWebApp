@@ -365,7 +365,7 @@ pre {
     border-color: #222;
 } 
 
-.config-wrapper .tab-content .add-item .work-in-progress {
+.config-wrapper .tab-content .work-in-progress {
     background-color: transparent;
     border: solid 1px transparent;
     font-style: italic;
