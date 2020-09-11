@@ -165,7 +165,7 @@ function createEditIconSpan(id) {
   var editItemSpan = document.createElement("span");
   editItemSpan.setAttribute('onClick', 'editListItem(this)');
   editItemSpan.setAttribute('id', id.replace('.yaml', ''));
-  editItemSpan.setAttribute('class', 'edit');
+  editItemSpan.setAttribute('class', 'edit glyphicon glyphicon-cog');
   return editItemSpan;
 }
 
