@@ -156,10 +156,10 @@ function showConfigFile(listObj) {
 }
 
 function getJsonConfig(listObj) {
-  if (listObj.name.localeCompare('song')) {
+  if (listObj.name.localeCompare('song') == 0) {
     return JSON.stringify(setConfigDict[listObj.id], undefined, 2);
   }
-  else if (listObj.name.localeCompare('set')) {
+  else if (listObj.name.localeCompare('set') == 0) {
     return JSON.stringify(songConfigDict[listObj.id], undefined, 2);
   }
   else {
@@ -205,10 +205,10 @@ function createNewJson(itemType, itemName) {
 }
 
 function addNewItemToGlobalVars(itemType, itemFileName, itemJson) {
-  if (itemType.localeCompare('set')) {
+  if (itemType.localeCompare('set') == 0) {
     sets.push(itemFileName);
     setConfigDict[itemFileName] = itemJson;
-  } else if (itemType.localeCompare('song')) {
+  } else if (itemType.localeCompare('song') == 0) {
     songs.push(itemFileName);
     songConfigDict[itemFileName] = itemJson;
   }
@@ -224,12 +224,12 @@ function getJsonTemplate(itemType) {
 }
 
 function isValidName(itemType, itemName) {
-  if (itemName == null || itemName == "") {
+  if (itemName == null || itemName.localeCompare("") == 0) {
     console.debug(`User cancelled creating a new ${itemType}.`);
     return false;
   }
-  else if ((itemType.localeCompare('set') && sets.includes(`${itemName}.yaml`)) 
-      || (itemType.localeCompare('song') && songs.includes(`${itemName}.yaml`))) {
+  else if ((itemType.localeCompare('set') == 0 && sets.includes(`${itemName}.yaml`)) 
+      || (itemType.localeCompare('song') == 0 && songs.includes(`${itemName}.yaml`))) {
     console.debug(`User tried creating a new ${itemType} with a name that is already in use: 
       \'${itemType}\'.`);
     alert(`A ${itemType} with the name \'${itemName}\' already exists! Please try again.`);
