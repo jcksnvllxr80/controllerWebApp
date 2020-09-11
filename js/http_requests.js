@@ -156,10 +156,10 @@ function showConfigFile(listObj) {
 }
 
 function getJsonConfig(listObj) {
-  if (listObj.name.localeCompare('song') == 0) {
+  if (listObj.name.localeCompare('set') == 0) {
     return JSON.stringify(setConfigDict[listObj.id], undefined, 2);
   }
-  else if (listObj.name.localeCompare('set') == 0) {
+  else if (listObj.name.localeCompare('song') == 0) {
     return JSON.stringify(songConfigDict[listObj.id], undefined, 2);
   }
   else {
