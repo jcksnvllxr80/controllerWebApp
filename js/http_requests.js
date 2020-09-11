@@ -144,6 +144,7 @@ function createListItem(id, itemType) {
 function createLinkA(id, itemType) {
   var listLink = document.createElement("a");
   listLink.setAttribute('onClick', 'showConfigFile(this)');
+  listLink.setAttribute('draggable','true');
   listLink.setAttribute('id', id);
   listLink.setAttribute('name', itemType);
   listLink.textContent = id.replace('.yaml', '');
