@@ -410,3 +410,7 @@ pre {
 .config-wrapper .edit-box .song-select .select-option {
     white-space: normal;
 }
+
+.config-wrapper .edit-box .edit-write-file {
+    border-color: #222;
+}
