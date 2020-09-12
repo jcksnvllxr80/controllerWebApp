@@ -189,9 +189,9 @@ function editListItem(btnObj) {
   objFileName = `${editObj}.yaml`;
   console.debug(`Editing ${editType}, \'${objFileName}\'.`);
   if (editType.localeCompare('set') == 0) {
-    modifySet(setConfigDict[objFileName]);
+    modifySet(objFileName);
   } else if (editType.localeCompare('song') == 0) {
-    modifySong(songConfigDict[objFileName], objFileName);
+    modifySong(objFileName);
   } else {
     handleUnhandledType(editType);
   }
