@@ -358,6 +358,15 @@ function isValidName(itemType, itemName) {
   }
 }
 
+function changeSetNameInGlobal(itemOldName, itemNewName) {
+  itemJson = setConfigDict[itemOldName];
+  itemJson.name = itemNewName;
+  setConfigDict[itemNewName] = itemJson;
+  delete setConfigDict[itemOldName];
+  loadSetlistsContent();
+  // write set name to set json 
+}
+
 // function isEmpty(obj) {
 //   return Object.keys(obj).length === 0;
 // }
@@ -390,4 +399,14 @@ document.getElementById("controller-display").value = `Hello from: ${hostProtoco
   `8000!!\n` + "Use \'Song Up\', \'Song Dn\', \'Part Up\', and \'Part Dn\' to navigate to the desired part, " +
   "and then use \'Select\' button to activate it.\nD-pad buttons: down=into menu, up=out of menu, left and " + 
   "right=navigate menu";
+
+var editSetNameField = document.getElementById("set-name-input");
+editSetNameField.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   oldSetName = editSetNameField.parentNode.name;
+   changeSetNameInGlobal(oldSetName, editSetNameField.value);
+   editSetNameField.parentNode.name = editSetNameField.value;
+  }
+});
 // console.log(pedals)
