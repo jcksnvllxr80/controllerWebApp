@@ -154,8 +154,8 @@ function createEditLinkA(id, itemType) {
 
 function createOption(content) {
   var option = document.createElement("option");
-  option.setAttribute('value', content);
-  option.content = content.replace('.yaml', '');
+  option.setAttribute('id', content);
+  option.value = content.replace('.yaml', '');
   return option;
 }
 
@@ -189,7 +189,7 @@ function modifySet(configJson) {
 }
 
 function populateSetEditContent(currentJson) {
-  document.getElementById("set-name-input").content = currentJson.name;
+  document.getElementById("set-name-input").value = currentJson.name;
   songs.forEach(song => {
     document.getElementById("set-song-edit-select").appendChild(createOption(song));
   });
