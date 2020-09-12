@@ -176,13 +176,18 @@ function editListItem(btnObj) {
 }
 
 function modifySet(configJson) {
-  document.getElementById('edit-window').hidden = false;
+  hideEditContent('set', false);
   // configJson.songs.push(existingSongName);
 }
 
 function modifySong(configJson) {
-  document.getElementById('edit-window').hidden = false;
+  hideEditContent('song', false);
   // configJson.songs.parts[newPart];
+}
+
+function hideEditContent(type, hidden) {
+  document.getElementById('edit-window').hidden = hidden;
+  document.getElementById(`${type}-edit-content`).hidden = hidden;
 }
 
 function handleUnhandledType(unhandledType) {
