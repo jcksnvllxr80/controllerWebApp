@@ -107,6 +107,21 @@ function redrawSetlistsContent() {
   loadSetlistsContent();
 }
 
+function evaluateSetlistsContent(oldSetName, newSetName) {
+  editChangedChildNode(document.getElementById("set-list"), newSetName, oldSetName);
+  // loadSetlistsContent();
+}
+
+function editChangedChildNode(setListObj, newSetName, oldSetName) {
+  setListObj.children.forEach(childNode => {
+    if (childNode.children[0].id.localeCompare(oldSetName) == 0) {
+      childNode.id = newSetName;
+      childNode.textContent = newSetName.replace('.yaml', '');
+      break;
+    }
+  });
+}
+
 function loadSongsContent() {
   songs.forEach(song => {
     addItemToList(document.getElementById("song-list"), song, 'song');
@@ -392,7 +407,7 @@ function changeSetNameInGlobal(itemOldName, itemNewName) {
   sets.push(newFileName)
   setConfigDict[newFileName] = itemJson;
   delete setConfigDict[itemOldName];
-  redrawSetlistsContent()
+  evaluateSetlistsContent(itemOldName, itemNewName)
 }
 
 // function isEmpty(obj) {
@@ -449,6 +464,5 @@ function replaceOldSetNameWithNewSetName() {
     console.error(alertMsg)
     alert(alertMsg);
   }
-
 }
 // console.log(pedals)
