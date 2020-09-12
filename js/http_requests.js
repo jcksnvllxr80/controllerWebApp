@@ -237,6 +237,15 @@ function addNewListItem(btnObj) {
   }
 }
 
+function addSelectedSongToSet(btnObj, jsonList) {
+  itemType = btnObj.id.split('-')[0];
+  console.debug(`The add new ${itemType} button was pressed.`);
+  itemName = getNameFromUser(itemType);
+  if (isValidName(itemType, itemName)) {
+    addWorkInProgressListItem(itemType, itemName);
+  }
+}
+
 function addWorkInProgressListItem(itemType, itemName) {
   console.log(`Adding \'${itemName}\' to the ${itemType} list.`);
   addWipItemToList(document.getElementById(`${itemType}-list`), `${itemName}.yaml`, itemType);
