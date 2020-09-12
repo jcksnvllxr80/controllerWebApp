@@ -406,3 +406,7 @@ pre {
 .config-wrapper .edit-box .set-current-song-list {
     padding: 0;
 }
+
+.config-wrapper .edit-box .select-option {
+    padding: 0;
+}

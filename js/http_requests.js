@@ -170,6 +170,7 @@ function createEditLinkA(id, itemType) {
 function createOption(content) {
   var option = document.createElement("option");
   option.setAttribute('value', content);
+  option.setAttribute('class', 'select-option');
   option.textContent = content.replace('.yaml', '');
   return option;
 }
