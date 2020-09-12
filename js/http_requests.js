@@ -102,6 +102,11 @@ function loadSetlistsContent() {
   });
 }
 
+function redrawSetlistsContent() {
+  removeAllChildNodes(document.getElementById("set-list"));
+  loadSetlistsContent();
+}
+
 function loadSongsContent() {
   songs.forEach(song => {
     addItemToList(document.getElementById("song-list"), song, 'song');
@@ -230,6 +235,18 @@ function redrawCurrentSongsInSet(objFileName) {
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
       parent.removeChild(parent.firstChild);
+  }
+}
+
+function removeAllTabContentListChildNodes(parent) {
+  tmpChild = null;
+  while (parent.firstChild) {
+    if (parent.firstChild.className == "adder") {
+      tmpChild = parent.firstChild;
+    parent.removeChild(parent.firstChild);
+  }
+  if (tmpChild) {
+    parent.appendChild(tmpChild)
   }
 }
 
@@ -363,7 +380,7 @@ function changeSetNameInGlobal(itemOldName, itemNewName) {
   itemJson.name = itemNewName;
   setConfigDict[itemNewName] = itemJson;
   delete setConfigDict[itemOldName];
-  loadSetlistsContent();
+  redrawSetlistsContent()
   // write set name to set json 
 }
 
