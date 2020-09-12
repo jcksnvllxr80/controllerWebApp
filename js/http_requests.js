@@ -404,9 +404,9 @@ var editSetNameField = document.getElementById("set-name-input");
 editSetNameField.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
    event.preventDefault();
-   oldSetName = editSetNameField.parentNode.name;
+   oldSetName = editSetNameField.parentNode.value;
    changeSetNameInGlobal(oldSetName, editSetNameField.value);
-   editSetNameField.parentNode.name = editSetNameField.value;
+   editSetNameField.parentNode.value = editSetNameField.value;
   }
 });
 // console.log(pedals)
