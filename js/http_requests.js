@@ -338,13 +338,16 @@ function validateSetJson(setJson) {
 }
 
 function writeSetToController(setJson) {
-  return $.post(`${config_api_url}/set/${setJson.name}`, JSON.stringify(setJson), function(data, status){
+  return $.post({
+    url: `${config_api_url}/set/${setJson.name}`,
+    data: JSON.stringify(setJson),
+    contentType: 'application/json; charset=utf-8'
+  }).done(function(data, status) {
     console.log("Data: " + data + "\nStatus: " + status);
-  }).done(function() {
     console.debug(`Succcess: ${status}`);
     return true;
   })
-  .fail(function() {
+  .fail(function(data, status) {
     console.error(`Error: ${status}`);
     return false;
   });
