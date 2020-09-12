@@ -379,7 +379,7 @@ function isValidName(itemType, itemName) {
 function changeSetNameInGlobal(itemOldName, itemNewName) {
   itemJson = setConfigDict[itemOldName];
   itemJson.name = itemNewName;
-  setConfigDict[itemNewName] = itemJson;
+  setConfigDict[`${itemNewName}.yaml`] = itemJson;
   delete setConfigDict[itemOldName];
   redrawSetlistsContent()
   // write set name to set json 
@@ -424,7 +424,7 @@ editSetNameField.addEventListener("keyup", function(event) {
     console.debug(`Enter event heard on \'${editSetNameField.id}\' field.`)
     event.preventDefault();
     oldSetName = editSetNameField.parentNode.value;
-    changeSetNameInGlobal(oldSetName, editSetNameField.value);
+    changeSetNameInGlobal(oldSetName, newSetName);
     editSetNameField.parentNode.value = `${editSetNameField.value}.yaml`;
   }
 });
