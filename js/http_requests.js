@@ -168,10 +168,11 @@ function createEditLinkA(id, itemType) {
 }
 
 function createOption(content) {
+  content = content.replace('.yaml', '')
   var option = document.createElement("option");
   option.setAttribute('value', content);
   option.setAttribute('class', 'select-option');
-  option.textContent = content.replace('.yaml', '');
+  option.textContent = content;
   return option;
 }
 
