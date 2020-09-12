@@ -154,8 +154,8 @@ function createEditLinkA(id, itemType) {
 
 function createOption(content) {
   var option = document.createElement("option");
-  option.setAttribute('id', content);
-  option.value = content.replace('.yaml', '');
+  option.setAttribute('value', content);
+  option.textContent = content.replace('.yaml', '');
   return option;
 }
 
