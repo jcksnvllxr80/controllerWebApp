@@ -400,11 +400,12 @@ pre {
 
 .config-wrapper .edit-box .edit-config-list-item {
     /* list-style-type: lower-roman; */
-    padding-left: 5px;
+    padding-left: none;
 } 
 
 .config-wrapper .edit-box .set-current-song-list {
     font-size: small;
+    padding-left: 15px;
     padding: 0;
 }
 
