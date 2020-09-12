@@ -417,3 +417,10 @@ pre {
     border: solid 1px transparent;
     border-color: #222;
 }
+
+.config-wrapper .edit-box .edit-set-name-check {
+    background-color: transparent;
+    border: solid 1px transparent;
+    border-color: #222;
+    float: right;
+}
