@@ -213,7 +213,7 @@ function populateSetEditContent(setFileName) {
 
 function redrawCurrentSongsInSet(objFileName) {
   currentSongList = document.getElementById("set-current-song-list");
-  currentSongList.removeAllChildNodes();
+  removeAllChildNodes(currentSongList);
   setConfigDict[objFileName].songs.forEach(song => {
     currentSongList.appendChild(createPlainListItem(song));
   });
