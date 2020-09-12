@@ -189,8 +189,8 @@ function modifySet(configJson) {
 }
 
 function populateSetEditContent(currentJson) {
-  document.getElementById("set-name-input").content = songs;
-  currentJson.songs.forEach(song => {
+  document.getElementById("set-name-input").content = currentJson.name;
+  songs.forEach(song => {
     document.getElementById("set-song-edit-select").appendChild(createOption(song));
   });
 }
