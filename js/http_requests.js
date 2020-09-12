@@ -174,7 +174,7 @@ function createEditIconImg(id) {
   var editItemImg = document.createElement("img");
   editItemImg.setAttribute('onClick', 'editListItem(this)');
   editItemImg.setAttribute('id', id.replace('.yaml', ''));
-  editItemImg.setAttribute('src', 'assets/Cogwheel.png');
+  editItemImg.setAttribute('src', 'assets/cogwheel.png');
   editItemImg.setAttribute('class', 'edit');
   return editItemImg;
 }
