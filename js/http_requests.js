@@ -117,7 +117,7 @@ function editChangedChildNode(setListObj, newSetName, oldSetName) {
     if (childNode.children[0].id.localeCompare(oldSetName) == 0) {
       childNode.id = newSetName;
       childNode.textContent = newSetName.replace('.yaml', '');
-      break;
+      return;
     }
   });
 }
