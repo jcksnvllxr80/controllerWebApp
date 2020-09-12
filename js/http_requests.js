@@ -206,10 +206,16 @@ function modifySet(setFileName) {
 
 function populateSetEditContent(setFileName) {
   document.getElementById("set-name-input").value = setConfigDict[setFileName].name;
-  songs.forEach(song => {
-    document.getElementById("set-song-edit-select").appendChild(createOption(song));
-  });
+  redrawAvailableSongs();
   redrawCurrentSongsInSet(setFileName);
+}
+
+function redrawAvailableSongs() {
+  selectSongList = document.getElementById("set-song-edit-select");
+  removeAllChildNodes(selectSongList);
+  songs.forEach(song => {
+    selectSongList.appendChild(createOption(song));
+  });
 }
 
 function redrawCurrentSongsInSet(objFileName) {
