@@ -113,13 +113,9 @@ function evaluateSetlistsContent(oldSetName, newSetName) {
 }
 
 function editChangedChildNode(setListObj, newSetName, oldSetName) {
-  setListObj.children.forEach(childNode => {
-    if (childNode.children[0].id.localeCompare(oldSetName) == 0) {
-      childNode.id = newSetName;
-      childNode.textContent = newSetName.replace('.yaml', '');
-      return;
-    }
-  });
+  childNode = setListObj.children.find(child => child.children[0].id.localeCompare(oldSetName) == 0)
+  childNode.id = newSetName;
+  childNode.textContent = newSetName.replace('.yaml', '');
 }
 
 function loadSongsContent() {
