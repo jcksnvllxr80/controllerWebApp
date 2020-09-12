@@ -409,8 +409,4 @@ pre {
 
 .config-wrapper .edit-box .song-select .select-option {
     white-space: normal;
-    min-height: fit-content;
-    padding: 0;
-    margin: 0px;
-    background-color: transparent;
 }
