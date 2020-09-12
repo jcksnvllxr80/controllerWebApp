@@ -407,7 +407,7 @@ pre {
     padding: 0;
 }
 
-.config-wrapper .edit-box .set-current-song-list .select-option {
+.config-wrapper .edit-box .set-song-edit-select .select-option {
     white-space: normal;
     min-height: fit-content;
     padding: 0;
