@@ -421,10 +421,11 @@ document.getElementById("controller-display").value = `Hello from: ${hostProtoco
 var editSetNameField = document.getElementById("set-name-input");
 editSetNameField.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
-   event.preventDefault();
-   oldSetName = editSetNameField.parentNode.value;
-   changeSetNameInGlobal(oldSetName, editSetNameField.value);
-   editSetNameField.parentNode.value = editSetNameField.value;
+    console.debug(`Enter event heard on \'${editSetNameField.id}\' field.`)
+    event.preventDefault();
+    oldSetName = editSetNameField.parentNode.value;
+    changeSetNameInGlobal(oldSetName, editSetNameField.value);
+    editSetNameField.parentNode.value = editSetNameField.value;
   }
 });
 // console.log(pedals)
