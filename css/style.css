@@ -412,5 +412,6 @@ pre {
 }
 
 .config-wrapper .edit-box .edit-write-file {
+    border: solid 1px transparent;
     border-color: #222;
 }
