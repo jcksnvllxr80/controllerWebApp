@@ -424,7 +424,7 @@ editSetNameField.addEventListener("keyup", function(event) {
     console.debug(`Enter event heard on \'${editSetNameField.id}\' field.`)
     event.preventDefault();
     oldSetName = editSetNameField.parentNode.value;
-    changeSetNameInGlobal(oldSetName, newSetName);
+    changeSetNameInGlobal(oldSetName, editSetNameField.value);
     editSetNameField.parentNode.value = `${editSetNameField.value}.yaml`;
   }
 });
