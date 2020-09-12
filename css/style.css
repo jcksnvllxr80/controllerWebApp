@@ -391,7 +391,7 @@ pre {
     float: right;
 }
 
-.config-wrapper .tab-content .edit-config-list-item {
+.config-wrapper .edit-box .edit-config-list-item {
     list-style-type: none;
     padding: 0;
 } 
