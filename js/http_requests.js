@@ -241,7 +241,7 @@ function removeAllChildNodes(parent) {
 function removeAllTabContentListChildNodes(parent) {
   tmpChild = null;
   while (parent.firstChild) {
-    if (parent.firstChild.className == "adder") {
+    if (parent.firstChild.firstChild.className == "adder") {
       tmpChild = parent.firstChild;
     }
     parent.removeChild(parent.firstChild);
