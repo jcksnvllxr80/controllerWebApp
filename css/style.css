@@ -399,11 +399,12 @@ pre {
 }
 
 .config-wrapper .edit-box .edit-config-list-item {
-    list-style-type: none;
+    list-style-type: lower-roman;
     padding: 0;
 } 
 
 .config-wrapper .edit-box .set-current-song-list {
+    font-size: small;
     padding: 0;
 }
 
@@ -412,6 +413,7 @@ pre {
 }
 
 .config-wrapper .edit-box .edit-write-file {
+    padding: 3px 7px;
     border: solid 1px transparent;
     border-color: #222;
 }
