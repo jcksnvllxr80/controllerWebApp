@@ -277,12 +277,34 @@ function addNewListItem(btnObj) {
   }
 }
 
-function addSelectedSongToSet(btnObj) {
+function addSelectedSongToSet(addSongBtn) {
   selectedSong = document.getElementById('set-song-edit-select').value;
-  setlistName = btnObj.parentNode.value;
+  setlistName = addSongBtn.parentNode.value;
   console.debug(`Add ${selectedSong} to set, \'${setlistName}\'.`);
   setConfigDict[setlistName].songs.push(selectedSong);
   redrawCurrentSongsInSet(setlistName);
+}
+
+function validateandWriteSet(writeSetBtn) {
+  setlistName = writeSetBtn.parentNode.value;
+  if (validateSetJson()) {
+    document.getElementById(setlistName).className = 'edit-link';
+    // change the wip set to a standard set list item
+    hideEditContent('set', true);
+  }
+}
+
+function validateSetJson(setJson) {
+  // if this that and the other {}
+  var retVal = false;
+  retVal = writeSetToController();
+  // return true if valid and write was successful
+  return retVal;
+}
+
+function writeSetToController() {
+  // use post method to write the file to the midi controller
+  return true
 }
 
 function addWorkInProgressListItem(itemType, itemName) {
