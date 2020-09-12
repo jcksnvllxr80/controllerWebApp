@@ -314,15 +314,23 @@ function validateAndWriteSet(writeSetBtn) {
 
 function validateSetJson(setJson) {
   // if this that and the other {}
-  var retVal = false;
-  retVal = writeSetToController();
-  // return true if valid and write was successful
-  return retVal;
+  return writeSetToController(setJson).done(function(results, status) {
+    console.log(`Post funtion returned ${results}`)
+    return true;
+  });
 }
 
-function writeSetToController() {
-  // use post method to write the file to the midi controller
-  return true
+function writeSetToController(setJson) {
+  return $.post(`${config_api_url}/set/${setJson.name}`, setJson, function(data, status){
+    console.log("Data: " + data + "\nStatus: " + status);
+  }).done(function() {
+    console.debug(`Succcess: ${status}`);
+    return true;
+  })
+  .fail(function() {
+    console.error(`Error: ${status}`);
+    return false;
+  });
 }
 
 function addWorkInProgressListItem(itemType, itemName) {
