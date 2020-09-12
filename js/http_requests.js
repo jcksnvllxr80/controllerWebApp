@@ -305,7 +305,7 @@ function addSelectedSongToSet(addSongBtn) {
 
 function validateAndWriteSet(writeSetBtn) {
   setlistName = writeSetBtn.parentNode.value;
-  if (validateSetJson()) {
+  if (validateSetJson(setConfigDict[setlistName])) {
     document.getElementById(setlistName).className = 'edit-link';
     // change the wip set to a standard set list item
     hideEditContent('set', true);
