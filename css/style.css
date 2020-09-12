@@ -408,5 +408,7 @@ pre {
 }
 
 .config-wrapper .edit-box .select-option {
+    white-space: normal;
+    min-height: fit-content;
     padding: 0;
 }
