@@ -412,4 +412,5 @@ pre {
     min-height: fit-content;
     padding: 0;
     margin: 0px;
+    background-color: transparent;
 }
