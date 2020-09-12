@@ -164,7 +164,31 @@ function createEditIconImg(id) {
 function editListItem(btnObj) {
   editType = btnObj.parentNode.name;
   editObj = btnObj.id;
-  console.debug(`Editing ${editType}, \'${editObj}.yaml\'.`)
+  objFileName = `${editObj}.yaml`;
+  console.debug(`Editing ${editType}, \'${objFileName}\'.`);
+  if (editType.localeCompare('set') == 0) {
+    modifySet(setConfigDict[objFileName]);
+  } else if (editType.localeCompare('song') == 0) {
+    modifySong(songConfigDict[objFileName]);
+  } else {
+    handleUnhandledType(editType);
+  }
+}
+
+function modifySet(configJson) {
+  document.getElementById('set-edit-window').hidden = false;
+  // configJson.songs.push(existingSongName);
+}
+
+function modifySong(configJson) {
+  document.getElementById('set-edit-window').hidden = false;
+  // configJson.songs.parts[newPart];
+}
+
+function handleUnhandledType(unhandledType) {
+  errorMessage = `This object type (${unhandledType}) is not handled yet.`;
+  console.error(errorMessage);
+  return errorMessage;
 }
 
 function showConfigFile(listObj) {
@@ -180,9 +204,7 @@ function getJsonConfig(listObj) {
     return JSON.stringify(songConfigDict[listObj.id], undefined, 2);
   }
   else {
-    errorMessage = `This object type (${listObj.name}) is not handled yet.`;
-    console.error(errorMessage);
-    return errorMessage;
+    return handleUnhandledType(listObj.name);
   }
 }
 
