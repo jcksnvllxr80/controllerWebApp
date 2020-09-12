@@ -402,3 +402,7 @@ pre {
     list-style-type: none;
     padding: 0;
 } 
+
+.config-wrapper .edit-box .set-current-song-list {
+    padding: 0;
+}
