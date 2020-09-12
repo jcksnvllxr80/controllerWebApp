@@ -134,6 +134,21 @@ function createListItem(id, itemType) {
   return listItem;
 }
 
+function createPlainListItem(id) {
+  var listItem = document.createElement("li");
+  listItem.setAttribute('class', 'edit-config-list-item');
+  listItem.appendChild(createPlainLinkA(id));
+  return listItem;
+}
+
+function createPlainLinkA(id) {
+  var listLink = document.createElement("a");
+  listLink.setAttribute('draggable','true');
+  listLink.setAttribute('id', id);
+  listLink.textContent = id.replace('.yaml', '');
+  return listLink;
+}
+
 function createLinkA(id, itemType) {
   var listLink = document.createElement("a");
   listLink.setAttribute('onClick', 'showConfigFile(this)');
@@ -176,28 +191,39 @@ function editListItem(btnObj) {
   if (editType.localeCompare('set') == 0) {
     modifySet(setConfigDict[objFileName]);
   } else if (editType.localeCompare('song') == 0) {
-    modifySong(songConfigDict[objFileName]);
+    modifySong(songConfigDict[objFileName], objFileName);
   } else {
     handleUnhandledType(editType);
   }
 }
 
-function modifySet(configJson) {
+function modifySet(setFileName) {
   hideEditContent('set', false);
-  populateSetEditContent(configJson);
-  // configJson.songs.push(existingSongName);
+  document.getElementById(`set-edit-content`).value = setFileName;
+  populateSetEditContent(setFileName);
 }
 
-function populateSetEditContent(currentJson) {
-  document.getElementById("set-name-input").value = currentJson.name;
+function populateSetEditContent(setFileName) {
+  document.getElementById("set-name-input").value = setConfigDict[setFileName].name;
   songs.forEach(song => {
     document.getElementById("set-song-edit-select").appendChild(createOption(song));
   });
+  redrawCurrentSongsInSet(setFileName);
 }
 
-function modifySong(configJson) {
+function redrawCurrentSongsInSet(objFileName) {
+  currentSongList = document.getElementById("set-current-song-list");
+  currentSongList.children = [];
+  setConfigDict[objFileName].songs.forEach(song => {
+    currentSongList.appendChild(createPlainListItem(song));
+  });
+}
+
+function modifySong(objFileName) {
+  configJson = songConfigDict[objFileName];
   hideEditContent('song', false);
-  // configJson.songs.parts[newPart];
+  document.getElementById(`song-edit-content`).value = objFileName;
+  // TODO: got a lot of work here to come
 }
 
 function hideEditContent(type, hidden) {
@@ -237,13 +263,12 @@ function addNewListItem(btnObj) {
   }
 }
 
-function addSelectedSongToSet(btnObj, jsonList) {
-  itemType = btnObj.id.split('-')[0];
-  console.debug(`The add new ${itemType} button was pressed.`);
-  itemName = getNameFromUser(itemType);
-  if (isValidName(itemType, itemName)) {
-    addWorkInProgressListItem(itemType, itemName);
-  }
+function addSelectedSongToSet(btnObj) {
+  selectedSong = document.getElementById('set-song-edit-select').value;
+  setlistName = btnObj.parentNode.value;
+  console.debug(`Add ${selectedSong} to set, \'${setlist}\'.`);
+  setConfigDict[setlistName].songs.push(selectedSong);
+  redrawCurrentSongsInSet(setlistName);
 }
 
 function addWorkInProgressListItem(itemType, itemName) {
