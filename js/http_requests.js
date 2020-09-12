@@ -285,7 +285,7 @@ function addSelectedSongToSet(addSongBtn) {
   redrawCurrentSongsInSet(setlistName);
 }
 
-function validateandWriteSet(writeSetBtn) {
+function validateAndWriteSet(writeSetBtn) {
   setlistName = writeSetBtn.parentNode.value;
   if (validateSetJson()) {
     document.getElementById(setlistName).className = 'edit-link';
