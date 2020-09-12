@@ -181,7 +181,7 @@ function modifySet(configJson) {
 }
 
 function modifySong(configJson) {
-  document.getElementById('set-edit-window').hidden = false;
+  document.getElementById('song-edit-window').hidden = false;
   // configJson.songs.parts[newPart];
 }
 
