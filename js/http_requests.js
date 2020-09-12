@@ -113,7 +113,7 @@ function evaluateSetlistsContent(oldSetName, newSetName) {
 }
 
 function editChangedChildNode(setListObj, newSetName, oldSetName) {
-  childNode = setListObj.children.find(child => child.children[0].id.localeCompare(oldSetName) == 0)
+  childNode = setListObj.children.namedItem(oldSetName);
   childNode.id = newSetName;
   childNode.textContent = newSetName.replace('.yaml', '');
 }
