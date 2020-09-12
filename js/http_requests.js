@@ -115,7 +115,7 @@ function evaluateSetlistsContent(oldSetName, newSetName) {
 function editChangedChildNode(setListObj, newSetName, oldSetName) {
   for (i = 1; i <= setListObj.children.length; i++) {
     childNode = setListObj.children[i].children;
-    if (childNode.id.localeCompare(oldSetName) == 0) {
+    if (childNode[0].id.localeCompare(oldSetName) == 0) {
       childNode[0].id = `${newSetName}.yaml`;
       childNode[0].textContent = newSetName;
       childNode[1].id = newSetName;
