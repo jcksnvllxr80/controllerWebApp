@@ -379,10 +379,12 @@ function isValidName(itemType, itemName) {
 function changeSetNameInGlobal(itemOldName, itemNewName) {
   itemJson = setConfigDict[itemOldName];
   itemJson.name = itemNewName;
-  setConfigDict[`${itemNewName}.yaml`] = itemJson;
+  sets = sets.filter(e => e !== itemOldName);
+  newFileName = `${itemNewName}.yaml`;
+  sets.push(newFileName)
+  setConfigDict[newFileName] = itemJson;
   delete setConfigDict[itemOldName];
   redrawSetlistsContent()
-  // write set name to set json 
 }
 
 // function isEmpty(obj) {
