@@ -69,12 +69,6 @@ pre {
     border-radius: 4px
 }
 
-/* @media screen and (max-width: 100px) {
-    pre {
-        font-size:75%
-    }
-} */
-
 .canvas-interactive-wrapper .cta-wrapper a {
     position: relative;
     display: inline-block;
@@ -260,6 +254,16 @@ pre {
     padding-bottom: 15px;
     height: 66%;
     font-size: large;
+}
+
+.edit-box {
+    background-color: #f5f2f0;
+    margin-top: 20px;
+    border-radius: 4px;
+    padding-bottom: 15px;
+    height: 10%;
+    font-size: large;
+    visibility: hidden;
 }
 
 .tab-content .tab {
