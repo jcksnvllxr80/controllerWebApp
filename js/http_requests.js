@@ -338,7 +338,7 @@ function validateSetJson(setJson) {
 }
 
 function writeSetToController(setJson) {
-  return $.post(`${config_api_url}/set/${setJson.name}`, JSON.parse(setJson), function(data, status){
+  return $.post(`${config_api_url}/set/${setJson.name}`, JSON.stringify(setJson), function(data, status){
     console.log("Data: " + data + "\nStatus: " + status);
   }).done(function() {
     console.debug(`Succcess: ${status}`);
