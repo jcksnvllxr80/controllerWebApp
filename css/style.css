@@ -380,6 +380,7 @@ pre {
 } 
 
 .config-wrapper .tab-content .config-list-item .edit {
+    padding-top: 2px;
     float: right;
 }
 
