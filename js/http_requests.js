@@ -152,6 +152,13 @@ function createEditLinkA(id, itemType) {
   return editLink;
 }
 
+function createOption(content) {
+  var option = document.createElement("option");
+  option.setAttribute('value', content);
+  option.content = content.replace('.yaml', '');
+  return option;
+}
+
 function createEditIconImg(id) {
   var editItemImg = document.createElement("img");
   editItemImg.setAttribute('onClick', 'editListItem(this)');
@@ -177,7 +184,15 @@ function editListItem(btnObj) {
 
 function modifySet(configJson) {
   hideEditContent('set', false);
+  populateSetEditContent(configJson);
   // configJson.songs.push(existingSongName);
+}
+
+function populateSetEditContent(currentJson) {
+  document.getElementById("set-name-input").content = currentJson.name;
+  currentJson.songs.forEach(song => {
+    document.getElementById("set-song-edit-select").appendChild(createOption(song));
+  });
 }
 
 function modifySong(configJson) {
