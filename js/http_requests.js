@@ -239,15 +239,15 @@ function removeAllChildNodes(parent) {
 }
 
 function removeAllTabContentListChildNodes(parent) {
-  tmpChild = null;
+  addItemChild = null;
   while (parent.firstChild) {
-    if (parent.firstChild.firstChild.className == "adder") {
-      tmpChild = parent.firstChild;
+    if (parent.firstChild.className == "add-item") {
+      addItemChild = parent.firstChild;
     }
     parent.removeChild(parent.firstChild);
   }
-  if (tmpChild) {
-    parent.appendChild(tmpChild);
+  if (addItemChild) {
+    parent.appendChild(addItemChild);
   }
 }
 
