@@ -404,7 +404,7 @@ pre {
 } 
 
 .config-wrapper .edit-box .set-current-song-list {
-    font-size: small;
+    font-size: smaller;
     padding-left: 15px;
     display: block;
     list-style-type: decimal;
