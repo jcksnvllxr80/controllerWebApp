@@ -77,15 +77,6 @@ function getPedalConfig(pedal) {
   });
 }
 
-// function doLongButtonPress(btnObj) {
-//   request = `${control_api_url}/long/${btnObj.name}`;
-//   console.log(`Button ${btnObj.name} (${btnObj.id}) was longpressed/right-clicked. GET request: ${request}`);
-//   $.getJSON(request, function(result) {
-//     document.getElementById("controller-display").value = result.display_message.replace(/ - /g,"\n");
-//     console.log(result);
-//   });
-// }
-
 function doDpadButtonPress(btnObj) {
   request = `${control_api_url}/dpad/${btnObj.name}`;
   console.log(`Button ${btnObj.name} (${btnObj.id}) was pressed/clicked. GET request: ${request}`);
@@ -157,18 +148,9 @@ function createEditLinkA(id, itemType) {
   var editLink = document.createElement("a");
   editLink.setAttribute('class', 'edit-link');
   editLink.setAttribute('name', itemType);
-  // editLink.appendChild(createEditIconSpan(id));
   editLink.appendChild(createEditIconImg(id));
   return editLink;
 }
-
-// function createEditIconSpan(id) {
-//   var editItemSpan = document.createElement("span");
-//   editItemSpan.setAttribute('onClick', 'editListItem(this)');
-//   editItemSpan.setAttribute('id', id.replace('.yaml', ''));
-//   editItemSpan.setAttribute('class', 'edit');
-//   return editItemSpan;
-// }
 
 function createEditIconImg(id) {
   var editItemImg = document.createElement("img");
@@ -203,18 +185,6 @@ function getJsonConfig(listObj) {
     return errorMessage;
   }
 }
-
-// function handleListClick(btnObj){
-//   console.debug(`active element is ${document.activeElement.id}`)
-//   console.debug(`clicked button is ${btnObj.id}`)
-//   if (btnObj === document.activeElement) {
-//     console.debug(`show ${btnObj.textContent} list items configuration.`);
-//     showConfigFile(btnObj)
-//   } else {
-//     console.debug(`set ${btnObj.textContent} list item as focused.`);
-//     btnObj.focus();
-//   }
-// }
 
 function addNewListItem(btnObj) {
   itemType = btnObj.id.split('-')[0];
