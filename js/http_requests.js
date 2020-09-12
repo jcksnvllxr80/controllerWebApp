@@ -103,7 +103,7 @@ function loadSetlistsContent() {
 }
 
 function redrawSetlistsContent() {
-  removeAllChildNodes(document.getElementById("set-list"));
+  removeAllTabContentListChildNodes(document.getElementById("set-list"));
   loadSetlistsContent();
 }
 
