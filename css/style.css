@@ -374,6 +374,13 @@ pre {
     border-color: #222;
 } 
 
+.config-wrapper .edit-box .edit-adder {
+    background-color: transparent;
+    border: solid 1px transparent;
+    border-color: #222;
+    float: right;
+}
+
 .config-wrapper .tab-content .work-in-progress {
     background-color: transparent;
     border: solid 1px transparent;
