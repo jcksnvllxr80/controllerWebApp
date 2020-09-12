@@ -176,12 +176,12 @@ function editListItem(btnObj) {
 }
 
 function modifySet(configJson) {
-  document.getElementById('set-edit-window').hidden = false;
+  document.getElementById('edit-window').hidden = false;
   // configJson.songs.push(existingSongName);
 }
 
 function modifySong(configJson) {
-  document.getElementById('song-edit-window').hidden = false;
+  document.getElementById('edit-window').hidden = false;
   // configJson.songs.parts[newPart];
 }
 
