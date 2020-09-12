@@ -379,7 +379,7 @@ pre {
 } 
 
 .config-wrapper .tab-content .config-list-item .edit {
-    display: inline-block;
+    float: right;
 }
 
 /* .config-wrapper .tab-content .config-list-item .edit-link {
