@@ -266,7 +266,7 @@ function addNewListItem(btnObj) {
 function addSelectedSongToSet(btnObj) {
   selectedSong = document.getElementById('set-song-edit-select').value;
   setlistName = btnObj.parentNode.value;
-  console.debug(`Add ${selectedSong} to set, \'${setlist}\'.`);
+  console.debug(`Add ${selectedSong} to set, \'${setlistName}\'.`);
   setConfigDict[setlistName].songs.push(selectedSong);
   redrawCurrentSongsInSet(setlistName);
 }
