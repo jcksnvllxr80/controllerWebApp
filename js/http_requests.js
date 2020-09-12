@@ -425,9 +425,14 @@ editSetNameField.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
     console.debug(`Enter event heard on \'${editSetNameField.id}\' field.`)
     event.preventDefault();
-    oldSetName = editSetNameField.parentNode.value;
-    changeSetNameInGlobal(oldSetName, editSetNameField.value);
-    editSetNameField.parentNode.value = `${editSetNameField.value}.yaml`;
+    replaceOldSetNameWithNewSetName();
   }
 });
+
+function replaceOldSetNameWithNewSetName() {
+  var editSetNameTextField = document.getElementById("set-name-input");
+  var oldSetName = editSetNameTextField.parentNode.value;
+  changeSetNameInGlobal(oldSetName, editSetNameTextField.value);
+  editSetNameTextField.parentNode.value = `${editSetNameTextField.value}.yaml`;
+}
 // console.log(pedals)
