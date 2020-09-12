@@ -400,21 +400,19 @@ pre {
 }
 
 .config-wrapper .edit-box .edit-config-list-item {
-    /* list-style-type: lower-roman; */
     padding-left: none;
 } 
 
 .config-wrapper .edit-box .set-current-song-list {
     font-size: small;
     padding-left: 15px;
-
     display: block;
     list-style-type: decimal;
     margin-block-start: 0px;
     margin-block-end: 0px;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
+    /* padding-inline-start: 40px; */
 }
 
 .config-wrapper .edit-box .song-select .select-option {
