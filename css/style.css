@@ -265,6 +265,10 @@ pre {
     font-size: large;
 }
 
+.config-wrapper .edit-box .set-content {
+    padding: 10px;
+}
+
 .tab-content .tab {
     padding: 15px;
     display: none
