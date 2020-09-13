@@ -399,6 +399,16 @@ pre {
     float: right;
 }
 
+.config-wrapper .edit-box .check {
+    padding-top: 2px;
+    float: right;
+}
+
+.config-wrapper .edit-box .plus {
+    padding-top: 2px;
+    float: right;
+}
+
 .config-wrapper .edit-box .edit-config-list-item {
     padding-left: none;
 } 
