@@ -103,19 +103,19 @@
 			</div>
 			<div class="edit-box" id="edit-window" hidden="true">
 				<div class="set-content" id="set-edit-content" hidden="true">
-					<label for="edit-set-name" id="set-name-edit-label">Set Name:</label>
+					<label for="edit-set-name" id="set-name-edit-label">Set Name:</label><br>
 					<input type="text" id="set-name-input" name="edit-set-name">
 					<a class="edit-set-name-check" id="edit-set-name-enter">
 						<img class="check" onclick="replaceOldSetNameWithNewSetName()" src="assets/check.png">
 					</a>
 					<hr></hr>
-					<label for="edit-set-song-list" id="set-song-list-edit-label">Songs to Add:</label>
+					<label for="edit-set-song-list" id="set-song-list-edit-label">Songs to Add:</label><br>
 					<select class="song-select" id="set-song-edit-select" name="edit-set-song-list"></select>
 					<a class="edit-adder" id="edit-set-adder">
 						<img class="plus" onclick="addSelectedSongToSet(this.parentNode)" src="assets/plus.png">
 					</a>
 					<hr></hr>
-					<label for="show-set-song-list" id="show-set-song-list-label">Songs in Set:</label>
+					<label for="show-set-song-list" id="show-set-song-list-label">Songs in Set:</label><br>
 					<ol class="set-current-song-list" id="set-current-song-list" name="show-set-song-list"></ol>
 					<hr></hr>
 					<a class="edit-write-file" onclick="validateAndWriteSet(this)" id="edit-set-writer">Write Set</a>
