@@ -144,6 +144,7 @@ function createWipListItem(id, itemType) {
   linkA = createLinkA(id, itemType);
   linkA.setAttribute('class', 'work-in-progress')
   listItem.appendChild(linkA);
+  listItem.appendChild(createTrashLinkA(id, itemType));
   listItem.appendChild(createEditLinkA(id, itemType));
   return listItem;
 }
@@ -152,6 +153,7 @@ function createListItem(id, itemType) {
   var listItem = document.createElement("li");
   listItem.setAttribute('class', 'config-list-item');
   listItem.appendChild(createLinkA(id, itemType));
+  listItem.appendChild(createTrashLinkA(id, itemType));
   listItem.appendChild(createEditLinkA(id, itemType));
   return listItem;
 }
@@ -189,6 +191,14 @@ function createEditLinkA(id, itemType) {
   return editLink;
 }
 
+function createTrashLinkA(id, itemType) {
+  var editLink = document.createElement("a");
+  editLink.setAttribute('class', 'delete-link');
+  editLink.setAttribute('name', itemType);
+  editLink.appendChild(createTrashIconImg(id));
+  return editLink;
+}
+
 function createOption(content) {
   content = content.replace('.yaml', '')
   var option = document.createElement("option");
@@ -204,6 +214,15 @@ function createEditIconImg(id) {
   editItemImg.setAttribute('id', id.replace('.yaml', ''));
   editItemImg.setAttribute('src', 'assets/cogwheel.png');
   editItemImg.setAttribute('class', 'edit');
+  return editItemImg;
+}
+
+function createTrashIconImg(id) {
+  var editItemImg = document.createElement("img");
+  // editItemImg.setAttribute('onClick', 'deleteListItem(this)');
+  editItemImg.setAttribute('id', `delete-${id.replace('.yaml', '')}`);
+  editItemImg.setAttribute('src', 'assets/trash.png');
+  editItemImg.setAttribute('class', 'delete');
   return editItemImg;
 }
 
