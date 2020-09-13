@@ -375,10 +375,10 @@ pre {
 } 
 
 .config-wrapper .edit-box .edit-adder {
-    color: blue;
+    /* color: blue; */
     background-color: transparent;
-    border: solid 1px transparent;
-    border-color: #222;
+    /* border: solid 1px transparent;
+    border-color: #222; */
     float: right;
 }
 
@@ -436,10 +436,10 @@ pre {
 }
 
 .config-wrapper .edit-box .edit-set-name-check {
-    font-size: smaller;
-    color: green;
+    /* font-size: smaller; */
+    /* color: green; */
     background-color: transparent;
-    border: solid 1px transparent;
-    border-color: #222;
+    /* border: solid 1px transparent;
+    border-color: #222; */
     float: right;
 }
