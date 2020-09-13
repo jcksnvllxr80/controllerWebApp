@@ -144,8 +144,8 @@ function createWipListItem(id, itemType) {
   linkA = createLinkA(id, itemType);
   linkA.setAttribute('class', 'work-in-progress')
   listItem.appendChild(linkA);
-  listItem.appendChild(createTrashLinkA(id, itemType));
   listItem.appendChild(createEditLinkA(id, itemType));
+  listItem.appendChild(createTrashLinkA(id, itemType));
   return listItem;
 }
 
@@ -153,8 +153,8 @@ function createListItem(id, itemType) {
   var listItem = document.createElement("li");
   listItem.setAttribute('class', 'config-list-item');
   listItem.appendChild(createLinkA(id, itemType));
-  listItem.appendChild(createTrashLinkA(id, itemType));
   listItem.appendChild(createEditLinkA(id, itemType));
+  listItem.appendChild(createTrashLinkA(id, itemType));
   return listItem;
 }
 
