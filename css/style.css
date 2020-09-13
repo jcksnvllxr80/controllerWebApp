@@ -443,3 +443,7 @@ pre {
     border-color: #222; */
     float: right;
 }
+
+.config-wrapper .edit-box .song-select {
+    padding: 1px 2px;
+}
