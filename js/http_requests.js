@@ -462,7 +462,7 @@ function replaceOldSetNameWithNewSetName() {
   var oldSetName = editSetNameTextField.parentNode.value;
   if (oldSetName.localeCompare(`${editSetNameTextField.value}.yaml`) != 0) {
     if (setConfigDict[oldSetName].songs.length > 0) {
-      console.debug(`Changing old set name, \'${oldSetName}\', to new set name, \'${editSetNameTextField.value}\'.`)
+      console.debug(`Changing old set name, \'${oldSetName}\', to new set name, \'${editSetNameTextField.value}.yaml\'.`)
       changeSetNameInGlobal(oldSetName, editSetNameTextField.value);
       editSetNameTextField.parentNode.value = `${editSetNameTextField.value}.yaml`;
     } else {
