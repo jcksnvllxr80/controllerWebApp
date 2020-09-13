@@ -162,6 +162,7 @@ function createPlainListItem(id) {
   var listItem = document.createElement("li");
   listItem.setAttribute('class', 'edit-config-list-item');
   listItem.appendChild(createPlainLinkA(id));
+  listItem.appendChild(createRemoveLinkA(id));
   return listItem;
 }
 
@@ -199,6 +200,13 @@ function createTrashLinkA(id, itemType) {
   return editLink;
 }
 
+function createRemoveLinkA(id) {
+  var editLink = document.createElement("a");
+  editLink.setAttribute('class', 'remove-link');
+  editLink.appendChild(createRemoveIconImg(id));
+  return editLink;
+}
+
 function createOption(content) {
   content = content.replace('.yaml', '')
   var option = document.createElement("option");
@@ -223,6 +231,15 @@ function createTrashIconImg(id) {
   editItemImg.setAttribute('id', `delete-${id.replace('.yaml', '')}`);
   editItemImg.setAttribute('src', 'assets/trash.png');
   editItemImg.setAttribute('class', 'delete');
+  return editItemImg;
+}
+
+function createRemoveIconImg(id) {
+  var editItemImg = document.createElement("img");
+  // editItemImg.setAttribute('onClick', 'removeListItem(this)');
+  editItemImg.setAttribute('id', `remove-${id.replace('.yaml', '')}`);
+  editItemImg.setAttribute('src', 'assets/minus.png');
+  editItemImg.setAttribute('class', 'remove');
   return editItemImg;
 }
 

@@ -403,7 +403,7 @@ pre {
     float: right;
 }
 
-.config-wrapper .tab-content .config-list-item .delete {
+.config-wrapper .tab-content .config-list-item .remove {
     padding-top: 2px;
     padding-right: 5px;
     float: right;
@@ -416,6 +416,12 @@ pre {
 
 .config-wrapper .edit-box .plus {
     padding-top: 2px;
+    float: right;
+}
+
+.config-wrapper .edit-box.delete {
+    padding-top: 2px;
+    padding-right: 5px;
     float: right;
 }
 
