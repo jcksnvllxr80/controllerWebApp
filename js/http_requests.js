@@ -458,9 +458,9 @@ editSetNameField.addEventListener("keyup", function(event) {
 });
 
 function replaceOldSetNameWithNewSetName() {
+  var editSetNameTextField = document.getElementById("set-name-input");
+  var oldSetName = editSetNameTextField.parentNode.value;
   if (oldSetName.localeCompare(editSetNameTextField.value) == 0) {
-    var editSetNameTextField = document.getElementById("set-name-input");
-    var oldSetName = editSetNameTextField.parentNode.value;
     if (setConfigDict[oldSetName].songs.length > 0) {
       console.debug(`Changing old set name, \'${oldSetName}\', to new set name, \'${editSetNameTextField.value}\'.`)
       changeSetNameInGlobal(oldSetName, editSetNameTextField.value);
