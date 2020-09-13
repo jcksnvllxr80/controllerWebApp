@@ -421,12 +421,12 @@ pre {
 
 .config-wrapper .edit-box .remove {
     padding-top: 2px;
-    padding-right: 5px;
     float: right;
 }
 
 .config-wrapper .edit-box .edit-config-list-item {
     padding-left: none;
+    padding-top: 1px;
 } 
 
 .config-wrapper .edit-box .set-current-song-list {
