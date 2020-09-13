@@ -92,7 +92,9 @@
 				<div class="tab" id="songs" data-toggle="pill">
 					<ol class="song-list" id="song-list">
 						<li class="add-item">
-							<a class="adder" onclick="addNewListItem(this)" id="song-adder">+</a>
+							<a class="adder" id="song-adder">
+								<img class="plus" onclick="addNewListItem(this.parentNode)" src="assets/plus.png">
+							</a>
 						</li>
 					</ol>
 				</div>

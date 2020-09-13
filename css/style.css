@@ -370,8 +370,8 @@ pre {
 
 .config-wrapper .tab-content .add-item .adder {
     background-color: transparent;
-    border: solid 1px transparent;
-    border-color: #222;
+    /* border: solid 1px transparent;
+    border-color: #222; */
 } 
 
 .config-wrapper .edit-box .edit-adder {
