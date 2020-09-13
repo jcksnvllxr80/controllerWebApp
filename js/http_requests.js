@@ -458,16 +458,21 @@ editSetNameField.addEventListener("keyup", function(event) {
 });
 
 function replaceOldSetNameWithNewSetName() {
-  var editSetNameTextField = document.getElementById("set-name-input");
-  var oldSetName = editSetNameTextField.parentNode.value;
-  if (setConfigDict[oldSetName].songs.length > 0) {
-    console.debug(`Changing old set name, \'${oldSetName}\', to new set name, \'${editSetNameTextField.value}\'.`)
-    changeSetNameInGlobal(oldSetName, editSetNameTextField.value);
-    editSetNameTextField.parentNode.value = `${editSetNameTextField.value}.yaml`;
+  if (oldSetName.localeCompare(editSetNameTextField.value) == 0) {
+    var editSetNameTextField = document.getElementById("set-name-input");
+    var oldSetName = editSetNameTextField.parentNode.value;
+    if (setConfigDict[oldSetName].songs.length > 0) {
+      console.debug(`Changing old set name, \'${oldSetName}\', to new set name, \'${editSetNameTextField.value}\'.`)
+      changeSetNameInGlobal(oldSetName, editSetNameTextField.value);
+      editSetNameTextField.parentNode.value = `${editSetNameTextField.value}.yaml`;
+    } else {
+      alertMsg = `Set name, \'${oldSetName}\' has no songs yet! Please add songs and then change the name.`;
+      console.error(alertMsg)
+      alert(alertMsg);
+    }
   } else {
-    alertMsg = `Set name, \'${oldSetName}\' has no songs yet! Please add songs and then change the name.`;
-    console.error(alertMsg)
-    alert(alertMsg);
+    console.debug(`Not changing set name, \'${oldSetName}\', because that is already the set name.`)
   }
+
 }
 // console.log(pedals)
