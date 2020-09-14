@@ -384,7 +384,7 @@ function validateAndWriteSet(writeSetBtn) {
 function validateSetJson(setJson) {
   // TODO: add validation if this that and the other {}
   return writeSetToController(setJson).done(function(results, status) {
-    console.log(`Post funtion returned ${results}`)
+    console.log(`Post function returned ${results}`)
     return true;
   });
 }
@@ -406,13 +406,15 @@ function writeSetToController(setJson) {
 }
 
 function deleteSetListItem(deleteBtn) {
+  console.debug(`Delete button iwth id, \'${deleteBtn.id}\' was pressed.`);
   filenameToDelete = `${deleteBtn.id.replace("delete-", "")}.yaml`;
   deleteFileFromController('set', filenameToDelete);
 }
 
 function deleteFileFromController(fileType, filename) {
+  console.debug(`Deleting ${fileType} named, \'${filename}\'.`);
   return deleteFilePostMethod(fileType, filename).done(function(results, status) {
-    console.log(`Post funtion returned ${results}`)
+    console.log(`Post function returned ${results}`)
     return true;
   });
 }
