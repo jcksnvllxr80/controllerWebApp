@@ -258,9 +258,9 @@ function editListItem(btnObj) {
 }
 
 function remSongFromSetBtnAction(remBtnObj) {
-  fileNameToRemove = `${remBtnObj.id.replace("remove-", "")}.yaml`;
+  songNameToRemove = remBtnObj.id.replace("remove-", "");
   setToRemoveSongFrom = document.getElementById("set-edit-content").value;
-  removeSongFromSet(setToRemoveSongFrom, fileNameToRemove);
+  removeSongFromSet(setToRemoveSongFrom, songNameToRemove);
 }
 
 function removeSongFromSet(setlistName, songToRemove) {
