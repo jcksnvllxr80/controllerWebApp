@@ -409,12 +409,22 @@ function deleteSongListItem(deleteBtn) {
   console.debug(`Delete button with id, \'${deleteBtn.id}\' was pressed.`);
   filenameToDelete = deleteBtn.id.replace("delete-", "");
   deleteFileFromController('song', filenameToDelete);
+  // TODO: delete anywhere else in the current obj's where this song exists
+  // NOTE: dont forget about closing the edit windows if the song being edited
 }
 
 function deleteSetListItem(deleteBtn) {
   console.debug(`Delete button with id, \'${deleteBtn.id}\' was pressed.`);
-  filenameToDelete = deleteBtn.id.replace("delete-", "");
+  nameToDelete = deleteBtn.id.replace("delete-", "");
+  filenameToDelete = `${nameToDelete}.yaml`;
   deleteFileFromController('set', filenameToDelete);
+  // if (list is being edited) {
+    // clear everything and close the edit window
+  // }
+  setConfigDict[setlistName] = setConfigDict[setlistName].songs.filter(e => e !== filenameToDelete);
+  set = sets.filter(e => e !== filenameToDelete);
+  delete setConfigDict[itemOldName];
+  redrawSetlistsContent();
 }
 
 function deleteFileFromController(fileType, filename) {
