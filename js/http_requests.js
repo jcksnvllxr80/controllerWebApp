@@ -158,15 +158,15 @@ function createListItem(id, itemType) {
   return listItem;
 }
 
-function createPlainListItem(id) {
+function createRemovableListItem(id) {
   var listItem = document.createElement("li");
   listItem.setAttribute('class', 'edit-config-list-item');
-  listItem.appendChild(createPlainLinkA(id));
+  listItem.appendChild(createRemovableLinkA(id));
   listItem.appendChild(createRemoveLinkA(id));
   return listItem;
 }
 
-function createPlainLinkA(id) {
+function createRemovableLinkA(id) {
   var listLink = document.createElement("a");
   listLink.setAttribute('draggable','true');
   listLink.setAttribute('id', id);
@@ -236,7 +236,7 @@ function createTrashIconImg(id) {
 
 function createRemoveIconImg(id) {
   var editItemImg = document.createElement("img");
-  // editItemImg.setAttribute('onClick', 'removeListItem(this)');
+  editItemImg.setAttribute('onClick', 'remSongFromSetBtnAction(this)');
   editItemImg.setAttribute('id', `remove-${id.replace('.yaml', '')}`);
   editItemImg.setAttribute('src', 'assets/minus.png');
   editItemImg.setAttribute('class', 'remove');
@@ -255,6 +255,18 @@ function editListItem(btnObj) {
   } else {
     handleUnhandledType(editType);
   }
+}
+
+function remSongFromSetBtnAction(remBtnObj) {
+  fileNameToRemove = `${remBtnObj.id.replace("remove-", "")}.yaml`;
+  setToRemoveSongFrom = document.getElementById("set-edit-content").value;
+  removeSongFromSet(setToRemoveSongFrom, fileNameToRemove);
+}
+
+function removeSongFromSet(setlistName, songToRemove) {
+  console.debug(`Removing song, \'${songToRemove}\', from set, \'${setlistName}\'.`);
+  setConfigDict[setlistName].songs = setConfigDict[setlistName].songs.filter(e => e !== songToRemove);
+  redrawCurrentSongsInSet(setlistName);
 }
 
 function modifySet(setFileName) {
@@ -281,7 +293,7 @@ function redrawCurrentSongsInSet(objFileName) {
   currentSongList = document.getElementById("set-current-song-list");
   removeAllChildNodes(currentSongList);
   setConfigDict[objFileName].songs.forEach(song => {
-    currentSongList.appendChild(createPlainListItem(song));
+    currentSongList.appendChild(createRemovableListItem(song));
   });
 }
 
@@ -351,9 +363,14 @@ function addNewListItem(btnObj) {
 function addSelectedSongToSet(addSongBtn) {
   selectedSong = document.getElementById('set-song-edit-select').value;
   setlistName = addSongBtn.parentNode.value;
-  console.debug(`Add ${selectedSong} to set, \'${setlistName}\'.`);
-  setConfigDict[setlistName].songs.push(selectedSong);
-  redrawCurrentSongsInSet(setlistName);
+  if (setConfigDict[setlistName].songs.includes(selectedSong)) {
+    console.debug(`Add ${selectedSong} to set, \'${setlistName}\'.`);
+    setConfigDict[setlistName].songs.push(selectedSong);
+    redrawCurrentSongsInSet(setlistName);
+  } else {
+    console.warn(`Not added! Song, \'${selectedSong}\', already in set, \'${setlistName}\'.`)
+  }
+
 }
 
 function validateAndWriteSet(writeSetBtn) {
