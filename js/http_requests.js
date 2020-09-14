@@ -109,7 +109,6 @@ function redrawSetlistsContent() {
 
 function evaluateSetlistsContent(oldSetName, newSetName) {
   editChangedChildNode(document.getElementById("set-list"), newSetName, oldSetName);
-  // loadSetlistsContent();
 }
 
 function editChangedChildNode(setListObj, newSetName, oldSetName) {
@@ -119,6 +118,7 @@ function editChangedChildNode(setListObj, newSetName, oldSetName) {
       childNode[0].id = `${newSetName}.yaml`;
       childNode[0].textContent = newSetName;
       childNode[1].id = newSetName;
+      childNode[2].children[0] = `delete-${newSetName}`;
       return;
     }
   }
@@ -227,7 +227,7 @@ function createEditIconImg(id) {
 
 function createTrashIconImg(id) {
   var editItemImg = document.createElement("img");
-  // editItemImg.setAttribute('onClick', 'deleteListItem(this)');
+  editItemImg.setAttribute('onClick', 'deleteSetListItem(this)');
   editItemImg.setAttribute('id', `delete-${id.replace('.yaml', '')}`);
   editItemImg.setAttribute('src', 'assets/trash.png');
   editItemImg.setAttribute('class', 'delete');
@@ -405,21 +405,19 @@ function writeSetToController(setJson) {
   });
 }
 
-function deleteSetJson(setFileName) {
-  return deleteFileFromController('set', setFileName).done(function(results, status) {
+function deleteSetListItem(deleteBtn) {
+  filenameToDelete = `${deleteBtn.id.replace("delete-", "")}.yaml`;
+  deleteFileFromController('set', filenameToDelete);
+}
+
+function deleteFileFromController(fileType, filename) {
+  return deleteFilePostMethod(fileType, filename).done(function(results, status) {
     console.log(`Post funtion returned ${results}`)
     return true;
   });
 }
 
-function deleteSongJson(songFileName) {
-  return deleteFileFromController('song', songFileName).done(function(results, status) {
-    console.log(`Post funtion returned ${results}`)
-    return true;
-  });
-}
-
-function deleteFileFromController(fileType, fileName) {
+function deleteFilePostMethod(fileType, fileName) {
   return $.post(`${config_api_url}/${fileType}/delete/${setFileName}`)
   .done(function(data, status) {
     console.log("Data: " + data + "\nStatus: " + status);
