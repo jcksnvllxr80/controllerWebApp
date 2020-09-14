@@ -418,7 +418,7 @@ function deleteFileFromController(fileType, filename) {
 }
 
 function deleteFilePostMethod(fileType, fileName) {
-  return $.post(`${config_api_url}/${fileType}/delete/${setFileName}`)
+  return $.post(`${config_api_url}/${fileType}/delete/${fileName}`)
   .done(function(data, status) {
     console.log("Data: " + data + "\nStatus: " + status);
     console.debug(`Succcess: ${status}`);
