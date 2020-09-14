@@ -289,10 +289,10 @@ function redrawAvailableSongs() {
   });
 }
 
-function redrawCurrentSongsInSet(objFileName) {
+function redrawCurrentSongsInSet(setName) {
   currentSongList = document.getElementById("set-current-song-list");
   removeAllChildNodes(currentSongList);
-  setConfigDict[objFileName].songs.forEach(song => {
+  setConfigDict[setName].songs.forEach(song => {
     currentSongList.appendChild(createRemovableListItem(song));
   });
 }
@@ -418,12 +418,17 @@ function deleteSetListItem(deleteBtn) {
   setNameToDelete = deleteBtn.id.replace("delete-", "");
   filenameToDelete = `${setNameToDelete}.yaml`;
   deleteFileFromController('set', setNameToDelete);
-  // if (list is being edited) {
-    // clear everything and close the edit window
-  // }
+  if (filenameToDelete.localeCompare(document.getElementById("set-edit-content").value) == 0) {
+    hideEditContent('set', true);
+    clearEditSetContent();
+  }
   sets = sets.filter(e => e !== filenameToDelete);
   delete setConfigDict[filenameToDelete];
   redrawSetlistsContent();
+}
+
+function clearEditSetContent() {
+  removeAllChildNodes(document.getElementById("set-current-song-list"));
 }
 
 function deleteFileFromController(fileType, filename) {
