@@ -494,10 +494,6 @@ function changeSetNameInGlobal(itemOldName, itemNewName) {
   evaluateSetlistsContent(itemOldName, itemNewName)
 }
 
-// function isEmpty(obj) {
-//   return Object.keys(obj).length === 0;
-// }
-
 function getNameFromUser(itemType) {
   return prompt(`Please enter the ${itemType} name:`, `My new ${itemType}`);
 }
