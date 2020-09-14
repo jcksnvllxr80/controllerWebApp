@@ -421,7 +421,7 @@ function deleteSetListItem(deleteBtn) {
   // if (list is being edited) {
     // clear everything and close the edit window
   // }
-  set = sets.filter(e => e !== filenameToDelete);
+  sets = sets.filter(e => e !== filenameToDelete);
   delete setConfigDict[filenameToDelete];
   redrawSetlistsContent();
 }
