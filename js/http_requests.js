@@ -377,13 +377,12 @@ function validateAndWriteSet(writeSetBtn) {
   setlistName = writeSetBtn.parentNode.value;
   if (validateSetJson(setConfigDict[setlistName])) {
     document.getElementById(setlistName).className = 'edit-link';
-    // change the wip set to a standard set list item
     hideEditContent('set', true);
   }
 }
 
 function validateSetJson(setJson) {
-  // if this that and the other {}
+  // TODO: add validation if this that and the other {}
   return writeSetToController(setJson).done(function(results, status) {
     console.log(`Post funtion returned ${results}`)
     return true;
@@ -396,6 +395,33 @@ function writeSetToController(setJson) {
     data: JSON.stringify(setJson),
     contentType: 'application/json; charset=utf-8'
   }).done(function(data, status) {
+    console.log("Data: " + data + "\nStatus: " + status);
+    console.debug(`Succcess: ${status}`);
+    return true;
+  })
+  .fail(function(data, status) {
+    console.error(`Error: ${status}`);
+    return false;
+  });
+}
+
+function deleteSetJson(setFileName) {
+  return deleteFileFromController('set', setFileName).done(function(results, status) {
+    console.log(`Post funtion returned ${results}`)
+    return true;
+  });
+}
+
+function deleteSongJson(songFileName) {
+  return deleteFileFromController('song', songFileName).done(function(results, status) {
+    console.log(`Post funtion returned ${results}`)
+    return true;
+  });
+}
+
+function deleteFileFromController(fileType, fileName) {
+  return $.post(`${config_api_url}/${fileType}/delete/${setFileName}`)
+  .done(function(data, status) {
     console.log("Data: " + data + "\nStatus: " + status);
     console.debug(`Succcess: ${status}`);
     return true;
