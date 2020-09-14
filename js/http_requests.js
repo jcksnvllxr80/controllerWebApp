@@ -415,13 +415,12 @@ function deleteSongListItem(deleteBtn) {
 
 function deleteSetListItem(deleteBtn) {
   console.debug(`Delete button with id, \'${deleteBtn.id}\' was pressed.`);
-  nameToDelete = deleteBtn.id.replace("delete-", "");
-  filenameToDelete = `${nameToDelete}.yaml`;
-  deleteFileFromController('set', filenameToDelete);
+  setNameToDelete = deleteBtn.id.replace("delete-", "");
+  filenameToDelete = `${setNameToDelete}.yaml`;
+  deleteFileFromController('set', setNameToDelete);
   // if (list is being edited) {
     // clear everything and close the edit window
   // }
-  setConfigDict[setlistName] = setConfigDict[setlistName].songs.filter(e => e !== filenameToDelete);
   set = sets.filter(e => e !== filenameToDelete);
   delete setConfigDict[itemOldName];
   redrawSetlistsContent();
