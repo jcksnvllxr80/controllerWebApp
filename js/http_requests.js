@@ -405,9 +405,15 @@ function writeSetToController(setJson) {
   });
 }
 
+function deleteSongListItem(deleteBtn) {
+  console.debug(`Delete button with id, \'${deleteBtn.id}\' was pressed.`);
+  filenameToDelete = deleteBtn.id.replace("delete-", "");
+  deleteFileFromController('song', filenameToDelete);
+}
+
 function deleteSetListItem(deleteBtn) {
-  console.debug(`Delete button iwth id, \'${deleteBtn.id}\' was pressed.`);
-  filenameToDelete = `${deleteBtn.id.replace("delete-", "")}.yaml`;
+  console.debug(`Delete button with id, \'${deleteBtn.id}\' was pressed.`);
+  filenameToDelete = deleteBtn.id.replace("delete-", "");
   deleteFileFromController('set', filenameToDelete);
 }
 
