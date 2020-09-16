@@ -296,7 +296,7 @@ function modifySet(setFileName) {
 }
 
 function populateSetEditContent(setFileName) {
-  document.getElementById("set-name-input").value = setConfigDict[setFileName].name;
+  document.getElementById("set-name-input").value = getJsonForSetDotYaml(setFileName).name;
   redrawAvailableSongs();
   redrawCurrentSongsInSet(setFileName);
 }
@@ -309,18 +309,18 @@ function redrawAvailableSongs() {
   });
 }
 
-function getSongsInSetDotYaml(setlistName) {
+function getJsonForSetDotYaml(setlistName) {
   if (document.getElementById(setlistName).className.localeCompare("work-in-progress") == 0) {
-    return wipSetConfigDict[setlistName].songs;
+    return wipSetConfigDict[setlistName];
   } else {
-    return setConfigDict[setlistName].songs;
+    return setConfigDict[setlistName];
   }
 }
 
 function redrawCurrentSongsInSet(setName) {
   currentSongList = document.getElementById("set-current-song-list");
   removeAllChildNodes(currentSongList);
-  getSongsInSetDotYaml(setName).forEach(song => {
+  getJsonForSetDotYaml(setName).songs.forEach(song => {
     currentSongList.appendChild(createRemovableListItem(song));
   });
 }
@@ -391,7 +391,7 @@ function addNewListItem(btnObj) {
 function addSelectedSongToSet(addSongBtn) {
   selectedSong = document.getElementById('set-song-edit-select').value;
   setlistName = addSongBtn.parentNode.value;
-  songsInSet = getSongsInSetDotYaml(setlistName);
+  songsInSet = getJsonForSetDotYaml(setlistName).songs;
   if (!songsInSet.includes(selectedSong)) {
     console.debug(`Add ${selectedSong} to set, \'${setlistName}\'.`);
     wipSetConfigDict[setlistName].songs.push(selectedSong);
