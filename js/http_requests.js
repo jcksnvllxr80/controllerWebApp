@@ -284,7 +284,7 @@ function removeSongFromSet(setlistName, songToRemove) {
     wipSetConfigDict[setlistName] = setConfigDict[setlistName];
     delete setConfigDict[setlistName];
     wipSetConfigDict[setlistName].songs = wipSetConfigDict[setlistName].songs.filter(e => e !== songToRemove);
-    reloadSetlistsContent();
+    redrawSetlistsContent();
   }
   redrawCurrentSongsInSet(setlistName);
 }
