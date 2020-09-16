@@ -394,9 +394,10 @@ function addSelectedSongToSet(addSongBtn) {
   songsInSet = getJsonForSetDotYaml(setlistName).songs;
   if (!songsInSet.includes(selectedSong)) {
     console.debug(`Add ${selectedSong} to set, \'${setlistName}\'.`);
-    wipSetConfigDict[setlistName].songs.push(selectedSong);
     if (setlistName in setConfigDict) {
-      delete setConfigDict[setlistName]
+      wipSetConfigDict[setlistName] = getJsonForSetDotYaml(setlistName);
+      wipSetConfigDict[setlistName].songs.push(selectedSong);
+      delete setConfigDict[setlistName];
     }
     redrawCurrentSongsInSet(setlistName);
   } else {
