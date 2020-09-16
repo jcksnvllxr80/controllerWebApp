@@ -305,7 +305,9 @@ function redrawAvailableSongs() {
   selectSongList = document.getElementById("set-song-edit-select");
   removeAllChildNodes(selectSongList);
   songs.forEach(song => {
-    selectSongList.appendChild(createOption(song));
+    if (song in songConfigDict) {
+      selectSongList.appendChild(createOption(song));
+    }
   });
 }
 
@@ -314,6 +316,14 @@ function getJsonForSetDotYaml(setlistName) {
     return wipSetConfigDict[setlistName];
   } else {
     return setConfigDict[setlistName];
+  }
+}
+
+function getJsonForSongDotYaml(songName) {
+  if (document.getElementById(songName).className.localeCompare("work-in-progress") == 0) {
+    return wipSongConfigDict[songName];
+  } else {
+    return songConfigDict[songName];
   }
 }
 
