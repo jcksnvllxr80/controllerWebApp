@@ -7,8 +7,11 @@ var sets = null;
 var songs = null;
 var pedals = null;
 var setConfigDict = {};
+var wipSetConfigDict = {};
 var songConfigDict = {};
+var wipSongConfigDict = {};
 var pedalConfigDict = {};
+var wipPedalConfigDict = {};
 
 
 function getSets() {
@@ -98,7 +101,11 @@ function doShortButtonPress(btnObj) {
 
 function loadSetlistsContent() {
   sets.forEach(set => {
-    addItemToList(document.getElementById("set-list"), set, 'set');
+    if (set in setConfigDict) {
+      addItemToList(document.getElementById("set-list"), set, 'set');
+    } else {
+      addWipItemToList(document.getElementById("set-list"), set, 'set');
+    }
   });
 }
 
@@ -227,7 +234,7 @@ function createEditIconImg(id) {
 
 function createTrashIconImg(id) {
   var editItemImg = document.createElement("img");
-  editItemImg.setAttribute('onClick', 'deleteSetListItem(this)');
+  editItemImg.setAttribute('onClick', 'deleteListItem(this)');
   editItemImg.setAttribute('id', `delete-${id.replace('.yaml', '')}`);
   editItemImg.setAttribute('src', 'assets/trash.png');
   editItemImg.setAttribute('class', 'delete');
@@ -265,7 +272,13 @@ function remSongFromSetBtnAction(remBtnObj) {
 
 function removeSongFromSet(setlistName, songToRemove) {
   console.debug(`Removing song, \'${songToRemove}\', from set, \'${setlistName}\'.`);
-  setConfigDict[setlistName].songs = setConfigDict[setlistName].songs.filter(e => e !== songToRemove);
+  if (document.getElementById(setlistName).className.localeCompare("work-in-progress") == 0) {
+    wipSetConfigDict[setlistName].songs = wipSetConfigDict[setlistName].songs.filter(e => e !== songToRemove);
+  } else {
+    wipSetConfigDict[setlistName].songs = setConfigDict[setlistName].songs.filter(e => e !== songToRemove);
+    delete setConfigDict[setlistName];
+    loadSetlistsContent();
+  }
   redrawCurrentSongsInSet(setlistName);
 }
 
@@ -289,10 +302,18 @@ function redrawAvailableSongs() {
   });
 }
 
+function getSongsInSetDotYaml(setlistName) {
+  if (document.getElementById(setlistName).className.localeCompare("work-in-progress") == 0) {
+    return wipSetConfigDict[setlistName].songs;
+  } else {
+    return setConfigDict[setlistName].songs;
+  }
+}
+
 function redrawCurrentSongsInSet(setName) {
   currentSongList = document.getElementById("set-current-song-list");
   removeAllChildNodes(currentSongList);
-  setConfigDict[setName].songs.forEach(song => {
+  getSongsInSetDotYaml(setName).forEach(song => {
     currentSongList.appendChild(createRemovableListItem(song));
   });
 }
@@ -363,9 +384,13 @@ function addNewListItem(btnObj) {
 function addSelectedSongToSet(addSongBtn) {
   selectedSong = document.getElementById('set-song-edit-select').value;
   setlistName = addSongBtn.parentNode.value;
-  if (!setConfigDict[setlistName].songs.includes(selectedSong)) {
+  songsInSet = getSongsInSetDotYaml(setlistName);
+  if (!songsInSet.includes(selectedSong)) {
     console.debug(`Add ${selectedSong} to set, \'${setlistName}\'.`);
-    setConfigDict[setlistName].songs.push(selectedSong);
+    wipSetConfigDict[setlistName].songs.push(selectedSong);
+    if (setlistName in setConfigDict) {
+      delete setConfigDict[setlistName]
+    }
     redrawCurrentSongsInSet(setlistName);
   } else {
     console.warn(`Not added! Song, \'${selectedSong}\', already in set, \'${setlistName}\'.`)
@@ -406,25 +431,30 @@ function writeSetToController(setJson) {
 }
 
 function deleteSongListItem(deleteBtn) {
-  console.debug(`Delete button with id, \'${deleteBtn.id}\' was pressed.`);
-  filenameToDelete = deleteBtn.id.replace("delete-", "");
-  deleteFileFromController('song', filenameToDelete);
   // TODO: delete anywhere else in the current obj's where this song exists
   // NOTE: dont forget about closing the edit windows if the song being edited
 }
 
-function deleteSetListItem(deleteBtn) {
-  console.debug(`Delete button with id, \'${deleteBtn.id}\' was pressed.`);
-  setNameToDelete = deleteBtn.id.replace("delete-", "");
-  filenameToDelete = `${setNameToDelete}.yaml`;
-  deleteFileFromController('set', setNameToDelete);
+function deleteSetListItem(filenameToDelete) {
   if (filenameToDelete.localeCompare(document.getElementById("set-edit-content").value) == 0) {
-    hideEditContent('set', true);
     clearEditSetContent();
   }
   sets = sets.filter(e => e !== filenameToDelete);
   delete setConfigDict[filenameToDelete];
   redrawSetlistsContent();
+}
+
+function deleteListItem(deleteBtn) {
+  console.debug(`Delete button with id, \'${deleteBtn.id}\' was pressed.`);
+  setNameToDelete = deleteBtn.id.replace("delete-", "");
+  filenameToDelete = `${setNameToDelete}.yaml`;
+  deleteFileFromController(deleteBtn.name, setNameToDelete);
+  if (deleteBtn.name.localeCompare('set') == 0) {
+    deleteSetListItem(filenameToDelete);
+  } else if (deleteBtn.name.localeCompare('song') == 0) {
+    deleteSongListItem(filenameToDelete);
+  }
+  hideEditContent(deleteBtn.name, true);
 }
 
 function clearEditSetContent() {
@@ -469,10 +499,10 @@ function createNewJson(itemType, itemName) {
 function addNewItemToGlobalVars(itemType, itemFileName, itemJson) {
   if (itemType.localeCompare('set') == 0) {
     sets.push(itemFileName);
-    setConfigDict[itemFileName] = itemJson;
+    wipSetConfigDict[itemFileName] = itemJson;
   } else if (itemType.localeCompare('song') == 0) {
     songs.push(itemFileName);
-    songConfigDict[itemFileName] = itemJson;
+    wipSongConfigDict[itemFileName] = itemJson;
   }
 }
 
@@ -518,40 +548,6 @@ function getNameFromUser(itemType) {
   return prompt(`Please enter the ${itemType} name:`, `My new ${itemType}`);
 }
 
-// get midi controller's sets
-getSets().then(function(returndata) {
-  sets = returndata.sets;
-  getSetsDict();
-  loadSetlistsContent();
-});
-
-// get midi controller's songs
-getSongs().then(function(returndata) {
-  songs = returndata.songs;
-  getSongsDict();
-  loadSongsContent();
-});
-
-// get midi controller's pedals
-getPedals().then(function(returndata) {
-  pedals = returndata.pedals;
-  getPedalsDict();
-});
-
-document.getElementById("controller-display").value = `Hello from: ${hostProtocol}//${midiController}:` + 
-  `8000!!\n` + "Use \'Song Up\', \'Song Dn\', \'Part Up\', and \'Part Dn\' to navigate to the desired part, " +
-  "and then use \'Select\' button to activate it.\nD-pad buttons: down=into menu, up=out of menu, left and " + 
-  "right=navigate menu";
-
-var editSetNameField = document.getElementById("set-name-input");
-editSetNameField.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-    console.debug(`Enter event heard on \'${editSetNameField.id}\' field.`)
-    event.preventDefault();
-    replaceOldSetNameWithNewSetName();
-  }
-});
-
 function replaceOldSetNameWithNewSetName() {
   var editSetNameTextField = document.getElementById("set-name-input");
   var oldSetName = editSetNameTextField.parentNode.value;
@@ -568,6 +564,48 @@ function replaceOldSetNameWithNewSetName() {
   } else {
     console.debug(`Not changing set name, \'${oldSetName}\', because that is already the set name.`)
   }
-
 }
-// console.log(pedals)
+
+function initializePedalsLists() {
+  // get midi controller's pedals
+  getPedals().then(function (returndata) {
+    pedals = returndata.pedals;
+    getPedalsDict();
+  });
+}
+
+function initializeSetsLists() {
+  // get midi controller's sets
+  getSets().then(function (returndata) {
+    sets = returndata.sets;
+    getSetsDict();
+    loadSetlistsContent();
+  });
+}
+
+function initializeSongsLists() {
+  // get midi controller's songs
+  getSongs().then(function (returndata) {
+    songs = returndata.songs;
+    getSongsDict();
+    loadSongsContent();
+  });
+}
+
+initializeSetsLists();
+initializeSongsLists();
+initializePedalsLists();
+
+document.getElementById("controller-display").value = `Hello from: ${hostProtocol}//${midiController}:` + 
+  `8000!!\n` + "Use \'Song Up\', \'Song Dn\', \'Part Up\', and \'Part Dn\' to navigate to the desired part, " +
+  "and then use \'Select\' button to activate it.\nD-pad buttons: down=into menu, up=out of menu, left and " + 
+  "right=navigate menu";
+
+var editSetNameField = document.getElementById("set-name-input");
+editSetNameField.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+    console.debug(`Enter event heard on \'${editSetNameField.id}\' field.`)
+    event.preventDefault();
+    replaceOldSetNameWithNewSetName();
+  }
+});
