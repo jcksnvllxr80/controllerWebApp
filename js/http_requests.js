@@ -101,6 +101,12 @@ function doShortButtonPress(btnObj) {
 
 function loadSetlistsContent() {
   sets.forEach(set => {
+    addItemToList(document.getElementById("set-list"), set, 'set');
+  });
+}
+
+function reloadSetlistsContent() {
+  sets.forEach(set => {
     if (set in setConfigDict) {
       addItemToList(document.getElementById("set-list"), set, 'set');
     } else {
@@ -111,7 +117,7 @@ function loadSetlistsContent() {
 
 function redrawSetlistsContent() {
   removeAllTabContentListChildNodes(document.getElementById("set-list"));
-  loadSetlistsContent();
+  reloadSetlistsContent();
 }
 
 function evaluateSetlistsContent(oldSetName, newSetName) {
@@ -277,7 +283,7 @@ function removeSongFromSet(setlistName, songToRemove) {
   } else {
     wipSetConfigDict[setlistName].songs = setConfigDict[setlistName].songs.filter(e => e !== songToRemove);
     delete setConfigDict[setlistName];
-    loadSetlistsContent();
+    reloadSetlistsContent();
   }
   redrawCurrentSongsInSet(setlistName);
 }
