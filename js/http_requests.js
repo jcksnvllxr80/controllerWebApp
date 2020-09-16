@@ -320,6 +320,7 @@ function getJsonForSetDotYaml(setlistName) {
 function redrawCurrentSongsInSet(setName) {
   currentSongList = document.getElementById("set-current-song-list");
   removeAllChildNodes(currentSongList);
+  redrawSetlistsContent();
   getJsonForSetDotYaml(setName).songs.forEach(song => {
     currentSongList.appendChild(createRemovableListItem(song));
   });
@@ -327,7 +328,7 @@ function redrawCurrentSongsInSet(setName) {
 
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
-      parent.removeChild(parent.firstChild);
+    parent.removeChild(parent.firstChild);
   }
 }
 
@@ -396,8 +397,8 @@ function addSelectedSongToSet(addSongBtn) {
     console.debug(`Add ${selectedSong} to set, \'${setlistName}\'.`);
     if (setlistName in setConfigDict) {
       wipSetConfigDict[setlistName] = getJsonForSetDotYaml(setlistName);
-      delete setConfigDict[setlistName];
       wipSetConfigDict[setlistName].songs.push(selectedSong);
+      delete setConfigDict[setlistName];
     }
     redrawCurrentSongsInSet(setlistName);
   } else {
