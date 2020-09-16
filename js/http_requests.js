@@ -281,8 +281,9 @@ function removeSongFromSet(setlistName, songToRemove) {
   if (document.getElementById(setlistName).className.localeCompare("work-in-progress") == 0) {
     wipSetConfigDict[setlistName].songs = wipSetConfigDict[setlistName].songs.filter(e => e !== songToRemove);
   } else {
-    wipSetConfigDict[setlistName].songs = setConfigDict[setlistName].songs.filter(e => e !== songToRemove);
+    wipSetConfigDict[setlistName] = setConfigDict[setlistName];
     delete setConfigDict[setlistName];
+    wipSetConfigDict[setlistName].songs = wipSetConfigDict[setlistName].songs.filter(e => e !== songToRemove);
     reloadSetlistsContent();
   }
   redrawCurrentSongsInSet(setlistName);
