@@ -424,7 +424,7 @@ function validateAndWriteSet(writeSetBtn) {
     if (validateSetJson(setJson)) {
       writeSetToController(setJson);
       moveSetJsonOutOfWip(setlistName);
-      reloadSetlistsContent();
+      redrawSetlistsContent();
       hideEditContent('set', true);
       // TODO: display a success message somehow
     }
