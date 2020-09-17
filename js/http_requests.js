@@ -485,13 +485,13 @@ function deleteListItem(deleteBtn) {
   console.debug(`Delete button with id, \'${deleteBtn.id}\' was pressed.`);
   setNameToDelete = deleteBtn.id.replace("delete-", "");
   filenameToDelete = `${setNameToDelete}.yaml`;
-  deleteFileFromController(deleteBtn.name, setNameToDelete);
-  if (deleteBtn.name.localeCompare('set') == 0) {
+  deleteFileFromController(deleteBtn.parentNode.name, setNameToDelete);
+  if (deleteBtn.parentNode.name.localeCompare('set') == 0) {
     deleteSetListItem(filenameToDelete);
-  } else if (deleteBtn.name.localeCompare('song') == 0) {
+  } else if (deleteBtn.parentNode.name.localeCompare('song') == 0) {
     deleteSongListItem(filenameToDelete);
   }
-  hideEditContent(deleteBtn.name, true);
+  hideEditContent(deleteBtn.parentNode.name, true);
 }
 
 function clearEditSetContent() {
