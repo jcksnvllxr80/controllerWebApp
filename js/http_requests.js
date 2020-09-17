@@ -419,13 +419,24 @@ function addSelectedSongToSet(addSongBtn) {
 
 function validateAndWriteSet(writeSetBtn) {
   setlistName = writeSetBtn.parentNode.value;
-  setJson = getJsonForSetDotYaml(setlistName);
-  if (validateSetJson(setJson)) {
-    writeSetToController(setJson);
-    document.getElementById(setlistName).className = 'edit-link';
-    hideEditContent('set', true);
-    // TODO: display a success message somehow
+  if (document.getElementById(setlistName).className.localeCompare('work-in-progress') == 0) {
+    setJson = wipSetConfigDict[setlistName];
+    if (validateSetJson(setJson)) {
+      writeSetToController(setJson);
+      moveSetJsonOutOfWip(setlistName);
+      reloadSetlistsContent();
+      hideEditContent('set', true);
+      // TODO: display a success message somehow
+    }
+  } else {
+    console.warn(`There have been no changes to ${setlistName} so this file will not be written to the controller.`)
   }
+}
+
+function moveSetJsonOutOfWip() {
+  console.debug(`Moving set, \'${setlistName}\', out of WIP and into standard set dictinoary.`)
+  setConfigDict[setlistName] = wipSetConfigDict[setlistName];
+  delete wipSetConfigDict[setlistName];
 }
 
 function validateSetJson(setJson) {
