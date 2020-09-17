@@ -419,24 +419,31 @@ function addSelectedSongToSet(addSongBtn) {
 
 function validateAndWriteSet(writeSetBtn) {
   setlistName = writeSetBtn.parentNode.value;
-  if (validateSetJson(setConfigDict[setlistName])) {
+  setJson = getJsonForSetDotYaml(setlistName);
+  if (validateSetJson(setJson)) {
+    writeSetToController(setJson);
     document.getElementById(setlistName).className = 'edit-link';
     hideEditContent('set', true);
+    // TODO: display a success message somehow
   }
 }
 
 function validateSetJson(setJson) {
   // TODO: add validation if this that and the other {}
-  return writeSetToController(setJson).done(function(results, status) {
-    console.log(`Post function returned ${results}`)
+  return true
+}
+
+function writeSetToController(setJson) {
+  return writeFileToController("set", setJson).done(function (results, status) {
+    console.log(`Post function returned ${results}`);
     return true;
   });
 }
 
-function writeSetToController(setJson) {
+function writeFileToController(type, json) {
   return $.post({
-    url: `${config_api_url}/set/${setJson.name}`,
-    data: JSON.stringify(setJson),
+    url: `${config_api_url}/${type}/${json.name}`,
+    data: JSON.stringify(json),
     contentType: 'application/json; charset=utf-8'
   }).done(function(data, status) {
     console.log("Data: " + data + "\nStatus: " + status);
