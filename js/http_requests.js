@@ -120,22 +120,22 @@ function redrawSetlistsContent() {
   reloadSetlistsContent();
 }
 
-function evaluateSetlistsContent(oldSetName, newSetName) {
-  editChangedChildNode(document.getElementById("set-list"), newSetName, oldSetName);
-}
+// function evaluateSetlistsContent(oldSetName, newSetName) {
+//   editChangedChildNode(document.getElementById("set-list"), newSetName, oldSetName);
+// }
 
-function editChangedChildNode(setListObj, newSetName, oldSetName) {
-  for (i = 1; i <= setListObj.children.length; i++) {
-    childNode = setListObj.children[i].children;
-    if (childNode[0].id.localeCompare(oldSetName) == 0) {
-      childNode[0].id = `${newSetName}.yaml`;
-      childNode[0].textContent = newSetName;
-      childNode[1].id = newSetName;
-      childNode[2].children[0] = `delete-${newSetName}`;
-      return;
-    }
-  }
-}
+// function editChangedChildNode(setListObj, newSetName, oldSetName) {
+//   for (i = 1; i <= setListObj.children.length; i++) {
+//     childNode = setListObj.children[i].children;
+//     if (childNode[0].id.localeCompare(oldSetName) == 0) {
+//       childNode[0].id = `${newSetName}.yaml`;
+//       childNode[0].textContent = newSetName;
+//       childNode[1].id = newSetName;
+//       childNode[2].children[0] = `delete-${newSetName}`;
+//       return;
+//     }
+//   }
+// }
 
 function loadSongsContent() {
   songs.forEach(song => {
@@ -578,7 +578,8 @@ function changeSetNameInGlobal(itemOldName, itemNewName) {
   sets.push(newFileName)
   wipSetConfigDict[newFileName] = itemJson;
   delete getJsonForSetDotYaml(itemOldName);
-  evaluateSetlistsContent(itemOldName, itemNewName)
+  redrawSetlistsContent();
+  // evaluateSetlistsContent(itemOldName, itemNewName)
 }
 
 function getNameFromUser(itemType) {
