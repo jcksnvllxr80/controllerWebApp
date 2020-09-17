@@ -477,7 +477,7 @@ function deleteSetListItem(filenameToDelete) {
     clearEditSetContent();
   }
   sets = sets.filter(e => e !== filenameToDelete);
-  delete setConfigDict[filenameToDelete];
+  delete getJsonForSetDotYaml(filenameToDelete);
   redrawSetlistsContent();
 }
 
