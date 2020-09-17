@@ -571,13 +571,13 @@ function isValidName(itemType, itemName) {
 }
 
 function changeSetNameInGlobal(itemOldName, itemNewName) {
-  itemJson = setConfigDict[itemOldName];
+  itemJson = getJsonForSetDotYaml(itemOldName);
   itemJson.name = itemNewName;
   sets = sets.filter(e => e !== itemOldName);
   newFileName = `${itemNewName}.yaml`;
   sets.push(newFileName)
-  setConfigDict[newFileName] = itemJson;
-  delete setConfigDict[itemOldName];
+  getJsonForSetDotYaml(newFileName) = itemJson;
+  delete getJsonForSetDotYaml(itemOldName);
   evaluateSetlistsContent(itemOldName, itemNewName)
 }
 
@@ -589,7 +589,7 @@ function replaceOldSetNameWithNewSetName() {
   var editSetNameTextField = document.getElementById("set-name-input");
   var oldSetName = editSetNameTextField.parentNode.value;
   if (oldSetName.localeCompare(`${editSetNameTextField.value}.yaml`) != 0) {
-    if (setConfigDict[oldSetName].songs.length > 0) {
+    if (getJsonForSetDotYaml(oldSetName).songs.length > 0) {
       console.debug(`Changing old set name, \'${oldSetName}\', to new set name, \'${editSetNameTextField.value}.yaml\'.`)
       changeSetNameInGlobal(oldSetName, editSetNameTextField.value);
       editSetNameTextField.parentNode.value = `${editSetNameTextField.value}.yaml`;
