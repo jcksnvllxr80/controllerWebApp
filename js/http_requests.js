@@ -576,7 +576,7 @@ function changeSetNameInGlobal(itemOldName, itemNewName) {
   sets = sets.filter(e => e !== itemOldName);
   newFileName = `${itemNewName}.yaml`;
   sets.push(newFileName)
-  getJsonForSetDotYaml(newFileName) = itemJson;
+  wipSetConfigDict[newFileName] = itemJson;
   delete getJsonForSetDotYaml(itemOldName);
   evaluateSetlistsContent(itemOldName, itemNewName)
 }
