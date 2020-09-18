@@ -383,7 +383,7 @@ function getJsonConfig(listObj) {
     return JSON.stringify(getJsonForSetDotYaml(listObj.id), undefined, 2);
   }
   else if (listObj.name.localeCompare('song') == 0) {
-    return JSON.stringify(songConfigDict[listObj.id], undefined, 2);
+    return JSON.stringify(getJsonForSongDotYaml(listObj.id), undefined, 2);
   }
   else {
     return handleUnhandledType(listObj.name);
