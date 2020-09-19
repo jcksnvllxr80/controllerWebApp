@@ -371,7 +371,7 @@ function getJsonForSongDotYaml(songName) {
 }
 
 function redrawCurrentPartsInSong(songName) {
-  currentSongList = document.getElementById("song-current-song-list");
+  currentSongList = document.getElementById("song-current-part-list");
   removeAllChildNodes(currentSongList);
   redrawSonglistsContent();
   getJsonForSongDotYaml(songName).songs.forEach(song => {
