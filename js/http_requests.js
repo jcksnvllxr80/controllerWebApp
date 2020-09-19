@@ -364,7 +364,7 @@ function modifySong(setFileName) {
 }
 
 function populateSongEditContent(songFileName) {
-  document.getElementById("set-name-input").value = getJsonForSongDotYaml(songFileName).name;
+  document.getElementById("song-name-input").value = getJsonForSongDotYaml(songFileName).name;
   drawAvailableParts();
   redrawCurrentPartsInSong(songFileName);
 }
@@ -652,6 +652,24 @@ function replaceOldSetNameWithNewSetName() {
     }
   } else {
     console.debug(`Not changing set name, \'${oldSetName}\', because that is already the set name.`)
+  }
+}
+
+function replaceOldSongNameWithNewSongName() {
+  var editSongNameTextField = document.getElementById("song-name-input");
+  var oldSongName = editSongNameTextField.parentNode.value;
+  if (oldSongName.localeCompare(`${editSongNameTextField.value}.yaml`) != 0) {
+    if (getJsonForSongDotYaml(oldSongName).songs.length > 0) {
+      console.debug(`Changing old song name, \'${oldSongName}\', to new song name, \'${editSongNameTextField.value}.yaml\'.`)
+      changeSongNameInGlobal(oldSongName, editSongNameTextField.value);
+      editSongNameTextField.parentNode.value = `${editSongNameTextField.value}.yaml`;
+    } else {
+      alertMsg = `Song name, \'${oldSongName}\' has no parts yet! Please add parts and then change the name.`;
+      console.error(alertMsg)
+      alert(alertMsg);
+    }
+  } else {
+    console.debug(`Not changing song name, \'${oldSongName}\', because that is already the song name.`)
   }
 }
 
