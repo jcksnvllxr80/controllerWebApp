@@ -171,11 +171,11 @@ function createListItem(id, itemType) {
   return listItem;
 }
 
-function createRemovableListItem(id) {
+function createRemovableListItem(id, clickFunctionStr) {
   var listItem = document.createElement("li");
   listItem.setAttribute('class', 'edit-config-list-item');
   listItem.appendChild(createRemovableLinkA(id));
-  listItem.appendChild(createRemoveLinkA(id));
+  listItem.appendChild(createRemoveLinkA(id, clickFunctionStr));
   return listItem;
 }
 
@@ -213,10 +213,10 @@ function createTrashLinkA(id, itemType) {
   return editLink;
 }
 
-function createRemoveLinkA(id) {
+function createRemoveLinkA(id, clickFunctionStr) {
   var editLink = document.createElement("a");
   editLink.setAttribute('class', 'remove-link');
-  editLink.appendChild(createRemoveIconImg(id));
+  editLink.appendChild(createRemoveIconImg(id, clickFunctionStr));
   return editLink;
 }
 
@@ -255,9 +255,9 @@ function createTrashIconImg(id) {
   return editItemImg;
 }
 
-function createRemoveIconImg(id) {
+function createRemoveIconImg(id, clickFunctionStr) {
   var editItemImg = document.createElement("img");
-  editItemImg.setAttribute('onClick', 'remSongFromSetBtnAction(this)');
+  editItemImg.setAttribute('onClick', `${clickFunctionStr}(this)`);
   editItemImg.setAttribute('id', `remove-${id.replace('.yaml', '')}`);
   editItemImg.setAttribute('src', 'assets/minus.png');
   editItemImg.setAttribute('class', 'remove');
@@ -284,6 +284,12 @@ function remSongFromSetBtnAction(remBtnObj) {
   removeSongFromSet(setToRemoveSongFrom, songNameToRemove);
 }
 
+function remPartFromSongBtnAction(remBtnObj) {
+  partNameToRemove = remBtnObj.id.replace("remove-", "");
+  songToRemovePartFrom = document.getElementById("set-edit-content").value;
+  removePartFromSong(songToRemovePartFrom, partNameToRemove);
+}
+
 function removeSongFromSet(setlistName, songToRemove) {
   console.debug(`Removing song, \'${songToRemove}\', from set, \'${setlistName}\'.`);
   if (document.getElementById(setlistName).className.localeCompare("work-in-progress") == 0) {
@@ -295,6 +301,19 @@ function removeSongFromSet(setlistName, songToRemove) {
     redrawSetlistsContent();
   }
   redrawCurrentSongsInSet(setlistName);
+}
+
+function removePartFromSong(songName, partToRemove) {
+  console.debug(`Removing part, \'${partToRemove}\', from song, \'${songName}\'.`);
+  if (document.getElementById(songName).className.localeCompare("work-in-progress") == 0) {
+    wipSongConfigDict[songName].parts = wipSongConfigDict[songName].parts.filter(e => e !== partToRemove);
+  } else {
+    wipSongConfigDict[songName] = songConfigDict[songName];
+    delete songConfigDict[songName];
+    wipSongConfigDict[songName].parts = wipSongConfigDict[songName].parts.filter(e => e !== partToRemove);
+    redrawSonglistsContent();
+  }
+  redrawCurrentPartsInSong(songName);
 }
 
 function modifySet(setFileName) {
@@ -328,11 +347,12 @@ function getJsonForSetDotYaml(setlistName) {
 }
 
 function redrawCurrentSongsInSet(setName) {
+  clickFunctionStr = "remSongFromSetBtnAction";
   currentSongList = document.getElementById("set-current-song-list");
   removeAllChildNodes(currentSongList);
   redrawSetlistsContent();
   getJsonForSetDotYaml(setName).songs.forEach(song => {
-    currentSongList.appendChild(createRemovableListItem(song));
+    currentSongList.appendChild(createRemovableListItem(song, clickFunctionStr));
   });
 }
 
@@ -387,11 +407,12 @@ function getJsonForSongDotYaml(songName) {
 }
 
 function redrawCurrentPartsInSong(songName) {
-  currentSongList = document.getElementById("song-current-part-list");
-  removeAllChildNodes(currentSongList);
+  clickFunctionStr = "remPartFromSongBtnAction";
+  currentPartList = document.getElementById("song-current-part-list");
+  removeAllChildNodes(currentPartList);
   redrawSongsContent();
   Object.keys(getJsonForSongDotYaml(songName).parts).forEach(part => {
-    currentSongList.appendChild(createRemovableListItem(part));
+    currentPartList.appendChild(createRemovableListItem(part, clickFunctionStr));
   });
 }
 
