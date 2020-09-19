@@ -489,7 +489,7 @@ function addSelectedPartToSong(addPartBtn) {
 
 function getListItemPosition(partName) {
   partListItemObj = document.getElementById(partName).parentNode;
-  return parseint(Array.prototype.indexOf.call(partListItemObj.parentNode.children, partListItemObj), 10);
+  return parseInt(Array.prototype.indexOf.call(partListItemObj.parentNode.children, partListItemObj), 10);
 }
 
 
