@@ -465,7 +465,23 @@ function addSelectedSongToSet(addSongBtn) {
   } else {
     console.warn(`Not added! Song, \'${selectedSong}\', already in set, \'${setlistName}\'.`)
   }
+}
 
+function addSelectedPartToSong(addPartBtn) {
+  selectedPart = document.getElementById('song-part-edit-select').value;
+  songName = addPartBtn.parentNode.value;
+  partsInSong = getJsonForSongDotYaml(songName).songs;
+  if (!partsInSong.includes(selectedPart)) {
+    console.debug(`Add ${selectedPart} to song, \'${songName}\'.`);
+    if (songName in songConfigDict) {
+      wipSongConfigDict[songName] = getJsonForSongDotYaml(songName);
+      wipSongConfigDict[songName].songs.push(selectedPart);
+      delete songConfigDict[songName];
+    }
+    redrawCurrentPartsInSong(songName);
+  } else {
+    console.warn(`Not added! Part, \'${selectedPart}\', already in song, \'${songName}\'.`)
+  }
 }
 
 function validateAndWriteSet(writeSetBtn) {
