@@ -13,7 +13,7 @@ var wipSongConfigDict = {};
 var pedalConfigDict = {};
 var wipPedalConfigDict = {};
 var defaultParts = ['Bridge', 'Chorus', 'Coda', 'Interlude', 'Intro', 'Outro', 'Pre-Chorus', 'Refrain', 'Turn-Around', 'Verse'];
-var possibleTempos = Array(4000).fill().map((_, i) => i/2);
+var possibleTempos = Array(4001).fill().map((_, i) => i/2).filter(i => i >= 40);
 
 
 function getSets() {
