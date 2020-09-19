@@ -458,9 +458,9 @@ function addSelectedSongToSet(addSongBtn) {
     console.debug(`Add ${selectedSong} to set, \'${setlistName}\'.`);
     if (setlistName in setConfigDict) {
       wipSetConfigDict[setlistName] = getJsonForSetDotYaml(setlistName);
+      wipSetConfigDict[setlistName].songs.push(selectedSong);
       delete setConfigDict[setlistName];
     }
-    wipSetConfigDict[setlistName].songs.push(selectedSong);
     redrawCurrentSongsInSet(setlistName);
   } else {
     console.warn(`Not added! Song, \'${selectedSong}\', already in set, \'${setlistName}\'.`)
@@ -479,9 +479,9 @@ function addSelectedPartToSong(addPartBtn) {
     }
     getJsonTemplate("part").then(function(results) {
       wipSongConfigDict[songName].parts[selectedPart] = results.json;
+      redrawCurrentPartsInSong(songName);
       // itemJson.position = getPartPosiotionInList;
     });;
-    redrawCurrentPartsInSong(songName);
   } else {
     console.warn(`Not added! Part, \'${selectedPart}\', already in song, \'${songName}\'.`)
   }
