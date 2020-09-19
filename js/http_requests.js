@@ -361,7 +361,7 @@ function populateSongEditContent(songFileName) {
 }
 
 function drawAvailableParts() {
-  selectSongList = document.getElementById("song-song-edit-select");
+  selectSongList = document.getElementById("song-part-edit-select");
   defaultParts.forEach(part => {
     selectSongList.appendChild(createOption(song));
   });

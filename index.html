@@ -121,7 +121,22 @@
 					<a class="edit-write-file" onclick="validateAndWriteSet(this)" id="edit-set-writer">Write Set</a>
 				</div>
 				<div class="song-content" id="song-edit-content" hidden="true">
-
+					<label for="edit-song-name" id="song-name-edit-label">Song Name:</label><br>
+					<input type="text" id="song-name-input" name="edit-song-name">
+					<a class="edit-song-name-check" id="edit-song-name-enter">
+						<img class="check" onclick="replaceOldSongNameWithNewSongName()" src="assets/check.png">
+					</a>
+					<hr></hr>
+					<label for="edit-song-part-list" id="song-part-list-edit-label">Songs to Add:</label><br>
+					<select class="song-select" id="song-part-edit-select" name="edit-song-part-list"></select>
+					<a class="edit-adder" id="edit-song-adder">
+						<img class="plus" onclick="addSelectedPartToSong(this.parentNode)" src="assets/plus.png">
+					</a>
+					<hr></hr>
+					<label for="show-song-part-list" id="show-song-part-list-label">Partss in Song:</label><br>
+					<ol class="set-current-part-list" id="set-current-part-list" name="show-set-part-list"></ol>
+					<hr></hr>
+					<a class="edit-write-file" onclick="validateAndWriteSong(this)" id="edit-song-writer">Write Song</a>
 				</div>
 			</div>
 		</div>
