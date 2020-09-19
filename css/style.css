@@ -463,3 +463,11 @@ pre {
 .config-wrapper .edit-box .song-select {
     padding: 1px 2px;
 }
+
+.config-wrapper .edit-box .part-select {
+    padding: 1px 2px;
+}
+
+.config-wrapper .edit-box .tempo-select {
+    padding: 1px 2px;
+}

@@ -715,6 +715,18 @@ function replaceOldSongNameWithNewSongName() {
   }
 }
 
+function setSongTempo() {
+  var editSongTempoSelect = document.getElementById("song-tempo-select");
+  var currentSongTempo = editSongTempoSelect.parentNode.value;
+  if (currentSongTempo.localeCompare(editSongTempoSelect.value) != 0) {
+    console.debug(`Setting old song tempo to, \'${editSongTempoSelect.value}\', for song name, \'${currentSongTempo}.yaml\'.`)
+    // changeSongTempoInGlobal(oldSongTempo, editSongTempoSelect.value);
+    // editSongTempoSelect.parentNode.value = `${editSongTempoSelect.value}.yaml`;
+  } else {
+    console.debug(`Not setting song tempo to, \'${editSongTempoSelect.value}\', because that is already the song tempo.`)
+  }
+}
+
 function initializePedalsLists() {
   // get midi controller's pedals
   getPedals().then(function (returndata) {
