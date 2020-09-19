@@ -416,20 +416,6 @@ function getJsonForSongDotYaml(songName) {
   }
 }
 
-function decideEditElementsToHide() {
-  if (document.getElementById("setlists").className.localeCompare("tab active") == 0) {
-    hideEditContent("song", true)
-    if (document.getElementById("set-edit-content").hidden) {
-      hideEditContent("set", false) 
-    }
-  } else if (document.getElementById("songs").className.localeCompare("tab active") == 0) {
-    hideEditContent("set", true)
-    if (document.getElementById("song-edit-content").hidden) {
-      hideEditContent("song", false)
-    }
-  }
-}
-
 function redrawCurrentPartsInSong(songName) {
   clickFunctionStr = "remPartFromSongBtnAction";
   currentPartList = document.getElementById("song-current-part-list");

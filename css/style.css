@@ -262,6 +262,7 @@ pre {
     border-radius: 4px;
     padding-bottom: 15px;
     height: 10%;
+    max-height: 75%;
     font-size: large;
 }
 
