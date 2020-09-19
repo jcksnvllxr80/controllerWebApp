@@ -475,9 +475,9 @@ function addSelectedPartToSong(addPartBtn) {
     console.debug(`Add ${selectedPart} to song, \'${songName}\'.`);
     if (songName in songConfigDict) {
       wipSongConfigDict[songName] = getJsonForSongDotYaml(songName);
-      wipSongConfigDict[songName].songs.push(selectedPart);
       delete songConfigDict[songName];
     }
+    wipSongConfigDict[songName].songs.push(selectedPart);
     redrawCurrentPartsInSong(songName);
   } else {
     console.warn(`Not added! Part, \'${selectedPart}\', already in song, \'${songName}\'.`)
