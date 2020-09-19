@@ -137,23 +137,6 @@ function redrawSongsContent() {
   reloadSongsContent();
 }
 
-// function evaluateSetlistsContent(oldSetName, newSetName) {
-//   editChangedChildNode(document.getElementById("set-list"), newSetName, oldSetName);
-// }
-
-// function editChangedChildNode(setListObj, newSetName, oldSetName) {
-//   for (i = 1; i <= setListObj.children.length; i++) {
-//     childNode = setListObj.children[i].children;
-//     if (childNode[0].id.localeCompare(oldSetName) == 0) {
-//       childNode[0].id = `${newSetName}.yaml`;
-//       childNode[0].textContent = newSetName;
-//       childNode[1].id = newSetName;
-//       childNode[2].children[0] = `delete-${newSetName}`;
-//       return;
-//     }
-//   }
-// }
-
 function loadSongsContent() {
   songs.forEach(song => {
     addItemToList(document.getElementById("song-list"), song, 'song');
@@ -686,11 +669,21 @@ function changeSetNameInGlobal(itemOldName, itemNewName) {
   itemJson.name = itemNewName;
   sets = sets.filter(e => e !== itemOldName);
   newFileName = `${itemNewName}.yaml`;
-  sets.push(newFileName)
+  sets.push(newFileName);
   wipSetConfigDict[newFileName] = itemJson;
   delete getJsonForSetDotYaml(itemOldName);
   redrawSetlistsContent();
-  // evaluateSetlistsContent(itemOldName, itemNewName)
+}
+
+function changeSetNameInGlobal(itemOldName, itemNewName) {
+  itemJson = getJsonForSongDotYaml(itemOldName);
+  itemJson.name = itemNewName;
+  songs = songs.filter(e => e !== itemOldName);
+  newFileName = `${itemNewName}.yaml`;
+  songs.push(newFileName);
+  wipSongConfigDict[newFileName] = itemJson;
+  delete getJsonForSongDotYaml(itemOldName);
+  redrawSongsContent();
 }
 
 function getNameFromUser(itemType) {
