@@ -470,8 +470,8 @@ function addSelectedSongToSet(addSongBtn) {
 function addSelectedPartToSong(addPartBtn) {
   selectedPart = document.getElementById('song-part-edit-select').value;
   songName = addPartBtn.parentNode.value;
-  partsInSong = getJsonForSongDotYaml(songName).songs;
-  if (!partsInSong.includes(selectedPart)) {
+  partsInSong = getJsonForSongDotYaml(songName).parts;
+  if (!Object.keys(partsInSong).includes(selectedPart)) {
     console.debug(`Add ${selectedPart} to song, \'${songName}\'.`);
     if (songName in songConfigDict) {
       wipSongConfigDict[songName] = getJsonForSongDotYaml(songName);
