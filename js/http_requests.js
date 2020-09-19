@@ -116,9 +116,24 @@ function reloadSetlistsContent() {
   });
 }
 
+function reloadSongsContent() {
+  songs.forEach(song => {
+    if (song in songConfigDict) {
+      addItemToList(document.getElementById("song-list"), song, 'song');
+    } else {
+      addWipItemToList(document.getElementById("song-list"), song, 'song');
+    }
+  });
+}
+
 function redrawSetlistsContent() {
   removeAllTabContentListChildNodes(document.getElementById("set-list"));
   reloadSetlistsContent();
+}
+
+function redrawSengsContent() {
+  removeAllTabContentListChildNodes(document.getElementById("song-list"));
+  reloadSongsContent();
 }
 
 // function evaluateSetlistsContent(oldSetName, newSetName) {
@@ -373,7 +388,7 @@ function getJsonForSongDotYaml(songName) {
 function redrawCurrentPartsInSong(songName) {
   currentSongList = document.getElementById("song-current-part-list");
   removeAllChildNodes(currentSongList);
-  redrawSonglistsContent();
+  redrawPartsContent();
   getJsonForSongDotYaml(songName).songs.forEach(song => {
     currentSongList.appendChild(createRemovableListItem(song));
   });
