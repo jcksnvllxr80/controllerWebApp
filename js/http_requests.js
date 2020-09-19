@@ -659,7 +659,7 @@ function replaceOldSongNameWithNewSongName() {
   var editSongNameTextField = document.getElementById("song-name-input");
   var oldSongName = editSongNameTextField.parentNode.value;
   if (oldSongName.localeCompare(`${editSongNameTextField.value}.yaml`) != 0) {
-    if (getJsonForSongDotYaml(oldSongName).songs.length > 0) {
+    if (Object.keys(getJsonForSongDotYaml(oldSongName).parts).length > 0) {
       console.debug(`Changing old song name, \'${oldSongName}\', to new song name, \'${editSongNameTextField.value}.yaml\'.`)
       changeSongNameInGlobal(oldSongName, editSongNameTextField.value);
       editSongNameTextField.parentNode.value = `${editSongNameTextField.value}.yaml`;
