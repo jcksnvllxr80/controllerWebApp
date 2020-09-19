@@ -361,9 +361,10 @@ function populateSongEditContent(songFileName) {
 }
 
 function drawAvailableParts() {
-  selectSongList = document.getElementById("song-part-edit-select");
+  selectPartList = document.getElementById("song-part-edit-select");
+  removeAllChildNodes(selectPartList);
   defaultParts.forEach(part => {
-    selectSongList.appendChild(createOption(part));
+    selectPartList.appendChild(createOption(part));
   });
 }
 
@@ -375,7 +376,7 @@ function getJsonForSongDotYaml(songName) {
   }
 }
 
-function redrawCurrentSongsInSong(songName) {
+function redrawCurrentPartsInSong(songName) {
   currentSongList = document.getElementById("song-current-song-list");
   removeAllChildNodes(currentSongList);
   redrawSonglistsContent();
