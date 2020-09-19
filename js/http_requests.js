@@ -474,18 +474,24 @@ function addSelectedPartToSong(addPartBtn) {
   if (!Object.keys(partsInSong).includes(selectedPart)) {
     console.debug(`Add ${selectedPart} to song, \'${songName}\'.`);
     if (songName in songConfigDict) {
-      wipSongConfigDict[songName] = getJsonForSongDotYaml(songName);
+      wipSongConfigDict[songName] = getListItemPosition(songName);
       delete songConfigDict[songName];
     }
     getJsonTemplate("part").then(function(results) {
       wipSongConfigDict[songName].parts[selectedPart] = results.json;
       redrawCurrentPartsInSong(songName);
-      // itemJson.position = getPartPosiotionInList;
+      // itemJson.position = getPartsPositionInSong();
     });;
   } else {
     console.warn(`Not added! Part, \'${selectedPart}\', already in song, \'${songName}\'.`)
   }
 }
+
+function getListItemPosition(partName) {
+  partListItemObj = document.getElementById(partName).parentNode;
+  return parseint(Array.prototype.indexOf.call(partListItemObj.parentNode.children, partListItemObj), 10);
+}
+
 
 function validateAndWriteSet(writeSetBtn) {
   setlistName = writeSetBtn.parentNode.value;
