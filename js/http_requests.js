@@ -481,9 +481,9 @@ function addSelectedSongToSet(addSongBtn) {
     console.debug(`Add ${selectedSong} to set, \'${setlistName}\'.`);
     if (setlistName in setConfigDict) {
       wipSetConfigDict[setlistName] = getJsonForSetDotYaml(setlistName);
-      wipSetConfigDict[setlistName].songs.push(selectedSong);
       delete setConfigDict[setlistName];
     }
+    wipSetConfigDict[setlistName].songs.push(selectedSong);
     redrawCurrentSongsInSet(setlistName);
   } else {
     console.warn(`Not added! Song, \'${selectedSong}\', already in set, \'${setlistName}\'.`)
