@@ -740,7 +740,7 @@ function setSongTempo() {
   var currentSongTempo = songJson.tempo;
   if (currentSongTempo == null || currentSongTempo.localeCompare(editSongTempoSelect.value) != 0) {
     console.debug(`Setting song tempo to, \'${editSongTempoSelect.value}\', for song, \'${songName}\'.`);
-    getJsonForSongDotYaml(songName).tempo = Number(editSongTempoSelect.value);
+    songJson.tempo = Number(editSongTempoSelect.value);
   } else {
     console.debug(`Not setting song tempo to, \'${editSongTempoSelect.value}\', because that is already the song tempo.`);
   }
