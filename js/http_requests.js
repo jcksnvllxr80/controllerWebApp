@@ -306,11 +306,11 @@ function removeSongFromSet(setlistName, songToRemove) {
 function removePartFromSong(songName, partToRemove) {
   console.debug(`Removing part, \'${partToRemove}\', from song, \'${songName}\'.`);
   if (document.getElementById(songName).className.localeCompare("work-in-progress") == 0) {
-    wipSongConfigDict[songName].parts = wipSongConfigDict[songName].parts.filter(e => e !== partToRemove);
+    delete wipSongConfigDict[songName].parts[partToRemove];
   } else {
     wipSongConfigDict[songName] = songConfigDict[songName];
     delete songConfigDict[songName];
-    wipSongConfigDict[songName].parts = wipSongConfigDict[songName].parts.filter(e => e !== partToRemove);
+    delete wipSongConfigDict[songName].parts[partToRemove];
     redrawSonglistsContent();
   }
   redrawCurrentPartsInSong(songName);
