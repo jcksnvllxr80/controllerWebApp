@@ -14,7 +14,7 @@ var pedalConfigDict = {};
 var wipPedalConfigDict = {};
 var defaultParts = ['Custom', 'Bridge', 'Chorus', 'Coda', 'Interlude', 'Intro', 'Outro', 'Pre-Chorus', 'Refrain', 'Turn-Around', 'Verse'];
 var possibleTempos = Array(4001).fill().map((_, i) => i/2).filter(i => i >= 40);
-
+var DEFAULT_TEMPO = 110;
 
 function getSets() {
   return $.getJSON(`${config_api_url}/sets`).then(function(result) {
@@ -376,8 +376,10 @@ function modifySong(setFileName) {
 }
 
 function populateSongEditContent(songFileName) {
-  document.getElementById("song-name-input").value = getJsonForSongDotYaml(songFileName).name;
+  songBeingEditedJson = getJsonForSongDotYaml(songFileName);
+  document.getElementById("song-name-input").value = .name;
   drawAvailableTempos();
+  setTempoSelectValue(songBeingEditedJson);
   drawAvailableParts();
   redrawCurrentPartsInSong(songFileName);
 }
@@ -388,6 +390,14 @@ function drawAvailableTempos() {
   possibleTempos.forEach(tempo => {
     selectTempoList.appendChild(createTempoOption(tempo));
   });
+}
+
+function setTempoSelectValue() {
+  if (songBeingEditedJson.tempo == null) {
+    selectTempoList.value = DEFAULT_TEMPO;
+  } else {
+    selectTempoList.value = songTempo;
+  }
 }
 
 function drawAvailableParts() {
