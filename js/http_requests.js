@@ -377,7 +377,7 @@ function modifySong(setFileName) {
 
 function populateSongEditContent(songFileName) {
   songBeingEditedJson = getJsonForSongDotYaml(songFileName);
-  document.getElementById("song-name-input").value = .name;
+  document.getElementById("song-name-input").value = songBeingEditedJson.name;
   drawAvailableTempos();
   setTempoSelectValue(songBeingEditedJson);
   drawAvailableParts();
