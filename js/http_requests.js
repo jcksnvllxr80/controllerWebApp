@@ -414,6 +414,7 @@ function redrawCurrentPartsInSong(songName) {
   Object.keys(getJsonForSongDotYaml(songName).parts).forEach(part => {
     currentPartList.appendChild(createRemovableListItem(part, clickFunctionStr));
   });
+  reevaluatePartPositionInSong(getJsonForSongDotYaml(songName));
 }
 
 function removeAllChildNodes(parent) {
@@ -516,6 +517,13 @@ function initNewPart(songName, newPartName) {
     newPartJson.position = getListItemPosition(newPartName);
     getPedalTemplates(newPartJson);
   });;
+}
+
+function reevaluatePartPositionInSong(songJson){
+  parts = songJson.parts;
+  Object.keys(parts).forEach(part => {
+    parts[part].position = getListItemPosition(part)
+  });
 }
 
 function getListItemPosition(partName) {
