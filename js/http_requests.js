@@ -593,9 +593,13 @@ function writeFileToController(type, json) {
   });
 }
 
-function deleteSongListItem(deleteBtn) {
-  // TODO: delete anywhere else in the current obj's where this song exists
-  // NOTE: dont forget about closing the edit windows if the song being edited
+function deleteSongListItem(filenameToDelete) {
+  if (filenameToDelete.localeCompare(document.getElementById("song-edit-content").value) == 0) {
+    clearEditSongContent();
+  }
+  songs = songs.filter(e => e !== filenameToDelete);
+  delete getJsonForSetDotYaml(filenameToDelete);
+  redrawSongsContent();
 }
 
 function deleteSetListItem(filenameToDelete) {
@@ -609,9 +613,9 @@ function deleteSetListItem(filenameToDelete) {
 
 function deleteListItem(deleteBtn) {
   console.debug(`Delete button with id, \'${deleteBtn.id}\' was pressed.`);
-  setNameToDelete = deleteBtn.id.replace("delete-", "");
-  filenameToDelete = `${setNameToDelete}.yaml`;
-  deleteFileFromController(deleteBtn.parentNode.name, setNameToDelete);
+  nameToDelete = deleteBtn.id.replace("delete-", "");
+  filenameToDelete = `${nameToDelete}.yaml`;
+  deleteFileFromController(deleteBtn.parentNode.name, nameToDelete);
   if (deleteBtn.parentNode.name.localeCompare('set') == 0) {
     deleteSetListItem(filenameToDelete);
   } else if (deleteBtn.parentNode.name.localeCompare('song') == 0) {
@@ -622,6 +626,10 @@ function deleteListItem(deleteBtn) {
 
 function clearEditSetContent() {
   removeAllChildNodes(document.getElementById("set-current-song-list"));
+}
+
+function clearEditSongContent() {
+  removeAllChildNodes(document.getElementById("song-current-part-list"));
 }
 
 function deleteFileFromController(fileType, filename) {
