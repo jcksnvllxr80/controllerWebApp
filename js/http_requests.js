@@ -319,14 +319,6 @@ function getJsonForSetDotYaml(setlistName) {
   }
 }
 
-function getJsonForSongDotYaml(songName) {
-  if (document.getElementById(songName).className.localeCompare("work-in-progress") == 0) {
-    return wipSongConfigDict[songName];
-  } else {
-    return songConfigDict[songName];
-  }
-}
-
 function redrawCurrentSongsInSet(setName) {
   currentSongList = document.getElementById("set-current-song-list");
   removeAllChildNodes(currentSongList);
@@ -355,11 +347,59 @@ function removeAllTabContentListChildNodes(parent) {
   }
 }
 
-function modifySong(objFileName) {
-  configJson = songConfigDict[objFileName];
+function modifySong(setFileName) {
   hideEditContent('song', false);
-  document.getElementById(`song-edit-content`).value = objFileName;
-  // TODO: got a lot of work here to come
+  document.getElementById(`song-edit-content`).value = setFileName;
+  populateSongEditContent(setFileName);
+}
+
+function populateSongEditContent(songFileName) {
+  document.getElementById("set-name-input").value = getJsonForSongDotYaml(songFileName).name;
+  drawAvailableParts();
+  redrawCurrentPartsInSong(songFileName);
+}
+
+function drawAvailableParts() {
+  selectSongList = document.getElementById("song-song-edit-select");
+  defaultParts.forEach(part => {
+    selectSongList.appendChild(createOption(song));
+  });
+}
+
+function getJsonForSongDotYaml(songName) {
+  if (document.getElementById(songName).className.localeCompare("work-in-progress") == 0) {
+    return wipSongConfigDict[songName];
+  } else {
+    return songConfigDict[songName];
+  }
+}
+
+function redrawCurrentSongsInSong(songName) {
+  currentSongList = document.getElementById("song-current-song-list");
+  removeAllChildNodes(currentSongList);
+  redrawSonglistsContent();
+  getJsonForSongDotYaml(songName).songs.forEach(song => {
+    currentSongList.appendChild(createRemovableListItem(song));
+  });
+}
+
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
+
+function removeAllTabContentListChildNodes(parent) {
+  addItemChild = null;
+  while (parent.firstChild) {
+    if (parent.firstChild.className == "add-item") {
+      addItemChild = parent.firstChild;
+    }
+    parent.removeChild(parent.firstChild);
+  }
+  if (addItemChild) {
+    parent.appendChild(addItemChild);
+  }
 }
 
 function hideEditContent(type, hidden) {
