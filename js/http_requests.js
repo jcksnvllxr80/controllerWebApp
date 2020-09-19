@@ -286,7 +286,7 @@ function remSongFromSetBtnAction(remBtnObj) {
 
 function remPartFromSongBtnAction(remBtnObj) {
   partNameToRemove = remBtnObj.id.replace("remove-", "");
-  songToRemovePartFrom = document.getElementById("set-edit-content").value;
+  songToRemovePartFrom = document.getElementById("song-edit-content").value;
   removePartFromSong(songToRemovePartFrom, partNameToRemove);
 }
 
