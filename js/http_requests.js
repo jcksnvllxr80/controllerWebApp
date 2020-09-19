@@ -522,13 +522,13 @@ function initNewPart(songName, newPartName) {
 function reevaluatePartPositionInSong(songJson){
   parts = songJson.parts;
   Object.keys(parts).forEach(part => {
-    parts[part].position = getListItemPosition(part) + 1;
+    parts[part].position = getListItemPosition(part);
   });
 }
 
 function getListItemPosition(partName) {
   partListItemObj = document.getElementById(partName).parentNode;
-  return parseInt(Array.prototype.indexOf.call(partListItemObj.parentNode.children, partListItemObj), 10);
+  return parseInt(Array.prototype.indexOf.call(partListItemObj.parentNode.children, partListItemObj), 10) + 1;
 }
 
 function getPedalTemplates(partJson) {
