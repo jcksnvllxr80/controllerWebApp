@@ -392,11 +392,11 @@ function drawAvailableTempos() {
   });
 }
 
-function setTempoSelectValue() {
-  if (songBeingEditedJson.tempo == null) {
+function setTempoSelectValue(songEditedJson) {
+  if (songEditedJson.tempo == null) {
     selectTempoList.value = DEFAULT_TEMPO;
   } else {
-    selectTempoList.value = songTempo;
+    selectTempoList.value = songEditedJson.tempo;
   }
 }
 
