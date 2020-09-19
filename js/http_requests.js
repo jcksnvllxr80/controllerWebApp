@@ -738,7 +738,7 @@ function setSongTempo() {
   var songName = editSongTempoSelect.parentNode.value;
   var songJson = getJsonForSongDotYaml(songName);
   var currentSongTempo = songJson.tempo;
-  if (currentSongTempo.localeCompare(editSongTempoSelect.value) != 0) {
+  if (currentSongTempo == null || currentSongTempo.localeCompare(editSongTempoSelect.value) != 0) {
     console.debug(`Setting song tempo to, \'${editSongTempoSelect.value}\', for song, \'${songName}\'.`)
     // changeSongTempoInGlobal(oldSongTempo, editSongTempoSelect.value);
     // editSongTempoSelect.parentNode.value = `${editSongTempoSelect.value}.yaml`;
