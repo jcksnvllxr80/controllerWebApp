@@ -445,6 +445,14 @@ pre {
     white-space: normal;
 }
 
+.config-wrapper .edit-box .part-select .select-option {
+    white-space: normal;
+}
+
+.config-wrapper .edit-box .tempo-select .select-option {
+    white-space: normal;
+}
+
 .config-wrapper .edit-box .edit-write-file {
     padding: 3px 7px;
     border: solid 1px transparent;
