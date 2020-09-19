@@ -13,6 +13,7 @@ var wipSongConfigDict = {};
 var pedalConfigDict = {};
 var wipPedalConfigDict = {};
 var defaultParts = ['Bridge', 'Chorus', 'Coda', 'Interlude', 'Intro', 'Outro', 'Pre-Chorus', 'Refrain', 'Turn-Around', 'Verse'];
+var possibleTempos = Array(4000).fill().map((_, i) => i/2);
 
 
 function getSets() {
@@ -365,8 +366,17 @@ function modifySong(setFileName) {
 
 function populateSongEditContent(songFileName) {
   document.getElementById("song-name-input").value = getJsonForSongDotYaml(songFileName).name;
+  drawAvailableTempos();
   drawAvailableParts();
   redrawCurrentPartsInSong(songFileName);
+}
+
+function drawAvailableTempos() {
+  selectTempoList = document.getElementById("song-tempo-select");
+  removeAllChildNodes(selectTempoList);
+  possibleTempos.forEach(tempo => {
+    selectTempoList.appendChild(createOption(tempo));
+  });
 }
 
 function drawAvailableParts() {
@@ -717,9 +727,11 @@ function replaceOldSongNameWithNewSongName() {
 
 function setSongTempo() {
   var editSongTempoSelect = document.getElementById("song-tempo-select");
-  var currentSongTempo = editSongTempoSelect.parentNode.value;
+  var songName = editSongTempoSelect.parentNode.value;
+  var songJson = getJsonForSongDotYaml(songName);
+  var currentSongTempo = songJson.tempo;
   if (currentSongTempo.localeCompare(editSongTempoSelect.value) != 0) {
-    console.debug(`Setting old song tempo to, \'${editSongTempoSelect.value}\', for song name, \'${currentSongTempo}.yaml\'.`)
+    console.debug(`Setting song tempo to, \'${editSongTempoSelect.value}\', for song, \'${songName}\'.`)
     // changeSongTempoInGlobal(oldSongTempo, editSongTempoSelect.value);
     // editSongTempoSelect.parentNode.value = `${editSongTempoSelect.value}.yaml`;
   } else {
