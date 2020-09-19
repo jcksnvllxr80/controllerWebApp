@@ -329,12 +329,6 @@ function redrawCurrentSongsInSet(setName) {
   });
 }
 
-function removeAllChildNodes(parent) {
-  while (parent.firstChild) {
-    parent.removeChild(parent.firstChild);
-  }
-}
-
 function removeAllTabContentListChildNodes(parent) {
   addItemChild = null;
   while (parent.firstChild) {
