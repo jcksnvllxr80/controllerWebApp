@@ -246,6 +246,14 @@ function createOption(content) {
   return option;
 }
 
+function createTempoOption(content) {
+  var option = document.createElement("option");
+  option.setAttribute('value', content);
+  option.setAttribute('class', 'select-option');
+  option.textContent = content;
+  return option;
+}
+
 function createEditIconImg(id) {
   var editItemImg = document.createElement("img");
   editItemImg.setAttribute('onClick', 'editListItem(this)');
@@ -375,7 +383,7 @@ function drawAvailableTempos() {
   selectTempoList = document.getElementById("song-tempo-select");
   removeAllChildNodes(selectTempoList);
   possibleTempos.forEach(tempo => {
-    selectTempoList.appendChild(createOption(tempo));
+    selectTempoList.appendChild(createTempoOption(tempo));
   });
 }
 
