@@ -82,7 +82,7 @@
 				</li>
 			</ul>
 			<div class="tab-content">
-				<div class="tab active" id="setlists" data-toggle="pill">
+				<div class="tab active" id="setlists" onclick="decideEditElementsToHide()" data-toggle="pill">
 					<ol class="set-list" id="set-list">
 						<li class="add-item">
 							<a class="adder" id="set-adder">
@@ -91,7 +91,7 @@
 						</li>
 					</ol>
 				</div>
-				<div class="tab" id="songs" data-toggle="pill">
+				<div class="tab" id="songs" onclick="decideEditElementsToHide()" data-toggle="pill">
 					<ol class="song-list" id="song-list">
 						<li class="add-item">
 							<a class="adder" id="song-adder">
