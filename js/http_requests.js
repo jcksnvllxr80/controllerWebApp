@@ -477,14 +477,18 @@ function addSelectedPartToSong(addPartBtn) {
       wipSongConfigDict[songName] = getJsonForSongDotYaml(songName);
       delete songConfigDict[songName];
     }
-    getJsonTemplate("part").then(function(results) {
-      wipSongConfigDict[songName].parts[selectedPart] = results.json;
-      redrawCurrentPartsInSong(songName);
-      wipSongConfigDict[songName].parts[selectedPart].position = getListItemPosition(selectedPart);
-    });;
+    initNewPart(songName, selectedPart);
   } else {
     console.warn(`Not added! Part, \'${selectedPart}\', already in song, \'${songName}\'.`)
   }
+}
+
+function initNewPart(songName, newPartName) {
+  getJsonTemplate("part").then(function (results) {
+    wipSongConfigDict[songName].parts[newPartName] = results.json;
+    redrawCurrentPartsInSong(songName);
+    wipSongConfigDict[songName].parts[newPartName].position = getListItemPosition(newPartName);
+  });;
 }
 
 function getListItemPosition(partName) {
