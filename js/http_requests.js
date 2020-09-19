@@ -311,7 +311,7 @@ function removePartFromSong(songName, partToRemove) {
     wipSongConfigDict[songName] = songConfigDict[songName];
     delete songConfigDict[songName];
     delete wipSongConfigDict[songName].parts[partToRemove];
-    redrawSonglistsContent();
+    redrawSongsContent();
   }
   redrawCurrentPartsInSong(songName);
 }
