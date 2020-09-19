@@ -447,8 +447,12 @@ function removeAllTabContentListChildNodes(parent) {
 }
 
 function hideEditContent(type, hidden) {
+  notThisType = ["set", "song"].filter(listType => (listType.localeCompare(type) != 0))
   document.getElementById('edit-window').hidden = hidden;
   document.getElementById(`${type}-edit-content`).hidden = hidden;
+  if (hidden && !document.getElementById(`${notThisType}-edit-content`).hidden) {
+    document.getElementById(`${type}-edit-content`).hidden = !hidden;
+  }
 }
 
 function handleUnhandledType(unhandledType) {
