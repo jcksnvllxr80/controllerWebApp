@@ -470,6 +470,9 @@ function addSelectedSongToSet(addSongBtn) {
 
 function addSelectedPartToSong(addPartBtn) {
   selectedPart = document.getElementById('song-part-edit-select').value;
+  if (selectedPart.localeCompare("Custom") == 0) {
+    selectedPart = document.getElementById("part-name-input").value;
+  }
   songName = addPartBtn.parentNode.value;
   partsInSong = getJsonForSongDotYaml(songName).parts;
   if (!Object.keys(partsInSong).includes(selectedPart)) {
