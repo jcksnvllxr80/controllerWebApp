@@ -675,7 +675,7 @@ function changeSetNameInGlobal(itemOldName, itemNewName) {
   redrawSetlistsContent();
 }
 
-function changeSetNameInGlobal(itemOldName, itemNewName) {
+function changeSongNameInGlobal(itemOldName, itemNewName) {
   itemJson = getJsonForSongDotYaml(itemOldName);
   itemJson.name = itemNewName;
   songs = songs.filter(e => e !== itemOldName);
