@@ -504,7 +504,7 @@ function getPedalTemplates(partJson) {
  });
 }
 
-function initNewPedal(partJson) {
+function initNewPedal(partJson, pedalName) {
   getJsonTemplate("pedal").then(function (results) {
     partJson.pedals[pedalName] =  results.json;
   });;
