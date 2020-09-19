@@ -485,10 +485,10 @@ function addSelectedPartToSong(addPartBtn) {
 
 function initNewPart(songName, newPartName) {
   getJsonTemplate("part").then(function (results) {
-    partConfigJson = wipSongConfigDict[songName].parts[newPartName]
-    partConfigJson = results.json;
+    newPartJson = results.json;
+    wipSongConfigDict[songName].parts[newPartName] = newPartJson;
     redrawCurrentPartsInSong(songName);
-    partConfigJson.position = getListItemPosition(newPartName);
+    newPartJson.position = getListItemPosition(newPartName);
   });;
 }
 
