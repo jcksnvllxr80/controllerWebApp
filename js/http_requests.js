@@ -131,7 +131,7 @@ function redrawSetlistsContent() {
   reloadSetlistsContent();
 }
 
-function redrawSengsContent() {
+function redrawSongsContent() {
   removeAllTabContentListChildNodes(document.getElementById("song-list"));
   reloadSongsContent();
 }
@@ -388,7 +388,7 @@ function getJsonForSongDotYaml(songName) {
 function redrawCurrentPartsInSong(songName) {
   currentSongList = document.getElementById("song-current-part-list");
   removeAllChildNodes(currentSongList);
-  redrawPartsContent();
+  redrawSongsContent();
   getJsonForSongDotYaml(songName).songs.forEach(song => {
     currentSongList.appendChild(createRemovableListItem(song));
   });
