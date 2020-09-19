@@ -489,6 +489,7 @@ function initNewPart(songName, newPartName) {
     wipSongConfigDict[songName].parts[newPartName] = newPartJson;
     redrawCurrentPartsInSong(songName);
     newPartJson.position = getListItemPosition(newPartName);
+    getPedalTemplates(newPartJson);
   });;
 }
 
@@ -497,6 +498,17 @@ function getListItemPosition(partName) {
   return parseInt(Array.prototype.indexOf.call(partListItemObj.parentNode.children, partListItemObj), 10);
 }
 
+function getPedalTemplates(partJson) {
+  pedals.forEach(pedal => {
+    initNewPedal(partJson, pedal);
+ });
+}
+
+function initNewPedal(partJson) {
+  getJsonTemplate("pedal").then(function (results) {
+    partJson.pedals[pedalName] =  results.json;
+  });;
+}
 
 function validateAndWriteSet(writeSetBtn) {
   setlistName = writeSetBtn.parentNode.value;
