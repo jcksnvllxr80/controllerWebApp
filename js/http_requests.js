@@ -480,7 +480,7 @@ function addSelectedPartToSong(addPartBtn) {
     getJsonTemplate("part").then(function(results) {
       wipSongConfigDict[songName].parts[selectedPart] = results.json;
       redrawCurrentPartsInSong(songName);
-      itemJson.position = getListItemPosition(selectedPart);
+      wipSongConfigDict[songName].parts[selectedPart].position = getListItemPosition(selectedPart);
     });;
   } else {
     console.warn(`Not added! Part, \'${selectedPart}\', already in song, \'${songName}\'.`)
