@@ -522,7 +522,7 @@ function initNewPart(songName, newPartName) {
 function reevaluatePartPositionInSong(songJson){
   parts = songJson.parts;
   Object.keys(parts).forEach(part => {
-    parts[part].position = getListItemPosition(part)
+    parts[part].position = getListItemPosition(part) + 1;
   });
 }
 
