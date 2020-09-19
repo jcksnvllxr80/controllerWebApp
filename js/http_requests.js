@@ -474,13 +474,13 @@ function addSelectedPartToSong(addPartBtn) {
   if (!Object.keys(partsInSong).includes(selectedPart)) {
     console.debug(`Add ${selectedPart} to song, \'${songName}\'.`);
     if (songName in songConfigDict) {
-      wipSongConfigDict[songName] = getListItemPosition(songName);
+      wipSongConfigDict[songName] = getJsonForSongDotYaml(songName);
       delete songConfigDict[songName];
     }
     getJsonTemplate("part").then(function(results) {
       wipSongConfigDict[songName].parts[selectedPart] = results.json;
       redrawCurrentPartsInSong(songName);
-      // itemJson.position = getPartsPositionInSong();
+      itemJson.position = getPartsPositionInSong(selectedPart);
     });;
   } else {
     console.warn(`Not added! Part, \'${selectedPart}\', already in song, \'${songName}\'.`)
