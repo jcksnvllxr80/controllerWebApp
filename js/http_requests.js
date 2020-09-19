@@ -389,8 +389,8 @@ function redrawCurrentPartsInSong(songName) {
   currentSongList = document.getElementById("song-current-part-list");
   removeAllChildNodes(currentSongList);
   redrawSongsContent();
-  getJsonForSongDotYaml(songName).songs.forEach(song => {
-    currentSongList.appendChild(createRemovableListItem(song));
+  getJsonForSongDotYaml(songName).parts.forEach(part => {
+    currentSongList.appendChild(createRemovableListItem(part));
   });
 }
 
