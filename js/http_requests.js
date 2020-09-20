@@ -302,7 +302,7 @@ function editListItem(btnObj) {
     console.debug(`Editing ${editType}, \'${objFileName}\'.`);
     modifySong(objFileName);
   } else if (editType.localeCompare('part') == 0) {
-    console.debug(`Editing ${editType}, \'${editObj}\'.`);
+    console.debug(`Editing ${editType}, \'${editObj.replace("edit-", "")}\'.`);
     modifyPart(editObj);
   } else {
     handleUnhandledType(editType);
