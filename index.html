@@ -134,11 +134,11 @@
 					</a>
 					<hr></hr>
 					<label for="edit-song-part-list" id="song-part-list-edit-label">Songs to Add:</label><br>
-					<select class="part-select" id="song-part-edit-select" name="edit-song-part-list" onchange="changePartNameSelectEventHandler()"" disabled="true"></select>
+					<select class="part-select" id="song-part-edit-select" name="edit-song-part-list" onchange="changePartNameSelectEventHandler()"></select>
 					<a class="edit-adder" id="edit-song-adder">
 						<img class="plus" onclick="addSelectedPartToSong(this.parentNode)" src="assets/plus.png">
 					</a><br>
-					<input type="text" id="part-name-input" name="edit-part-name">
+					<input type="text" id="part-name-input" name="edit-part-name" disabled="true">
 					<hr></hr>
 					<label for="show-song-part-list" id="show-song-part-list-label">Parts in Song:</label><br>
 					<ol class="song-current-part-list" id="song-current-part-list" name="show-song-part-list"></ol>
