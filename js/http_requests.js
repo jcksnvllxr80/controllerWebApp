@@ -179,7 +179,21 @@ function createRemovableListItem(id, clickFunctionStr) {
   return listItem;
 }
 
+function createEditableRemovableListItem(id, clickFunctionStr, type) {
+  createRemovableListItem(id, clickFunctionStr);
+  listItem.appendChild(createEditLinkA(id, type));
+  return listItem;
+}
+
 function createRemovableLinkA(id) {
+  var listLink = document.createElement("a");
+  listLink.setAttribute('draggable','true');
+  listLink.setAttribute('id', id);
+  listLink.textContent = id.replace('.yaml', '');
+  return listLink;
+}
+
+function createEditableLinkA(id) {
   var listLink = document.createElement("a");
   listLink.setAttribute('draggable','true');
   listLink.setAttribute('id', id);
@@ -201,7 +215,11 @@ function createEditLinkA(id, itemType) {
   var editLink = document.createElement("a");
   editLink.setAttribute('class', 'edit-link');
   editLink.setAttribute('name', itemType);
-  editLink.appendChild(createEditIconImg(id));
+  if (itemType.localeCompare("part") == 0) {
+    editLink.appendChild(createEditPartIconImg(id));
+  } else {
+    editLink.appendChild(createEditIconImg(id));
+  }
   return editLink;
 }
 
@@ -241,6 +259,15 @@ function createEditIconImg(id) {
   var editItemImg = document.createElement("img");
   editItemImg.setAttribute('onClick', 'editListItem(this)');
   editItemImg.setAttribute('id', id.replace('.yaml', ''));
+  editItemImg.setAttribute('src', 'assets/cogwheel.png');
+  editItemImg.setAttribute('class', 'edit');
+  return editItemImg;
+}
+
+function createEditPartIconImg(id) {
+  var editItemImg = document.createElement("img");
+  editItemImg.setAttribute('onClick', 'editListItem(this)');
+  editItemImg.setAttribute('id', `edit-${id}`);
   editItemImg.setAttribute('src', 'assets/cogwheel.png');
   editItemImg.setAttribute('class', 'edit');
   return editItemImg;
@@ -424,7 +451,7 @@ function redrawCurrentPartsInSong(songName) {
   removeAllChildNodes(currentPartList);
   redrawSongsContent();
   Object.keys(getJsonForSongDotYaml(songName).parts).forEach(part => {
-    currentPartList.appendChild(createRemovableListItem(part, clickFunctionStr));
+    currentPartList.appendChild(createEditableRemovableListItem(part, clickFunctionStr, "part"));
   });
   reevaluatePartPositionInSong(getJsonForSongDotYaml(songName));
 }
