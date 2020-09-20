@@ -295,11 +295,15 @@ function editListItem(btnObj) {
   editType = btnObj.parentNode.name;
   editObj = btnObj.id;
   objFileName = `${editObj}.yaml`;
-  console.debug(`Editing ${editType}, \'${objFileName}\'.`);
   if (editType.localeCompare('set') == 0) {
+    console.debug(`Editing ${editType}, \'${objFileName}\'.`);
     modifySet(objFileName);
   } else if (editType.localeCompare('song') == 0) {
+    console.debug(`Editing ${editType}, \'${objFileName}\'.`);
     modifySong(objFileName);
+  } else if (editType.localeCompare('part') == 0) {
+    console.debug(`Editing ${editType}, \'${editObj}\'.`);
+    modifyPart(editObj);
   } else {
     handleUnhandledType(editType);
   }
@@ -400,6 +404,11 @@ function modifySong(songFileName) {
   hideEditContent('song', false);
   document.getElementById(`song-edit-content`).value = songFileName;
   populateSongEditContent(songFileName);
+}
+
+function modifyPart(partName) {
+  // document.getElementById(`part-edit-content`).value = partName;
+  // populatePartEditContent(partName);
 }
 
 function populateSongEditContent(songFileName) {
