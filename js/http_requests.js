@@ -369,10 +369,10 @@ function removeAllTabContentListChildNodes(parent) {
   }
 }
 
-function modifySong(setFileName) {
+function modifySong(songFileName) {
   hideEditContent('song', false);
-  document.getElementById(`song-edit-content`).value = setFileName;
-  populateSongEditContent(setFileName);
+  document.getElementById(`song-edit-content`).value = songFileName;
+  populateSongEditContent(songFileName);
 }
 
 function populateSongEditContent(songFileName) {
@@ -402,10 +402,12 @@ function setTempoSelectValue(songEditedJson) {
 
 function drawAvailableParts() {
   selectPartList = document.getElementById("song-part-edit-select");
+  document.getElementById("part-name-input").value = "Custom part name...";
   removeAllChildNodes(selectPartList);
   defaultParts.forEach(part => {
     selectPartList.appendChild(createOption(part));
   });
+  selectPartList.value = "Bridge";
 }
 
 function getJsonForSongDotYaml(songName) {
@@ -520,6 +522,15 @@ function addSelectedPartToSong(addPartBtn) {
   } else {
     console.warn(`Not added! Part, \'${selectedPart}\', already in song, \'${songName}\'.`)
   }
+}
+
+function changePartNameSelectEventHandler() {
+  if (document.getElementById('song-part-edit-select').value.localeCompare("Custom") == 0) {
+    document.getElementById('part-name-input').disabled = false;
+  } else {
+    document.getElementById('part-name-input').disabled = true;
+  }
+  
 }
 
 function initNewPart(songName, newPartName) {
