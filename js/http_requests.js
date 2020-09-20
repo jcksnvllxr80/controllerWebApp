@@ -180,7 +180,7 @@ function createRemovableListItem(id, clickFunctionStr) {
 }
 
 function createEditableRemovableListItem(id, clickFunctionStr, type) {
-  createRemovableListItem(id, clickFunctionStr);
+  listItem = createRemovableListItem(id, clickFunctionStr);
   listItem.appendChild(createEditLinkA(id, type));
   return listItem;
 }
