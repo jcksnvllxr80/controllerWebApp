@@ -302,7 +302,7 @@ function editListItem(btnObj) {
     console.debug(`Editing ${editType}, \'${objFileName}\'.`);
     modifySong(objFileName);
   } else if (editType.localeCompare('part') == 0) {
-    songFileName = document.getElementById("edit-Bridge").parentNode.parentNode.parentNode.parentNode.value;
+    songFileName = document.getElementById(songFileName).parentNode.parentNode.parentNode.parentNode.value;
     console.debug(`Editing ${editType}, \'${editObj.replace("edit-", "")}\' of \'${songFileName}\'.`);
     modifyPart(editObj);
   } else {
