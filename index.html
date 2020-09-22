@@ -101,7 +101,7 @@
 					</ol>
 				</div>
 			</div>
-			<div class="edit-box" id="edit-window" hidden="true">
+			<div class="edit-box" id="set-edit-window" hidden="true">
 				<div class="set-content" id="set-edit-content" hidden="true">
 					<label for="edit-set-name" id="set-name-edit-label">Set Name:</label><br>
 					<input type="text" id="set-name-input" name="edit-set-name">
@@ -120,6 +120,8 @@
 					<hr></hr>
 					<a class="edit-write-file" onclick="validateAndWriteSet(this)" id="edit-set-writer">Write Set</a>
 				</div>
+			</div>
+			<div class="edit-box" id="song-edit-window" hidden="true"></div>
 				<div class="song-content" id="song-edit-content" hidden="true">
 					<label for="edit-song-name" id="song-name-edit-label">Song Name:</label><br>
 					<input type="text" id="song-name-input" name="edit-song-name">
@@ -146,6 +148,7 @@
 					<a class="edit-write-file" onclick="validateAndWriteSong(this)" id="edit-song-writer">Write Song</a>
 				</div>
 			</div>
+			<div class="edit-box" id="pedal-edit-window" hidden="true"></div>
 		</div>
 		<div class="sandbox2 view-wrapper"  id="viewer" hidden="true">
 			<textarea class="viewer-display" id="json-viewer" readonly="true"></textarea>
