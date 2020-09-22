@@ -867,7 +867,7 @@ function initializeSongsLists() {
   });
 }
 
-function draw() {
+function redraw() {
   document.getElementById("canvas-interactive").canvas.height = window.innerHeight;
 }
 
