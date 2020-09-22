@@ -867,6 +867,10 @@ function initializeSongsLists() {
   });
 }
 
+function draw() {
+  document.getElementById("canvas-interactive").canvas.height = window.innerHeight;
+}
+
 initializeSetsLists();
 initializeSongsLists();
 initializePedalsLists();
