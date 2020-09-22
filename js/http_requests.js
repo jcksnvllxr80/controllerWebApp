@@ -867,9 +867,13 @@ function initializeSongsLists() {
   });
 }
 
-function redraw() {
-  document.getElementById("canvas-interactive").canvas.height = window.innerHeight;
-}
+// function redraw() {
+//   document.getElementById("canvas-interactive").canvas.height = window.innerHeight;
+// }
+
+$( window ).resize(function() {
+  $("#canvas-interactive").height($( window ).height())
+});
 
 initializeSetsLists();
 initializeSongsLists();
