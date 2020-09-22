@@ -195,7 +195,7 @@ pre {
     margin-right: auto;
     margin-left: auto;
     margin-top: 40px;
-    width: 75%;
+    width: 90%;
     opacity: 0.66;
     z-index: 1
 }
@@ -310,7 +310,7 @@ pre {
     margin-top: 40px;
     margin-bottom: 30px;
     height: 200px;
-    width: 75%;
+    width: 90%;
     min-width: 200px;
     font-size: large;
     font-family: ui-monospace;
@@ -327,7 +327,7 @@ pre {
     margin-bottom: 60px;
     height: 75%;
     /* min-height: 400; */
-    width: 75%;
+    width: 90%;
     min-width: 200px;
     font-size: small;
     font-family: ui-monospace;
