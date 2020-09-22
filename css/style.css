@@ -140,7 +140,7 @@ pre {
     z-index:-1;
     display: block;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     top: 0;
     right: 0;
     bottom: 0;
