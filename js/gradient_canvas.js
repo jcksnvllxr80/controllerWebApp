@@ -74,23 +74,33 @@ function setClass(element) {
 };
 
 $(function(){
-    resizeCanvas();
+    resizeCanvasToWindow();
 });
 
 $(window).on('resize', function(){
-    resizeCanvas();
+    resizeCanvasToWindow();
 });
 
-function resizeCanvas() {
-    console.debug(`Window changed size to: width=${$(window).width()}; height=${$(window).height()}`)
+function resizeCanvasToWindow() {
+    console.debug(`Window is bigger than body... change canvas size to fill the window:
+        width=${$(window).width()}; height=${$(window).height()}`)
     var canvas = $('#canvas-interactive');
     canvas.css("width", $(window).width());
     canvas.css("height", $(window).height());
 }
 
 function resizeCanvasToDocument() {
-    console.debug(`Body changed size to: width=${$(document).width()}; height=${$(document).height()}`)
+    console.debug(`Body is bigger than window... change canvas size to fill the body:
+        width=${$(document).width()}; height=${$(document).height()}`)
     var canvas = $('#canvas-interactive');
     canvas.css("width", $(document).width());
     canvas.css("height", $(document).height());
+}
+
+function resizeCanvas() {
+    if ($( document ).height() > $( document ).height()) {
+        resizeCanvasToDocument();
+    } else {
+        resizeCanvasToWindow();
+    }
 }

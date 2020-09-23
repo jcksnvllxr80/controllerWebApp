@@ -486,12 +486,9 @@ function removeAllTabContentListChildNodes(parent) {
 }
 
 function hideEditContent(type, hidden) {
-  // notThisType = ["set", "song"].filter(thisType => (thisType.localeCompare(type) != 0));
-  // if (document.getElementById(`${notThisType}-edit-content`).hidden) {
-  //   document.getElementById(`${type}-edit-window`).hidden = hidden;
-  // }
   document.getElementById(`${type}-edit-window`).hidden = hidden;
   document.getElementById(`${type}-edit-content`).hidden = hidden;
+  resizeCanvas();
 }
 
 function handleUnhandledType(unhandledType) {
