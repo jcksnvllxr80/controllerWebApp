@@ -87,3 +87,10 @@ function resizeCanvas()
     canvas.css("width", $(window).width());
     canvas.css("height", $(window).height());
 }
+
+resizeCanvasToDocument()
+{
+    var canvas = $('#canvas-interactive');
+    canvas.css("width", $(document).width());
+    canvas.css("height", $(document).height());
+}
