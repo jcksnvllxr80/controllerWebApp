@@ -81,15 +81,15 @@ $(window).on('resize', function(){
     resizeCanvas();
 });
 
-function resizeCanvas()
-{
+function resizeCanvas() {
+    console.debug(`Window changed size to: width=${$(window).width()}; height=${$(document).height()}`)
     var canvas = $('#canvas-interactive');
     canvas.css("width", $(window).width());
     canvas.css("height", $(window).height());
 }
 
-resizeCanvasToDocument()
-{
+function resizeCanvasToDocument() {
+    console.debug(`Body changed size to: width=${$(window).width()}; height=${$(document).height()}`)
     var canvas = $('#canvas-interactive');
     canvas.css("width", $(document).width());
     canvas.css("height", $(document).height());
