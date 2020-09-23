@@ -864,7 +864,7 @@ function initializeSongsLists() {
   });
 }
 
-resizeCanvasToDocument() 
+resizeCanvas();
 initializeSetsLists();
 initializeSongsLists();
 initializePedalsLists();
