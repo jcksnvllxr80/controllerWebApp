@@ -105,4 +105,4 @@ function resizeCanvas() {
     }
 }
 
-window.addEventListener('orientationchange', resizeCanvasToDocument);
+window.addEventListener('orientationchange', resizeCanvas);
