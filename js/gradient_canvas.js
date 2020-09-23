@@ -98,7 +98,7 @@ function resizeCanvasToDocument() {
 }
 
 function resizeCanvas() {
-    if ($( document ).height() > $( document ).height()) {
+    if ($(document).height() > $(window).height()) {
         resizeCanvasToDocument();
     } else {
         resizeCanvasToWindow();
