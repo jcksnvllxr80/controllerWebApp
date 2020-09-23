@@ -73,13 +73,13 @@ function setClass(element) {
     $(element).addClass('active');
 };
 
-// $(function(){
-//     resizeCanvasToWindow();
-// });
+$(function(){
+    resizeCanvasToDocument();
+});
 
-// $(window).on('resize', function(){
-//     resizeCanvasToWindow();
-// });
+$(window).on('resize', function(){
+    resizeCanvasToDocument();
+});
 
 function resizeCanvasToWindow() {
     console.debug(`Window is bigger than body... change canvas size to fill the window:
