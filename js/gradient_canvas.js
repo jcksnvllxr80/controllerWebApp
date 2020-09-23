@@ -104,7 +104,7 @@ function resizeCanvasWidthToWindow() {
 function resizeCanvasWidthToDocument() {
     console.debug(`Body width is bigger than window... change canvas width to fill the body: width=${$(document).width()}`)
     var canvas = $('#canvas-interactive');
-    canvas.css("width", $(document).width());
+    canvas.css("width", $(document.body).width());
 }
 
 function resizeCanvas() {
@@ -113,7 +113,7 @@ function resizeCanvas() {
     } else {
         resizeCanvasHeightToWindow();
     }
-    if ($(document).width() > $(window).width()) {
+    if ($(document.body).width() > $(window).width()) {
         resizeCanvasWidthToDocument();
     } else {
         resizeCanvasWidthToWindow();
