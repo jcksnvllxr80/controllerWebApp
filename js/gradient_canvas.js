@@ -98,9 +98,11 @@ function resizeCanvasToDocument() {
 }
 
 function resizeCanvas() {
-    if ($(document.body).height() > $(window).height()) {
+    if ($(document.body).height() > $(window).height() || $(document.body).width() > $(window).width() ) {
         resizeCanvasToDocument();
     } else {
         resizeCanvasToWindow();
     }
 }
+
+window.addEventListener('orientationchange', resizeCanvasToDocument;
