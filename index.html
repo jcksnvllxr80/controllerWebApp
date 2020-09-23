@@ -31,128 +31,127 @@
 					<a href="#json-view-state" id="json-view-state-cta">View</a>
 				</span>
 			</div>
-
-			<div class="sandbox1 control-wrapper" id="controller">
-				<textarea class="controller-display" id="controller-display" readonly="true"></textarea>
-				<div class="cta-wrapper-dpad">
-					<span>
-						<a href="#dpad-up" onclick="doDpadButtonPress(this)" name="up" id="dpad-up">↑</a>
-					</span>
+		</div>
+		<div class="sandbox1 control-wrapper" id="controller">
+			<textarea class="controller-display" id="controller-display" readonly="true"></textarea>
+			<div class="cta-wrapper-dpad">
+				<span>
+					<a href="#dpad-up" onclick="doDpadButtonPress(this)" name="up" id="dpad-up">↑</a>
+				</span>
+			</div>
+			<div class="cta-wrapper-dpad">
+				<span>
+					<a href="#dpad-left" onclick="doDpadButtonPress(this)" name="CCW" id="dpad-left">←</a>
+				</span>
+				<span>
+					<a href="#dpad-right" onclick="doDpadButtonPress(this)" name="CW" id="dpad-right">→</a>
+				</span>
+			</div>
+			<div class="cta-wrapper-dpad">
+				<span>
+					<a href="#dpad-down" onclick="doDpadButtonPress(this)" name="down" id="dpad-down">↓</a>
+				</span>
+			</div>
+			<div class="cta-wrapper">
+				<span>
+					<a href="#song-down" onclick="doShortButtonPress(this)" name="4" id="song-down-bttn">Song Dn</a>
+				</span>
+				<span>
+					<a href="#song-up" onclick="doShortButtonPress(this)" name=5 id="song-up-bttn">Song Up</a>
+				</span>
+			</div>
+			<div class="cta-wrapper">
+				<span>
+					<a href="#part-down" onclick="doShortButtonPress(this)" name=1 id="part-down-bttn">Part Dn</a>
+				</span>
+				<span>
+					<a href="#select" onclick="doShortButtonPress(this)" name=2 id="select-bttn">Select</a>
+				</span>
+				<span>
+					<a href="#part-up" onclick="doShortButtonPress(this)" name=3 id="part-up-bttn">Part Up</a>
+				</span>
+			</div>
+		</div>
+		<div class="config-wrapper" id="configure" hidden="true">
+			<ul class="tab-titles">
+				<li class="active">
+					<a href="#setlists" data-toggle="tab">Setlists</a>
+				</li>
+				<li>
+					<a href="#songs" data-toggle="tab">Songs</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab active" id="setlists" data-toggle="pill">
+					<ol class="set-list" id="set-list">
+						<li class="add-item">
+							<a class="adder" id="set-adder">
+								<img class="plus" onclick="addNewListItem(this.parentNode)" src="assets/plus.png">
+							</a>
+						</li>
+					</ol>
 				</div>
-				<div class="cta-wrapper-dpad">
-					<span>
-						<a href="#dpad-left" onclick="doDpadButtonPress(this)" name="CCW" id="dpad-left">←</a>
-					</span>
-					<span>
-						<a href="#dpad-right" onclick="doDpadButtonPress(this)" name="CW" id="dpad-right">→</a>
-					</span>
-				</div>
-				<div class="cta-wrapper-dpad">
-					<span>
-						<a href="#dpad-down" onclick="doDpadButtonPress(this)" name="down" id="dpad-down">↓</a>
-					</span>
-				</div>
-				<div class="cta-wrapper">
-					<span>
-						<a href="#song-down" onclick="doShortButtonPress(this)" name="4" id="song-down-bttn">Song Dn</a>
-					</span>
-					<span>
-						<a href="#song-up" onclick="doShortButtonPress(this)" name=5 id="song-up-bttn">Song Up</a>
-					</span>
-				</div>
-				<div class="cta-wrapper">
-					<span>
-						<a href="#part-down" onclick="doShortButtonPress(this)" name=1 id="part-down-bttn">Part Dn</a>
-					</span>
-					<span>
-						<a href="#select" onclick="doShortButtonPress(this)" name=2 id="select-bttn">Select</a>
-					</span>
-					<span>
-						<a href="#part-up" onclick="doShortButtonPress(this)" name=3 id="part-up-bttn">Part Up</a>
-					</span>
+				<div class="tab" id="songs" data-toggle="pill">
+					<ol class="song-list" id="song-list">
+						<li class="add-item">
+							<a class="adder" id="song-adder">
+								<img class="plus" onclick="addNewListItem(this.parentNode)" src="assets/plus.png">
+							</a>
+						</li>
+					</ol>
 				</div>
 			</div>
-			<div class="config-wrapper" id="configure" hidden="true">
-				<ul class="tab-titles">
-					<li class="active">
-						<a href="#setlists" data-toggle="tab">Setlists</a>
-					</li>
-					<li>
-						<a href="#songs" data-toggle="tab">Songs</a>
-					</li>
-				</ul>
-				<div class="tab-content">
-					<div class="tab active" id="setlists" data-toggle="pill">
-						<ol class="set-list" id="set-list">
-							<li class="add-item">
-								<a class="adder" id="set-adder">
-									<img class="plus" onclick="addNewListItem(this.parentNode)" src="assets/plus.png">
-								</a>
-							</li>
-						</ol>
-					</div>
-					<div class="tab" id="songs" data-toggle="pill">
-						<ol class="song-list" id="song-list">
-							<li class="add-item">
-								<a class="adder" id="song-adder">
-									<img class="plus" onclick="addNewListItem(this.parentNode)" src="assets/plus.png">
-								</a>
-							</li>
-						</ol>
-					</div>
+			<div class="edit-box" id="set-edit-window" hidden="true">
+				<div class="set-content" id="set-edit-content" hidden="true">
+					<label for="edit-set-name" id="set-name-edit-label">Set Name:</label><br>
+					<input type="text" id="set-name-input" name="edit-set-name">
+					<a class="edit-set-name-check" id="edit-set-name-enter">
+						<img class="check" onclick="replaceOldSetNameWithNewSetName()" src="assets/check.png">
+					</a>
+					<hr></hr>
+					<label for="edit-set-song-list" id="set-song-list-edit-label">Songs to Add:</label><br>
+					<select class="song-select" id="set-song-edit-select" name="edit-set-song-list"></select>
+					<a class="edit-adder" id="edit-set-adder">
+						<img class="plus" onclick="addSelectedSongToSet(this.parentNode)" src="assets/plus.png">
+					</a>
+					<hr></hr>
+					<label for="show-set-song-list" id="show-set-song-list-label">Songs in Set:</label><br>
+					<ol class="set-current-song-list" id="set-current-song-list" name="show-set-song-list"></ol>
+					<hr></hr>
+					<a class="edit-write-file" onclick="validateAndWriteSet(this)" id="edit-set-writer">Write Set</a>
 				</div>
-				<div class="edit-box" id="set-edit-window" hidden="true">
-					<div class="set-content" id="set-edit-content" hidden="true">
-						<label for="edit-set-name" id="set-name-edit-label">Set Name:</label><br>
-						<input type="text" id="set-name-input" name="edit-set-name">
-						<a class="edit-set-name-check" id="edit-set-name-enter">
-							<img class="check" onclick="replaceOldSetNameWithNewSetName()" src="assets/check.png">
-						</a>
-						<hr></hr>
-						<label for="edit-set-song-list" id="set-song-list-edit-label">Songs to Add:</label><br>
-						<select class="song-select" id="set-song-edit-select" name="edit-set-song-list"></select>
-						<a class="edit-adder" id="edit-set-adder">
-							<img class="plus" onclick="addSelectedSongToSet(this.parentNode)" src="assets/plus.png">
-						</a>
-						<hr></hr>
-						<label for="show-set-song-list" id="show-set-song-list-label">Songs in Set:</label><br>
-						<ol class="set-current-song-list" id="set-current-song-list" name="show-set-song-list"></ol>
-						<hr></hr>
-						<a class="edit-write-file" onclick="validateAndWriteSet(this)" id="edit-set-writer">Write Set</a>
-					</div>
-				</div>
-				<div class="edit-box" id="song-edit-window" hidden="true">
-					<div class="song-content" id="song-edit-content" hidden="true">
-						<label for="edit-song-name" id="song-name-edit-label">Song Name:</label><br>
-						<input type="text" id="song-name-input" name="edit-song-name">
-						<a class="edit-song-name-check" id="edit-song-name-enter">
-							<img class="check" onclick="replaceOldSongNameWithNewSongName()" src="assets/check.png">
-						</a>
-						<hr></hr>
-						<label for="edit-song-tempo" id="song-tempo-edit-label">Song Tempo:</label><br>
-						<select class="tempo-select" id="song-tempo-select" name="edit-song-tempo"></select>
-						<a class="edit-song-tempo-check" id="edit-song-tempo-enter">
-							<img class="check" onclick="setSongTempo()" src="assets/check.png">
-						</a>
-						<hr></hr>
-						<label for="edit-song-part-list" id="song-part-list-edit-label">Parts to Add:</label><br>
-						<select class="part-select" id="song-part-edit-select" name="edit-song-part-list" onchange="changePartNameSelectEventHandler()"></select>
-						<a class="edit-adder" id="edit-song-adder">
-							<img class="plus" onclick="addSelectedPartToSong(this.parentNode)" src="assets/plus.png">
-						</a><br>
-						<input type="text" id="part-name-input" name="edit-part-name" disabled="true" style="margin-top: 5px">
-						<hr></hr>
-						<label for="show-song-part-list" id="show-song-part-list-label">Parts in Song:</label><br>
-						<ol class="song-current-part-list" id="song-current-part-list" name="show-song-part-list"></ol>
-						<hr></hr>
-						<a class="edit-write-file" onclick="validateAndWriteSong(this)" id="edit-song-writer">Write Song</a>
-					</div>
-				</div>
-				<div class="edit-box" id="pedal-edit-window" hidden="true"></div>
 			</div>
-			<div class="sandbox2 view-wrapper"  id="viewer" hidden="true">
-				<textarea class="viewer-display" id="json-viewer" readonly="true"></textarea>
+			<div class="edit-box" id="song-edit-window" hidden="true">
+				<div class="song-content" id="song-edit-content" hidden="true">
+					<label for="edit-song-name" id="song-name-edit-label">Song Name:</label><br>
+					<input type="text" id="song-name-input" name="edit-song-name">
+					<a class="edit-song-name-check" id="edit-song-name-enter">
+						<img class="check" onclick="replaceOldSongNameWithNewSongName()" src="assets/check.png">
+					</a>
+					<hr></hr>
+					<label for="edit-song-tempo" id="song-tempo-edit-label">Song Tempo:</label><br>
+					<select class="tempo-select" id="song-tempo-select" name="edit-song-tempo"></select>
+					<a class="edit-song-tempo-check" id="edit-song-tempo-enter">
+						<img class="check" onclick="setSongTempo()" src="assets/check.png">
+					</a>
+					<hr></hr>
+					<label for="edit-song-part-list" id="song-part-list-edit-label">Parts to Add:</label><br>
+					<select class="part-select" id="song-part-edit-select" name="edit-song-part-list" onchange="changePartNameSelectEventHandler()"></select>
+					<a class="edit-adder" id="edit-song-adder">
+						<img class="plus" onclick="addSelectedPartToSong(this.parentNode)" src="assets/plus.png">
+					</a><br>
+					<input type="text" id="part-name-input" name="edit-part-name" disabled="true" style="margin-top: 5px">
+					<hr></hr>
+					<label for="show-song-part-list" id="show-song-part-list-label">Parts in Song:</label><br>
+					<ol class="song-current-part-list" id="song-current-part-list" name="show-song-part-list"></ol>
+					<hr></hr>
+					<a class="edit-write-file" onclick="validateAndWriteSong(this)" id="edit-song-writer">Write Song</a>
+				</div>
 			</div>
+			<div class="edit-box" id="pedal-edit-window" hidden="true"></div>
+		</div>
+		<div class="sandbox2 view-wrapper"  id="viewer" hidden="true">
+			<textarea class="viewer-display" id="json-viewer" readonly="true"></textarea>
 		</div>
 		<script src="src/jquery-3.5.1.js"></script>
 		<script src="src/granim.js"></script>
