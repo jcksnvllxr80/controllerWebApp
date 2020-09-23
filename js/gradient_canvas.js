@@ -77,13 +77,13 @@ $(function(){
     resizeCanvas();
 });
 
-$(document).on('resize', function(){
+$(window).on('resize', function(){
     resizeCanvas();
 });
 
 function resizeCanvas()
 {
     var canvas = $('#canvas-interactive');
-    canvas.css("width", $(document).width());
-    canvas.css("height", $(document).height());
+    canvas.css("width", $(window).width());
+    canvas.css("height", $(window).height());
 }
