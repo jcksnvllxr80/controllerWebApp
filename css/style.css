@@ -252,13 +252,15 @@ pre {
     background-color: #f5f2f0;
     border-radius: 4px;
     padding-bottom: 15px;
+    margin-bottom: 10px;
     height: 66%;
     font-size: large;
 }
 
 .edit-box {
     background-color: #f5f2f0;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 4px;
     padding-bottom: 15px;
     height: 10%;
