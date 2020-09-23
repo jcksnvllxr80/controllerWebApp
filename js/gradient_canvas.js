@@ -82,7 +82,7 @@ $(window).on('resize', function(){
 });
 
 document.addEventListener('resize', function(event) {
-    resizeCanvasToDocument;
+    resizeCanvasToDocument();
 });
 
 function resizeCanvas()
