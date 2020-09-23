@@ -82,14 +82,14 @@ $(window).on('resize', function(){
 });
 
 function resizeCanvas() {
-    console.debug(`Window changed size to: width=${$(window).width()}; height=${$(document).height()}`)
+    console.debug(`Window changed size to: width=${$(window).width()}; height=${$(window).height()}`)
     var canvas = $('#canvas-interactive');
     canvas.css("width", $(window).width());
     canvas.css("height", $(window).height());
 }
 
 function resizeCanvasToDocument() {
-    console.debug(`Body changed size to: width=${$(window).width()}; height=${$(document).height()}`)
+    console.debug(`Body changed size to: width=${$(document).width()}; height=${$(document).height()}`)
     var canvas = $('#canvas-interactive');
     canvas.css("width", $(document).width());
     canvas.css("height", $(document).height());
