@@ -84,40 +84,36 @@ $(window).on('resize', function(){
 
 
 function resizeCanvasHeightToWindow() {
-    console.debug(`Window height is bigger than body... change canvas height to fill the window:
-        width=${$(window).width()}; height=${$(window).height()}`)
+    console.debug(`Window height is bigger than body... change canvas height to fill the window: height=${$(window).height()}`)
     var canvas = $('#canvas-interactive');
     canvas.css("height", $(window).height());
 }
 
 function resizeCanvasHeightToDocument() {
-    console.debug(`Body height is bigger than window... change canvas height to fill the body:
-        width=${$(document.body).width()}; height=${$(document.body).height()}`)
+    console.debug(`Body height is bigger than window... change canvas height to fill the body: height=${$(document).height()}`)
     var canvas = $('#canvas-interactive');
     canvas.css("height", $(document).height());
 }
 
 function resizeCanvasWidthToWindow() {
-    console.debug(`Window width is bigger than body... change canvas width to fill the window:
-        width=${$(window).width()}; height=${$(window).height()}`)
+    console.debug(`Window width is bigger than body... change canvas width to fill the window: width=${$(window).width()}`)
     var canvas = $('#canvas-interactive');
     canvas.css("width", $(window).width());
 }
 
 function resizeCanvasWidthToDocument() {
-    console.debug(`Body width is bigger than window... change canvas width to fill the body:
-        width=${$(document.body).width()}; height=${$(document.body).height()}`)
+    console.debug(`Body width is bigger than window... change canvas width to fill the body: width=${$(document).width()}`)
     var canvas = $('#canvas-interactive');
     canvas.css("width", $(document).width());
 }
 
 function resizeCanvas() {
-    if ($(document.body).height() > $(window).height()) {
+    if ($(document).height() > $(window).height()) {
         resizeCanvasHeightToDocument();
     } else {
         resizeCanvasHeightToWindow();
     }
-    if ($(document.body).width() > $(window).width()) {
+    if ($(document).width() > $(window).width()) {
         resizeCanvasWidthToDocument();
     } else {
         resizeCanvasWidthToWindow();
