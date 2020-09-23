@@ -78,16 +78,16 @@ $(function(){
 });
 
 $(window).on('resize', function(){
-    resizeCanvas();
+    resizeCanvas(window);
 });
 
 $(document).on('resize', function(){
-    resizeCanvas();
+    resizeCanvas(document);
 });
 
-function resizeCanvas()
+function resizeCanvas(type)
 {
     var canvas = $('#canvas-interactive');
-    canvas.css("width", $(window).width());
-    canvas.css("height", $(window).height());
+    canvas.css("width", $(type).width());
+    canvas.css("height", $(type).height());
 }
