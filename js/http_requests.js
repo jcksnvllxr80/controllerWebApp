@@ -487,6 +487,7 @@ function removeAllTabContentListChildNodes(parent) {
 }
 
 function hideEditContent(type, hidden) {
+  console.debug(`Setting \'hidden\' attribute of \'${type}-edit-window\' and \'${type}-edit-content\' to ${hidden}.`)
   document.getElementById(`${type}-edit-window`).hidden = hidden;
   document.getElementById(`${type}-edit-content`).hidden = hidden;
   resizeCanvas();
