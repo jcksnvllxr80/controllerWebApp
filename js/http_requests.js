@@ -407,10 +407,11 @@ function modifySong(songFileName) {
 
 function modifyPart(editObj) {
   songFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.parentNode.value;
-  console.debug(`Editing part, \'${editObj.replace("edit-", "")}\' of \'${songFileName}\'.`);
+  partName = editObj.replace("edit-", "");
+  console.debug(`Editing part, \'${partName}\' of \'${songFileName}\'.`);
   hideEditContent('part', false);
-  // document.getElementById(`part-edit-content`).value = partName;
-  // populatePartEditContent(partName);
+  document.getElementById(`part-edit-content`).value = partName;
+  populatePartEditContent(partName, songFileName);
 }
 
 function populateSongEditContent(songFileName) {
@@ -420,6 +421,12 @@ function populateSongEditContent(songFileName) {
   setTempoSelectValue(songBeingEditedJson);
   drawAvailableParts();
   redrawCurrentPartsInSong(songFileName);
+}
+
+function populatePartEditContent(partName, songFileName) {
+  partBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partName];
+  document.getElementById("part-name-input").value = partName;
+  redrawCurrentPedalsInPart(partName);
 }
 
 function drawAvailableTempos() {
@@ -465,6 +472,17 @@ function redrawCurrentPartsInSong(songName) {
     currentPartList.appendChild(createEditableRemovableListItem(part, clickFunctionStr, "part"));
   });
   reevaluatePartPositionInSong(getJsonForSongDotYaml(songName));
+}
+
+function redrawCurrentPedalsInPart(songName) {
+  // clickFunctionStr = "remPartFromSongBtnAction";
+  // currentPartList = document.getElementById("song-current-part-list");
+  // removeAllChildNodes(currentPartList);
+  // redrawSongsContent();
+  // Object.keys(getJsonForSongDotYaml(songName).parts).forEach(part => {
+  //   currentPartList.appendChild(createEditableRemovableListItem(part, clickFunctionStr, "part"));
+  // });
+  // reevaluatePartPositionInSong(getJsonForSongDotYaml(songName));
 }
 
 function removeAllChildNodes(parent) {
@@ -825,6 +843,24 @@ function replaceOldSongNameWithNewSongName() {
   } else {
     console.debug(`Not changing song name, \'${oldSongName}\', because that is already the song name.`)
   }
+}
+
+function replaceOldPartNameWithNewPartName() {
+  // var editSongNameTextField = document.getElementById("song-name-input");
+  // var oldSongName = editSongNameTextField.parentNode.value;
+  // if (oldSongName.localeCompare(`${editSongNameTextField.value}.yaml`) != 0) {
+  //   if (Object.keys(getJsonForSongDotYaml(oldSongName).parts).length > 0) {
+  //     console.debug(`Changing old song name, \'${oldSongName}\', to new song name, \'${editSongNameTextField.value}.yaml\'.`)
+  //     changeSongNameInGlobal(oldSongName, editSongNameTextField.value);
+  //     editSongNameTextField.parentNode.value = `${editSongNameTextField.value}.yaml`;
+  //   } else {
+  //     alertMsg = `Song name, \'${oldSongName}\' has no parts yet! Please add parts and then change the name.`;
+  //     console.error(alertMsg)
+  //     alert(alertMsg);
+  //   }
+  // } else {
+  //   console.debug(`Not changing song name, \'${oldSongName}\', because that is already the song name.`)
+  // }
 }
 
 function setSongTempo() {

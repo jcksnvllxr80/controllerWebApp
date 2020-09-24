@@ -149,7 +149,13 @@
 				</div>
 			</div>
 			<div class="edit-box" id="part-edit-window" hidden="true">
-				<div class="part-content" id="part-edit-content" hidden="true"></div>
+				<div class="part-content" id="part-edit-content" hidden="true">
+					<label for="edit-part-name" id="part-name-edit-label">Part Name:</label><br>
+					<input type="text" id="part-name-input" name="edit-part-name">
+					<a class="edit-part-name-check" id="edit-part-name-enter">
+						<img class="check" onclick="replaceOldPartNameWithNewPartName()" src="assets/check.png">
+					</a>
+				</div>
 			</div>
 		</div>
 		<div class="sandbox2 view-wrapper"  id="viewer" hidden="true">
