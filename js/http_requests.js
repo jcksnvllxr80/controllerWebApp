@@ -408,6 +408,7 @@ function modifySong(songFileName) {
 function modifyPart(editObj) {
   songFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.parentNode.value;
   console.debug(`Editing part, \'${editObj.replace("edit-", "")}\' of \'${songFileName}\'.`);
+  hideEditContent('part', false);
   // document.getElementById(`part-edit-content`).value = partName;
   // populatePartEditContent(partName);
 }
