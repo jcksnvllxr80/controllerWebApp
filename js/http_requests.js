@@ -296,14 +296,10 @@ function editListItem(btnObj) {
   editObj = btnObj.id;
   objFileName = `${editObj}.yaml`;
   if (editType.localeCompare('set') == 0) {
-    console.debug(`Editing ${editType}, \'${objFileName}\'.`);
     modifySet(objFileName);
   } else if (editType.localeCompare('song') == 0) {
-    console.debug(`Editing ${editType}, \'${objFileName}\'.`);
     modifySong(objFileName);
   } else if (editType.localeCompare('part') == 0) {
-    songFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.parentNode.value;
-    console.debug(`Editing ${editType}, \'${editObj.replace("edit-", "")}\' of \'${songFileName}\'.`);
     modifyPart(editObj);
   } else {
     handleUnhandledType(editType);
@@ -349,6 +345,7 @@ function removePartFromSong(songName, partToRemove) {
 }
 
 function modifySet(setFileName) {
+  console.debug(`Editing set, \'${setFileName}\'.`);
   hideEditContent('set', false);
   document.getElementById(`set-edit-content`).value = setFileName;
   populateSetEditContent(setFileName);
@@ -402,12 +399,15 @@ function removeAllTabContentListChildNodes(parent) {
 }
 
 function modifySong(songFileName) {
+  console.debug(`Editing song, \'${songFileName}\'.`);
   hideEditContent('song', false);
   document.getElementById(`song-edit-content`).value = songFileName;
   populateSongEditContent(songFileName);
 }
 
-function modifyPart(partName) {
+function modifyPart(editObj) {
+  songFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.parentNode.value;
+  console.debug(`Editing part, \'${editObj.replace("edit-", "")}\' of \'${songFileName}\'.`);
   // document.getElementById(`part-edit-content`).value = partName;
   // populatePartEditContent(partName);
 }
