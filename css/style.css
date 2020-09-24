@@ -275,6 +275,10 @@ pre {
     padding: 15px;
 }
 
+.config-wrapper .edit-box .part-content {
+    padding: 15px;
+}
+
 .tab-content .tab {
     padding: 15px;
     display: none
