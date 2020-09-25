@@ -425,7 +425,7 @@ function populateSongEditContent(songFileName) {
 
 function populatePartEditContent(partName, songFileName) {
   partBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partName];
-  document.getElementById("part-name-input").value = partName;
+  document.getElementById("edit-part-name-input").value = partName;
   redrawCurrentPedalsInPart(partName);
 }
 
