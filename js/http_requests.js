@@ -426,7 +426,7 @@ function populateSongEditContent(songFileName) {
 function populatePartEditContent(partName, songFileName) {
   partBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partName];
   document.getElementById("edit-part-name-input").value = partName;
-  redrawCurrentPedalsInPart(partName);
+  redrawCurrentPedalsInPart(partBeingEditedJson, partName);
 }
 
 function drawAvailableTempos() {
@@ -474,9 +474,9 @@ function redrawCurrentPartsInSong(songName) {
   reevaluatePartPositionInSong(getJsonForSongDotYaml(songName));
 }
 
-function redrawCurrentPedalsInPart(songName) {
+function redrawCurrentPedalsInPart(partBeingEditedJson, songName) {
   // clickFunctionStr = "remPartFromSongBtnAction";
-  // currentPartList = document.getElementById("song-current-part-list");
+  currentPedalList = object.keys(partBeingEditedJson.pedals);
   // removeAllChildNodes(currentPartList);
   // redrawSongsContent();
   // Object.keys(getJsonForSongDotYaml(songName).parts).forEach(part => {
