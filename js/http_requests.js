@@ -476,7 +476,7 @@ function redrawCurrentPartsInSong(songName) {
 
 function redrawCurrentPedalsInPart(partBeingEditedJson, songName) {
   // clickFunctionStr = "remPartFromSongBtnAction";
-  currentPedalList = object.keys(partBeingEditedJson.pedals);
+  currentPedalList = Object.keys(partBeingEditedJson.pedals);
   // removeAllChildNodes(currentPartList);
   // redrawSongsContent();
   // Object.keys(getJsonForSongDotYaml(songName).parts).forEach(part => {
