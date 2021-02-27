@@ -127,6 +127,16 @@ function reloadSongsContent() {
   });
 }
 
+function reloadPartsContent() {
+  // songs.forEach(song => {
+  //   if (song in songConfigDict) {
+  //     addItemToList(document.getElementById("song-list"), song, 'song');
+  //   } else {
+  //     addWipItemToList(document.getElementById("song-list"), song, 'song');
+  //   }
+  // });
+}
+
 function redrawSetlistsContent() {
   removeAllTabContentListChildNodes(document.getElementById("set-list"));
   reloadSetlistsContent();
@@ -135,6 +145,11 @@ function redrawSetlistsContent() {
 function redrawSongsContent() {
   removeAllTabContentListChildNodes(document.getElementById("song-list"));
   reloadSongsContent();
+}
+
+function redrawPartsContent() {
+  // removeAllTabContentListChildNodes(document.getElementById("part-list"));
+  // reloadPartsContent();
 }
 
 function loadSongsContent() {
@@ -426,6 +441,7 @@ function populateSongEditContent(songFileName) {
 function populatePartEditContent(partName, songFileName) {
   partBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partName];
   document.getElementById("edit-part-name-input").value = partName;
+  drawAvailablePedals();
   redrawCurrentPedalsInPart(partBeingEditedJson, partName);
 }
 
@@ -455,6 +471,15 @@ function drawAvailableParts() {
   selectPartList.value = "Bridge";
 }
 
+function drawAvailablePedals() {
+  selectPedalList = document.getElementById("part-pedal-edit-select");
+  removeAllChildNodes(selectPedalList);
+  pedals.forEach(pedal => {
+    selectPedalList.appendChild(createOption(pedal));
+  });
+  selectPedalList.value = pedals[0];
+}
+
 function getJsonForSongDotYaml(songName) {
   if (document.getElementById(songName).className.localeCompare("work-in-progress") == 0) {
     return wipSongConfigDict[songName];
@@ -477,8 +502,8 @@ function redrawCurrentPartsInSong(songName) {
 function redrawCurrentPedalsInPart(partBeingEditedJson, songName) {
   // clickFunctionStr = "remPartFromSongBtnAction";
   currentPedalList = Object.keys(partBeingEditedJson.pedals);
-  // removeAllChildNodes(currentPartList);
-  // redrawSongsContent();
+  // removeAllChildNodes(currentPedalList);
+  // redrawPartsContent();
   // Object.keys(getJsonForSongDotYaml(songName).parts).forEach(part => {
   //   currentPartList.appendChild(createEditableRemovableListItem(part, clickFunctionStr, "part"));
   // });
@@ -579,13 +604,28 @@ function addSelectedPartToSong(addPartBtn) {
   }
 }
 
+function addSelectedPedalToPart(addPartBtn) {
+  selectedPedal = document.getElementById('part-pedal-edit-select').value;
+  // songName = addPartBtn.parentNode.value;
+  // partsInSong = getJsonForSongDotYaml(songName).parts;
+  // if (!Object.keys(partsInSong).includes(selectedPart)) {
+  //   console.debug(`Add ${selectedPart} to song, \'${songName}\'.`);
+  //   if (songName in songConfigDict) {
+  //     wipSongConfigDict[songName] = getJsonForSongDotYaml(songName);
+  //     delete songConfigDict[songName];
+  //   }
+  //   initNewPart(songName, selectedPart);
+  // } else {
+  //   console.warn(`Not added! Part, \'${selectedPart}\', already in song, \'${songName}\'.`)
+  // }
+}
+
 function changePartNameSelectEventHandler() {
   if (document.getElementById('song-part-edit-select').value.localeCompare("Custom") == 0) {
     document.getElementById('part-name-input').disabled = false;
   } else {
     document.getElementById('part-name-input').disabled = true;
   }
-  
 }
 
 function initNewPart(songName, newPartName) {
@@ -636,6 +676,38 @@ function validateAndWriteSet(writeSetBtn) {
   } else {
     console.warn(`There have been no changes to ${setlistName} so this file will not be written to the controller.`)
   }
+}
+
+function validateAndWriteSong(writeSongBtn) {
+  songName = writeSongBtn.parentNode.value;
+  // if (document.getElementById(setlistName).className.localeCompare('work-in-progress') == 0) {
+  //   setJson = wipSetConfigDict[setlistName];
+  //   if (validateSetJson(setJson)) {
+  //     writeSetToController(setJson);
+  //     moveSetJsonOutOfWip(setlistName);
+  //     redrawSetlistsContent();
+  //     hideEditContent('set', true);
+  //     // TODO: display a success message somehow
+  //   }
+  // } else {
+  //   console.warn(`There have been no changes to ${setlistName} so this file will not be written to the controller.`)
+  // }
+}
+
+function validateAndWritePart(writePartBtn) {
+  partName = writePartBtn.parentNode.value;
+  // if (document.getElementById(setlistName).className.localeCompare('work-in-progress') == 0) {
+  //   setJson = wipSetConfigDict[setlistName];
+  //   if (validateSetJson(setJson)) {
+  //     writeSetToController(setJson);
+  //     moveSetJsonOutOfWip(setlistName);
+  //     redrawSetlistsContent();
+  //     hideEditContent('set', true);
+  //     // TODO: display a success message somehow
+  //   }
+  // } else {
+  //   console.warn(`There have been no changes to ${setlistName} so this file will not be written to the controller.`)
+  // }
 }
 
 function moveSetJsonOutOfWip() {

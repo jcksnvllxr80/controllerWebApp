@@ -156,6 +156,16 @@
 						<img class="check" onclick="replaceOldPartNameWithNewPartName()" src="assets/check.png">
 					</a>
 					<hr></hr>
+					<label for="edit-part-pedal-list" id="part-pedal-list-edit-label">Pedals to Add:</label><br>
+					<select class="pedal-select" id="part-pedal-edit-select" name="edit-part-pedal-list"></select>
+					<a class="edit-adder" id="edit-part-adder">
+						<img class="plus" onclick="addSelectedPedalToPart(this.parentNode)" src="assets/plus.png">
+					</a><br>
+					<hr></hr>
+					<label for="show-part-pedal-list" id="show-part-pedal-list-label">Pedals in Part:</label><br>
+					<ol class="part-current-pedal-list" id="part-current-pedal-list" name="show-part-pedal-list"></ol>
+					<hr></hr>
+					<a class="edit-write-file" onclick="validateAndWritePart(this)" id="edit-part-writer">Write Part</a>
 				</div>
 			</div>
 		</div>
