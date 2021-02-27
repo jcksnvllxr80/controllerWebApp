@@ -504,7 +504,7 @@ function redrawCurrentPedalsInPart(partBeingEditedJson) {
   currentPedalList = document.getElementById("part-current-pedal-list");
   removeAllChildNodes(currentPedalList);
   redrawPartsContent();
-  partBeingEditedJson.pedals.forEach(pedal => {
+  Object.keys(partBeingEditedJson.pedals).forEach(pedal => {
     currentPedalList.appendChild(createEditableRemovableListItem(pedal, clickFunctionStr, "pedal"));
   });
 }
