@@ -477,7 +477,7 @@ function drawAvailablePedals() {
   pedals.forEach(pedal => {
     selectPedalList.appendChild(createOption(pedal));
   });
-  selectPedalList.value = pedals[0];
+  selectPedalList.value = pedals[0].replace('.yaml', '');
 }
 
 function getJsonForSongDotYaml(songName) {
