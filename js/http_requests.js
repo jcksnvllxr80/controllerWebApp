@@ -442,7 +442,7 @@ function populatePartEditContent(partName, songFileName) {
   partBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partName];
   document.getElementById("edit-part-name-input").value = partName;
   drawAvailablePedals();
-  redrawCurrentPedalsInPart(partBeingEditedJson, partName);
+  redrawCurrentPedalsInPart(partBeingEditedJson);
 }
 
 function drawAvailableTempos() {
@@ -499,15 +499,14 @@ function redrawCurrentPartsInSong(songName) {
   reevaluatePartPositionInSong(getJsonForSongDotYaml(songName));
 }
 
-function redrawCurrentPedalsInPart(partBeingEditedJson, songName) {
-  // clickFunctionStr = "remPartFromSongBtnAction";
-  currentPedalList = Object.keys(partBeingEditedJson.pedals);
-  // removeAllChildNodes(currentPedalList);
-  // redrawPartsContent();
-  // Object.keys(getJsonForSongDotYaml(songName).parts).forEach(part => {
-  //   currentPartList.appendChild(createEditableRemovableListItem(part, clickFunctionStr, "part"));
-  // });
-  // reevaluatePartPositionInSong(getJsonForSongDotYaml(songName));
+function redrawCurrentPedalsInPart(partBeingEditedJson) {
+  clickFunctionStr = "remPedalFromPartBtnAction";
+  currentPedalList = document.getElementById("part-current-pedal-list");
+  removeAllChildNodes(currentPedalList);
+  redrawPartsContent();
+  partBeingEditedJson.pedals.forEach(pedal => {
+    currentPedalList.appendChild(createEditableRemovableListItem(pedal, clickFunctionStr, "pedal"));
+  });
 }
 
 function removeAllChildNodes(parent) {
