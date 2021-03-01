@@ -510,7 +510,7 @@ function drawAvailablePedalSettings(pedalBeingEditedJson) {
   Object.keys(pedalBeingEditedJson).forEach(setting => {
     selectPedalSettingsList.appendChild(createOption(setting));
   });
-  selectPedalSettingsList.value = selectPedalSettingsList[0];
+  selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
 }
 
 function getJsonForSongDotYaml(songName) {
@@ -663,7 +663,7 @@ function addSelectedPedalToPart(addPartBtn) {
 }
 
 function addSelectedSettingToPedal(addPartBtn) {
-  selectedSetting = document.getElementById('pedal-setting-edit-select').value;
+  selectedSetting = document.getElementById('pedal-settings-edit-select').value;
   // songName = addPartBtn.parentNode.value;
   // partsInSong = getJsonForSongDotYaml(songName).parts;
   // if (!Object.keys(partsInSong).includes(selectedPart)) {
