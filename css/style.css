@@ -471,7 +471,7 @@ pre {
     /* padding-inline-start: 40px; */
 }
 
-/* .config-wrapper .edit-box .part-current-pedal-list {
+.config-wrapper .edit-box .part-current-pedal-list {
     font-size: smaller;
     padding-left: 15px;
     display: block;
@@ -481,7 +481,7 @@ pre {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     /* padding-inline-start: 40px; */
-} */
+}
 
 .config-wrapper .edit-box .song-select .select-option {
     white-space: normal;
