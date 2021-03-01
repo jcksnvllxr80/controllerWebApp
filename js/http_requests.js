@@ -152,6 +152,11 @@ function redrawPartsContent() {
   // reloadPartsContent();
 }
 
+function redrawPedalContent() {
+  // removeAllTabContentListChildNodes(document.getElementById("part-list"));
+  // reloadPartsContent();
+}
+
 function loadSongsContent() {
   songs.forEach(song => {
     addItemToList(document.getElementById("song-list"), song, 'song');
@@ -460,7 +465,7 @@ function populatePartEditContent(partName, songFileName) {
 function populatePedalEditContent(pedalName, songFileName, partFileName) {
   pedalBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partFileName].pedals[pedalName];
   document.getElementById("display-pedal-name").value = pedalName;
-  drawAvailablePedalSettings();
+  drawAvailablePedalSettings(pedalBeingEditedJson);
   redrawCurrentSettingsInPedal(pedalBeingEditedJson);
 }
 
@@ -499,13 +504,13 @@ function drawAvailablePedals() {
   selectPedalList.value = pedals[0].replace('.yaml', '');
 }
 
-function drawAvailablePedalSettings() {
+function drawAvailablePedalSettings(pedalBeingEditedJson) {
   selectPedalSettingsList = document.getElementById("pedal-settings-edit-select");
   removeAllChildNodes(selectPedalSettingsList);
-  // pedals.forEach(pedal => {
-  //   selectPedalList.appendChild(createOption(pedal));
-  // });
-  // selectPedalList.value = pedals[0].replace('.yaml', '');
+  Object.keys(pedalBeingEditedJson).forEach(setting => {
+    selectPedalSettingsList.appendChild(createOption(setting));
+  });
+  selectPedalSettingsList.value = selectPedalSettingsList[0];
 }
 
 function getJsonForSongDotYaml(songName) {
@@ -538,13 +543,13 @@ function redrawCurrentPedalsInPart(partBeingEditedJson) {
 }
 
 function redrawCurrentSettingsInPedal(pedalBeingEditedJson) {
-  // clickFunctionStr = "remPedalFromPartBtnAction";
-  // currentPedalList = document.getElementById("part-current-pedal-list");
-  // removeAllChildNodes(currentPedalList);
-  // redrawPartsContent();
-  // Object.keys(partBeingEditedJson.pedals).forEach(pedal => {
-  //   currentPedalList.appendChild(createEditableRemovableListItem(pedal, clickFunctionStr, "pedal"));
-  // });
+  clickFunctionStr = "remSettingFromPedalBtnAction";
+  currentPedalSettingsList = document.getElementById("pedal-current-settings-list");
+  removeAllChildNodes(currentPedalSettingsList);
+  redrawPedalContent();
+  Object.keys(pedalBeingEditedJson.settings).forEach(setting => {
+    currentPedalSettingsList.appendChild(createEditableRemovableListItem(setting, clickFunctionStr, "setting"));
+  });
 }
 
 function removeAllChildNodes(parent) {
