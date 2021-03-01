@@ -279,6 +279,10 @@ pre {
     padding: 15px;
 }
 
+.config-wrapper .edit-box .pedal-content {
+    padding: 15px;
+}
+
 .tab-content .tab {
     padding: 15px;
     display: none
