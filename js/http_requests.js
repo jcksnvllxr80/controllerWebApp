@@ -459,6 +459,7 @@ function populatePartEditContent(partName, songFileName) {
 
 function populatePedalEditContent(pedalName, songFileName, partFileName) {
   pedalBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partFileName].pedals[pedalName];
+  document.getElementById("song-name-input").value = pedalName;
   drawAvailablePedalSettings();
   redrawCurrentSettingsInPedal(pedalBeingEditedJson);
 }
@@ -499,12 +500,12 @@ function drawAvailablePedals() {
 }
 
 function drawAvailablePedalSettings() {
-  selectPedalList = document.getElementById("part-pedal-edit-select");
-  removeAllChildNodes(selectPedalList);
-  pedals.forEach(pedal => {
-    selectPedalList.appendChild(createOption(pedal));
-  });
-  selectPedalList.value = pedals[0].replace('.yaml', '');
+  selectPedalSettingsList = document.getElementById("pedal-settings-edit-select");
+  removeAllChildNodes(selectPedalSettingsList);
+  // pedals.forEach(pedal => {
+  //   selectPedalList.appendChild(createOption(pedal));
+  // });
+  // selectPedalList.value = pedals[0].replace('.yaml', '');
 }
 
 function getJsonForSongDotYaml(songName) {
