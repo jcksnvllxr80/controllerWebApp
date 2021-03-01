@@ -168,6 +168,20 @@
 					<a class="edit-write-file" onclick="validateAndWritePart(this)" id="edit-part-writer">Write Part</a>
 				</div>
 			</div>
+			<div class="edit-box" id="pedal-edit-window" hidden="true">
+				<div class="pedal-content" id="pedal-edit-content" hidden="true">
+					<label for="edit-pedal-settings-list" id="pedal-settings-list-edit-label">Settings to Add:</label><br>
+					<select class="settings-select" id="pedal-settings-edit-select" name="edit-pedal-settings-list"></select>
+					<a class="edit-adder" id="edit-pedal-adder">
+						<img class="plus" onclick="addSelectedSettingToPedal(this.parentNode)" src="assets/plus.png">
+					</a><br>
+					<hr></hr>
+					<label for="show-pedal-settings-list" id="show-pedal-settings-list-label">Settings in Pedal:</label><br>
+					<ol class="pedal-current-settings-list" id="pedal-current-settings-list" name="show-pedal-settings-list"></ol>
+					<hr></hr>
+					<a class="edit-write-file" onclick="validateAndWritePedal(this)" id="edit-pedal-writer">Write Part</a>
+				</div>
+			</div>
 		</div>
 		<div class="sandbox2 view-wrapper"  id="viewer" hidden="true">
 			<textarea class="viewer-display" id="json-viewer" readonly="true"></textarea>
