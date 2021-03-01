@@ -316,6 +316,8 @@ function editListItem(btnObj) {
     modifySong(objFileName);
   } else if (editType.localeCompare('part') == 0) {
     modifyPart(editObj);
+  } else if (editType.localeCompare('pedal') == 0) {
+    modifyPedal(editObj);
   } else {
     handleUnhandledType(editType);
   }
@@ -429,6 +431,16 @@ function modifyPart(editObj) {
   populatePartEditContent(partName, songFileName);
 }
 
+function modifyPedal(editObj) {
+  songFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.parentNode.parentNode.value;
+  partFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.parentNode.value;
+  pedalName = editObj.replace("edit-", "");
+  console.debug(`Editing pedal, \'${pedalName}\' of the \'${partFileName}\' for \'${songFileName}\'.`);
+  hideEditContent('pedal', false);
+  document.getElementById(`pedal-edit-content`).value = pedalName;
+  populatePedalEditContent(pedalName, songFileName, partFileName);
+}
+
 function populateSongEditContent(songFileName) {
   songBeingEditedJson = getJsonForSongDotYaml(songFileName);
   document.getElementById("song-name-input").value = songBeingEditedJson.name;
@@ -443,6 +455,12 @@ function populatePartEditContent(partName, songFileName) {
   document.getElementById("edit-part-name-input").value = partName;
   drawAvailablePedals();
   redrawCurrentPedalsInPart(partBeingEditedJson);
+}
+
+function populatePedalEditContent(pedalName, songFileName, partFileName) {
+  pedalBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partFileName].pedals[pedalName];
+  drawAvailablePedalSettings();
+  redrawCurrentSettingsInPedal(pedalBeingEditedJson);
 }
 
 function drawAvailableTempos() {
@@ -480,6 +498,15 @@ function drawAvailablePedals() {
   selectPedalList.value = pedals[0].replace('.yaml', '');
 }
 
+function drawAvailablePedalSettings() {
+  selectPedalList = document.getElementById("part-pedal-edit-select");
+  removeAllChildNodes(selectPedalList);
+  pedals.forEach(pedal => {
+    selectPedalList.appendChild(createOption(pedal));
+  });
+  selectPedalList.value = pedals[0].replace('.yaml', '');
+}
+
 function getJsonForSongDotYaml(songName) {
   if (document.getElementById(songName).className.localeCompare("work-in-progress") == 0) {
     return wipSongConfigDict[songName];
@@ -507,6 +534,16 @@ function redrawCurrentPedalsInPart(partBeingEditedJson) {
   Object.keys(partBeingEditedJson.pedals).forEach(pedal => {
     currentPedalList.appendChild(createEditableRemovableListItem(pedal, clickFunctionStr, "pedal"));
   });
+}
+
+function redrawCurrentSettingsInPedal(pedalBeingEditedJson) {
+  // clickFunctionStr = "remPedalFromPartBtnAction";
+  // currentPedalList = document.getElementById("part-current-pedal-list");
+  // removeAllChildNodes(currentPedalList);
+  // redrawPartsContent();
+  // Object.keys(partBeingEditedJson.pedals).forEach(pedal => {
+  //   currentPedalList.appendChild(createEditableRemovableListItem(pedal, clickFunctionStr, "pedal"));
+  // });
 }
 
 function removeAllChildNodes(parent) {
