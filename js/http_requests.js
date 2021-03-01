@@ -463,7 +463,7 @@ function populatePartEditContent(partName, songFileName) {
 }
 
 function populatePedalEditContent(pedalName, songFileName, partFileName) {
-  pedalBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partFileName].pedals[pedalName];
+  pedalBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partFileName].pedals[pedalName.concat('.yaml')];
   document.getElementById("display-pedal-name").value = pedalName;
   drawAvailablePedalSettings(pedalBeingEditedJson);
   redrawCurrentSettingsInPedal(pedalBeingEditedJson);
