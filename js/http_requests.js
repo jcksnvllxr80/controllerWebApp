@@ -432,7 +432,7 @@ function modifyPart(editObj) {
 }
 
 function modifyPedal(editObj) {
-  songFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.parentNode.parentNode.value;
+  songFileName = document.getElementById("song-name-input").value.concat('.yaml');
   partFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.parentNode.value;
   pedalName = editObj.replace("edit-", "");
   console.debug(`Editing pedal, \'${pedalName}\' of the \'${partFileName}\' for \'${songFileName}\'.`);
