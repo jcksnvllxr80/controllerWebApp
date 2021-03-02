@@ -202,6 +202,9 @@ function createRemovableListItem(id, clickFunctionStr) {
 function createEditableRemovableListItem(id, clickFunctionStr, type) {
   listItem = createRemovableListItem(id, clickFunctionStr);
   listItem.appendChild(createEditLinkA(id, type));
+  if (type.localeCompare('pedal') == 0) {
+    listItem.appendChild(createEngagedCheckbox(id));
+  }
   return listItem;
 }
 
@@ -309,6 +312,15 @@ function createRemoveIconImg(id, clickFunctionStr) {
   editItemImg.setAttribute('src', 'assets/minus.png');
   editItemImg.setAttribute('class', 'remove');
   return editItemImg;
+}
+
+function createEngagedCheckbox(pedalName) {
+  var checkbox = document.createElement('input');
+  checkbox.setAttribute('type','checkbox');
+  checkbox.setAttribute('name', pedalName.concat('-engaged-checkbox'));
+  checkbox.setAttribute('value', 'checked');
+  checkbox.setAttribute('id', pedalName.concat('-engaged-checkbox'));
+  return checkbox
 }
 
 function editListItem(btnObj) {
