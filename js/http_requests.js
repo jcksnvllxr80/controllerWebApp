@@ -314,12 +314,14 @@ function createRemoveIconImg(id, clickFunctionStr) {
   return editItemImg;
 }
 
-function createEngagedCheckbox(pedalName) {
+function createEngagedCheckbox(pedalFileName) {
+  pedalName = pedalFileName.replace('.yaml', '')
   var checkbox = document.createElement('input');
   checkbox.setAttribute('type','checkbox');
   checkbox.setAttribute('name', pedalName.concat('-engaged-checkbox'));
-  checkbox.setAttribute('value', 'checked');
+  checkbox.setAttribute('checked', 'false');
   checkbox.setAttribute('id', pedalName.concat('-engaged-checkbox'));
+  checkbox.setAttribute('class', 'remove');
   return checkbox
 }
 
