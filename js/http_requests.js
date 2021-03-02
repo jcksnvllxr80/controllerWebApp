@@ -340,6 +340,12 @@ function remPartFromSongBtnAction(remBtnObj) {
   removePartFromSong(songToRemovePartFrom, partNameToRemove);
 }
 
+function remPedalFromPartBtnAction(remBtnObj) {
+  pedalNameToRemove = remBtnObj.id.replace("remove-", "");
+  partToRemovePedalFrom = document.getElementById("part-edit-content").value;
+  removePedalFromPart(partToRemovePedalFrom, pedalNameToRemove);
+}
+
 function removeSongFromSet(setlistName, songToRemove) {
   console.debug(`Removing song, \'${songToRemove}\', from set, \'${setlistName}\'.`);
   if (document.getElementById(setlistName).className.localeCompare("work-in-progress") == 0) {
@@ -364,6 +370,19 @@ function removePartFromSong(songName, partToRemove) {
     redrawSongsContent();
   }
   redrawCurrentPartsInSong(songName);
+}
+
+function removePedalFromPart(partName, pedalToRemove) {
+  console.debug(`Removing pedal, \'${pedalToRemove}\', from part, \'${partName}\'.`);
+  // if (document.getElementById(songName).className.localeCompare("work-in-progress") == 0) {
+  //   delete wipSongConfigDict[songName].parts[partToRemove];
+  // } else {
+  //   wipSongConfigDict[songName] = songConfigDict[songName];
+  //   delete songConfigDict[songName];
+  //   delete wipSongConfigDict[songName].parts[partToRemove];
+  //   redrawSongsContent();
+  // }
+  // redrawCurrentPartsInSong(songName);
 }
 
 function modifySet(setFileName) {
