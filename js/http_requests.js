@@ -319,7 +319,7 @@ function createEngagedCheckbox(pedalFileName) {
   var checkbox = document.createElement('input');
   checkbox.setAttribute('type','checkbox');
   checkbox.setAttribute('name', pedalName.concat('-engaged-checkbox'));
-  checkbox.setAttribute('checked', false);
+  checkbox.checked = false;
   checkbox.setAttribute('id', pedalName.concat('-engaged-checkbox'));
   checkbox.setAttribute('class', 'engaged');
   return checkbox
