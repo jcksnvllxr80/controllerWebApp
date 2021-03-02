@@ -321,7 +321,7 @@ function createEngagedCheckbox(pedalFileName) {
   checkbox.setAttribute('name', pedalName.concat('-engaged-checkbox'));
   checkbox.setAttribute('checked', false);
   checkbox.setAttribute('id', pedalName.concat('-engaged-checkbox'));
-  checkbox.setAttribute('class', 'remove');
+  checkbox.setAttribute('class', 'engaged');
   return checkbox
 }
 
