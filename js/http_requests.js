@@ -456,7 +456,7 @@ function modifyPart(editObj) {
 }
 
 function modifyPedal(editObj) {
-  songFileName = document.getElementById("song-name-input").value.concat('.yaml');
+  songFileName = document.getElementById("song-name-edit-label").parentNode.value
   partFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.parentNode.value;
   pedalName = editObj.replace("edit-", "");
   console.debug(`Editing pedal, \'${pedalName}\' of the \'${partFileName}\' for \'${songFileName}\'.`);
@@ -665,20 +665,21 @@ function addSelectedPartToSong(addPartBtn) {
   }
 }
 
-function addSelectedPedalToPart(addPartBtn) {
+function addSelectedPedalToPart(addPedalBtn) {
   selectedPedal = document.getElementById('part-pedal-edit-select').value;
-  // songName = addPartBtn.parentNode.value;
-  // partsInSong = getJsonForSongDotYaml(songName).parts;
-  // if (!Object.keys(partsInSong).includes(selectedPart)) {
-  //   console.debug(`Add ${selectedPart} to song, \'${songName}\'.`);
-  //   if (songName in songConfigDict) {
-  //     wipSongConfigDict[songName] = getJsonForSongDotYaml(songName);
-  //     delete songConfigDict[songName];
-  //   }
-  //   initNewPart(songName, selectedPart);
-  // } else {
-  //   console.warn(`Not added! Part, \'${selectedPart}\', already in song, \'${songName}\'.`)
-  // }
+  songFileName = document.getElementById("song-name-edit-label").parentNode.value
+  partName = document.getElementById("part-name-edit-label").parentNode.value
+  partBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partName];
+  if (!Object.keys(partBeingEditedJson).includes(selectedPedal)) {
+    console.debug(`Add ${selectedPedal} to part, \'${partName}\'.`);
+    // if (songFileName in songConfigDict) {
+    //   wipSongConfigDict[songFileName] = getJsonForSongDotYaml(songFileName);
+    //   delete songConfigDict[songFileName];
+    // }
+    initNewPedal(partBeingEditedJson, selectedPedal);
+  } else {
+    console.warn(`Not added! Pedal, \'${selectedPedal}\', already in part, \'${partName}\'.`)
+  }
 }
 
 function addSelectedSettingToPedal(addPartBtn) {
