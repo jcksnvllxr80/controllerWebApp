@@ -670,7 +670,7 @@ function addSelectedPedalToPart(addPedalBtn) {
   songFileName = document.getElementById("song-name-edit-label").parentNode.value
   partName = document.getElementById("part-name-edit-label").parentNode.value
   partBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partName];
-  if (!Object.keys(partBeingEditedJson.pedals).includes(selectedPedal)) {
+  if (!Object.keys(partBeingEditedJson.pedals).includes(selectedPedal.concat('.yaml'))) {
     console.debug(`Add ${selectedPedal} to part, \'${partName}\'.`);
     // if (songFileName in songConfigDict) {
     //   wipSongConfigDict[songFileName] = getJsonForSongDotYaml(songFileName);
