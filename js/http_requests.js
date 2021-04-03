@@ -667,16 +667,6 @@ function redrawCurrentSettingsInPedal(pedalBeingEditedJson) {
   });
 }
 
-function redrawCurrentSettingGroupInPedal{
-  clickFunctionStr = "remSettingFromPedalBtnAction";
-  currentPedalSettingsList = document.getElementById("pedal-current-settings-list");
-  removeAllChildNodes(currentPedalSettingsList);
-  redrawPedalContent();
-  Object.keys(pedalBeingEditedJson).forEach(setting => {
-    currentPedalSettingsList.appendChild(createEditableRemovableListItem(setting, clickFunctionStr, "setting"));
-  });
-}
-
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
