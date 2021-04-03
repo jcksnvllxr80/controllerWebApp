@@ -502,12 +502,13 @@ function modifyPedal(editObj) {
 
 function modifySetting(editObj) {
   songFileName = document.getElementById("song-name-edit-label").parentNode.value
-  // partFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.parentNode.value;
-  // pedalName = editObj.replace("edit-", "");
-  // console.debug(`Editing pedal, \'${pedalName}\' of the \'${partFileName}\' for \'${songFileName}\'.`);
-  // hideEditContent('pedal', false);
-  // document.getElementById(`pedal-edit-content`).value = pedalName;
-  // populatePedalEditContent(pedalName, songFileName, partFileName);
+  partName = document.getElementById("part-name-edit-label").parentNode.value
+  pedalName = document.getElementById("display-pedal-name").value
+  settingGroupName = editObj.replace("edit-", "");
+  console.debug(`Editing setting Group, \'${settingGroupName}\' in pedal, \'${pedalName}\' of the part, \'${partName}\' for song \'${songFileName}\'.`);
+  hideEditContent('setting', false);
+  document.getElementById(`setting-edit-content`).value = settingGroupName;
+  populateSettingEditContent(pedalName, songFileName, partName, settingGroupName);
 }
 
 function populateSongEditContent(songFileName) {
@@ -531,6 +532,20 @@ function populatePedalEditContent(pedalName, songFileName, partFileName) {
   document.getElementById("display-pedal-name").value = pedalName;
   // drawAvailablePedalSettings(pedalBeingEditedJson);
   redrawCurrentSettingsInPedal(pedalBeingEditedJson);
+}
+
+function populateSettingEditContent(pedalName, songFileName, partName, settingGroupName) {
+  settingsJson = getJsonForSongDotYaml(songFileName).parts[partName].pedals[pedalName.concat('.yaml')];
+  document.getElementById("display-settings-name").value = settingGroupName;
+  if (settingGroupName == "preset") {
+    drawAvailablePresetsInPedal(settingsJson);
+    redrawCurrentPresetInPedal(settingsJson);
+  } else if (settingGroupName == "params") {
+    drawAvailableParamsInPedal(settingsJson);
+    redrawCurrentParamInPedal(settingsJson);
+  } else {
+    handleUnhandledPedalSettingsType(settingGroupName);
+  }
 }
 
 function drawAvailableTempos() {
@@ -577,6 +592,42 @@ function drawAvailablePedalSettings(pedalBeingEditedJson) {
   selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
 }
 
+function drawAvailablePresetsInPedal(settingsJson) {
+  // selectPedalSettingsList = document.getElementById("pedal-settings-edit-select");
+  // removeAllChildNodes(selectPedalSettingsList);
+  // Object.keys(pedalBeingEditedJson).forEach(setting => {
+  //   selectPedalSettingsList.appendChild(createOption(setting));
+  // });
+  // selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
+}
+
+function redrawCurrentPresetInPedal(settingsJson) {
+  // selectPedalSettingsList = document.getElementById("pedal-settings-edit-select");
+  // removeAllChildNodes(selectPedalSettingsList);
+  // Object.keys(pedalBeingEditedJson).forEach(setting => {
+  //   selectPedalSettingsList.appendChild(createOption(setting));
+  // });
+  // selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
+}
+
+function drawAvailableParamsInPedal(settingsJson) {
+  // selectPedalSettingsList = document.getElementById("pedal-settings-edit-select");
+  // removeAllChildNodes(selectPedalSettingsList);
+  // Object.keys(pedalBeingEditedJson).forEach(setting => {
+  //   selectPedalSettingsList.appendChild(createOption(setting));
+  // });
+  // selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
+}
+
+function redrawCurrentParamInPedal(settingsJson) {
+  // selectPedalSettingsList = document.getElementById("pedal-settings-edit-select");
+  // removeAllChildNodes(selectPedalSettingsList);
+  // Object.keys(pedalBeingEditedJson).forEach(setting => {
+  //   selectPedalSettingsList.appendChild(createOption(setting));
+  // });
+  // selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
+}
+
 function getJsonForSongDotYaml(songName) {
   if (document.getElementById(songName).className.localeCompare("work-in-progress") == 0) {
     return wipSongConfigDict[songName];
@@ -616,6 +667,16 @@ function redrawCurrentSettingsInPedal(pedalBeingEditedJson) {
   });
 }
 
+function redrawCurrentSettingGroupInPedal{
+  clickFunctionStr = "remSettingFromPedalBtnAction";
+  currentPedalSettingsList = document.getElementById("pedal-current-settings-list");
+  removeAllChildNodes(currentPedalSettingsList);
+  redrawPedalContent();
+  Object.keys(pedalBeingEditedJson).forEach(setting => {
+    currentPedalSettingsList.appendChild(createEditableRemovableListItem(setting, clickFunctionStr, "setting"));
+  });
+}
+
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
@@ -644,6 +705,12 @@ function hideEditContent(type, hidden) {
 
 function handleUnhandledType(unhandledType) {
   errorMessage = `This object type (${unhandledType}) is not handled yet.`;
+  console.error(errorMessage);
+  return errorMessage;
+}
+
+function handleUnhandledPedalSettingsType(unhandledPedalSettingsType) {
+  errorMessage = `This pedal settings type (${unhandledPedalSettingsType}) is not handled yet.`;
   console.error(errorMessage);
   return errorMessage;
 }
