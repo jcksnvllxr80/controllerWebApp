@@ -580,7 +580,7 @@ function redrawCurrentSettingsInPedal(pedalBeingEditedJson) {
   currentPedalSettingsList = document.getElementById("pedal-current-settings-list");
   removeAllChildNodes(currentPedalSettingsList);
   redrawPedalContent();
-  Object.keys(pedalBeingEditedJson).filter(setting => setting == "Engaged").forEach(setting => {
+  Object.keys(pedalBeingEditedJson).filter(setting => setting != "engaged").forEach(setting => {
     currentPedalSettingsList.appendChild(createEditableRemovableListItem(setting, clickFunctionStr, "setting"));
   });
 }
