@@ -337,6 +337,8 @@ function editListItem(btnObj) {
     modifyPart(editObj);
   } else if (editType.localeCompare('pedal') == 0) {
     modifyPedal(editObj);
+  } else if (editType.localeCompare('setting') == 0) {
+    modifySetting(editObj);
   } else {
     handleUnhandledType(editType);
   }
@@ -496,6 +498,16 @@ function modifyPedal(editObj) {
   hideEditContent('pedal', false);
   document.getElementById(`pedal-edit-content`).value = pedalName;
   populatePedalEditContent(pedalName, songFileName, partFileName);
+}
+
+function modifySetting(editObj) {
+  songFileName = document.getElementById("song-name-edit-label").parentNode.value
+  // partFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.parentNode.value;
+  // pedalName = editObj.replace("edit-", "");
+  // console.debug(`Editing pedal, \'${pedalName}\' of the \'${partFileName}\' for \'${songFileName}\'.`);
+  // hideEditContent('pedal', false);
+  // document.getElementById(`pedal-edit-content`).value = pedalName;
+  // populatePedalEditContent(pedalName, songFileName, partFileName);
 }
 
 function populateSongEditContent(songFileName) {
