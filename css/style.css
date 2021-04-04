@@ -294,6 +294,10 @@ pre {
     padding: 15px;
 }
 
+.config-wrapper .mini-edit-box .pedal-settings-content {
+    padding: 15px;
+}
+
 .tab-content .tab {
     padding: 15px;
     display: none
