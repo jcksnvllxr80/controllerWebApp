@@ -613,7 +613,7 @@ function drawAvailablePresetsInPedal(pedalFileName) {
     if (!range.length) {
       console.error(`Cant find preset values for pedal, \'${pedalFileName}\'.`);
     }
-    console.log(range);
+    console.debug(range);
     return range;
   }
   // Object.keys(pedalBeingEditedJson).forEach(setting => {
