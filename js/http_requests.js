@@ -657,6 +657,8 @@ function getPresetMinAndMax(settingsDict) {
     min = settingsDict['min'];
     max = settingsDict['max'];
     return Array.from(new Array(max-min+1), (x, i) => i + min);
+  } else {
+    return Array(0);
   }
 }
 
