@@ -536,7 +536,7 @@ function populatePedalEditContent(pedalName, songFileName, partFileName) {
 
 function populateSettingEditContent(pedalName, songFileName, partName, settingGroupName) {
   settingsJson = getJsonForSongDotYaml(songFileName).parts[partName].pedals[pedalName.concat('.yaml')];
-  document.getElementById("display-settings-name").value = settingGroupName;
+  // document.getElementById("display-settings-name").value = settingGroupName;
   if (settingGroupName == "preset") {
     drawAvailablePresetsInPedal(settingsJson);
     redrawCurrentPresetInPedal(settingsJson);
