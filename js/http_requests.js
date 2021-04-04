@@ -593,28 +593,28 @@ function drawAvailablePedalSettings(pedalBeingEditedJson) {
 }
 
 function drawAvailablePresetsInPedal(pedalFileName) {
-  pedalSetPresetDict = pedalConfigDict[pedalFileName]["Set Preset"]
+  pedalSetPresetDict = pedalConfigDict[pedalFileName]["Set Preset"];
   selectPedalPreset = document.getElementById("pedal-preset-select");
   removeAllChildNodes(selectPedalPreset);
-  range = []
+  range = [];
   if (Object.keys(pedalSetPresetDict).includes('min')) {
-    range = getPresetMinAndMax(pedalSetPresetDict)
+    range = getPresetMinAndMax(pedalSetPresetDict);
   } else {
-    deeperDict = {}
+    deeperDict = {};
     if (Object.keys(pedalSetPresetDict).includes('control change')) {
-      deeperDict = pedalSetPresetDict['control change']
+      deeperDict = pedalSetPresetDict['control change'];
     } else if (Object.keys(pedalSetPresetDict).includes('program change')) {
-      deeperDict = pedalSetPresetDict['program change']
+      deeperDict = pedalSetPresetDict['program change'];
     }
-    range = getPresetMinAndMax(deeperDict)
+    range = getPresetMinAndMax(deeperDict);
     if (!range.length) {
-      range = getPresetOptions(deeperDict)
+      range = getPresetOptions(deeperDict);
     }
     if (!range.length) {
-      console.error(`Cant find preset values for pedal, \'${pedalFileName}\'.`)
+      console.error(`Cant find preset values for pedal, \'${pedalFileName}\'.`);
     }
-    console.log(range)
-    return range
+    console.log(range);
+    return range;
   }
   // Object.keys(pedalBeingEditedJson).forEach(setting => {
   //   selectPedalPreset.appendChild(createOption(setting));
