@@ -597,7 +597,7 @@ function drawAvailablePresetsInPedal(pedalFileName) {
   selectPedalPreset = document.getElementById("pedal-preset-select");
   removeAllChildNodes(selectPedalPreset);  
   getPresetList(pedalSetPresetDict).forEach(setting => {
-    selectPedalPreset.appendChild(createOption(setting));
+    selectPedalPreset.appendChild(createOption(setting.toString()));
   });
   selectPedalPreset.value = selectPedalPreset.firstChild.value;
 }
