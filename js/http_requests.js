@@ -630,11 +630,11 @@ function redrawCurrentParamInPedal(settingsJson) {
 }
 
 function getPresetList(pedalSetPresetDict) {
-  range = [];
+  range = Array(0);
   if (Object.keys(pedalSetPresetDict).includes('min')) {
     range = getPresetMinAndMax(pedalSetPresetDict);
   } else {
-    deeperDict = {};
+    deeperDict = null;
     if (Object.keys(pedalSetPresetDict).includes('control change')) {
       deeperDict = pedalSetPresetDict['control change'];
     } else if (Object.keys(pedalSetPresetDict).includes('program change')) {
