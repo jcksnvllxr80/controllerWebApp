@@ -267,6 +267,17 @@ pre {
     font-size: large;
 }
 
+.mini-edit-box {
+    background-color: #f5f2f0;
+    margin-top: 5px;
+    margin-bottom: 1px;
+    border-radius: 1px;
+    padding-bottom: 5px;
+    height: 50px;
+    /* max-height: 75%; */
+    font-size: small;
+}
+
 .config-wrapper .edit-box .set-content {
     padding: 15px;
 }
