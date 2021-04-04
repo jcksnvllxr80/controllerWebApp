@@ -612,12 +612,13 @@ function redrawCurrentPresetInPedal(settingsJson) {
 }
 
 function drawAvailableParamsInPedal(pedalFileName) {
-  // selectPedalSettingsList = document.getElementById("pedal-settings-edit-select");
-  // removeAllChildNodes(selectPedalSettingsList);
-  // Object.keys(pedalBeingEditedJson).forEach(setting => {
-  //   selectPedalSettingsList.appendChild(createOption(setting));
-  // });
-  // selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
+  pedalParamDict = pedalConfigDict[pedalFileName]["Parameters"];
+  selectPedalParam = document.getElementById("pedal-param-select");
+  removeAllChildNodes(selectPedalParam);  
+  Object.keys(pedalParamDict).forEach(param => {
+    selectPedalParam.appendChild(createOption(param.toString()));
+  });
+  selectPedalParam.value = selectPedalParam.firstChild.value;
 }
 
 function redrawCurrentParamInPedal(settingsJson) {
