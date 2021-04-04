@@ -538,10 +538,10 @@ function populateSettingEditContent(pedalName, songFileName, partName, settingGr
   settingsJson = getJsonForSongDotYaml(songFileName).parts[partName].pedals[pedalName.concat('.yaml')];
   // document.getElementById("display-settings-name").value = settingGroupName;
   if (settingGroupName == "preset") {
-    drawAvailablePresetsInPedal(settingsJson);
+    drawAvailablePresetsInPedal(pedalName.concat('.yaml'));
     redrawCurrentPresetInPedal(settingsJson);
   } else if (settingGroupName == "params") {
-    drawAvailableParamsInPedal(settingsJson);
+    drawAvailableParamsInPedal(settingsJson.concat('.yaml'));
     redrawCurrentParamInPedal(settingsJson);
   } else {
     handleUnhandledPedalSettingsType(settingGroupName);
@@ -592,11 +592,32 @@ function drawAvailablePedalSettings(pedalBeingEditedJson) {
   selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
 }
 
-function drawAvailablePresetsInPedal(settingsJson) {
-  // selectPedalSettingsList = document.getElementById("pedal-settings-edit-select");
-  // removeAllChildNodes(selectPedalSettingsList);
+function drawAvailablePresetsInPedal(pedalFileName) {
+  pedalSetPresetDict = pedalConfigDict[pedalFileName]["Set Preset"]
+  selectPedalPreset = document.getElementById("pedal-preset-select");
+  removeAllChildNodes(selectPedalPreset);
+  range = []
+  if (Object.keys(pedalSetPresetDict).includes('min')) {
+    range = getPresetMinAndMax(pedalSetPresetDict)
+  } else {
+    deeperDict = {}
+    if (Object.keys(pedalSetPresetDict).includes('control change')) {
+      deeperDict = pedalSetPresetDict['control change']
+    } else if (Object.keys(pedalSetPresetDict).includes('program change')) {
+      deeperDict = pedalSetPresetDict['program change']
+    }
+    range = getPresetMinAndMax(deeperDict)
+    if (!range.length) {
+      range = getPresetOptions(deeperDict)
+    }
+    if (!range.length) {
+      console.error(`Cant find preset values for pedal, \'${pedalFileName}\'.`)
+    }
+    console.log(range)
+    return range
+  }
   // Object.keys(pedalBeingEditedJson).forEach(setting => {
-  //   selectPedalSettingsList.appendChild(createOption(setting));
+  //   selectPedalPreset.appendChild(createOption(setting));
   // });
   // selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
 }
@@ -610,7 +631,7 @@ function redrawCurrentPresetInPedal(settingsJson) {
   // selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
 }
 
-function drawAvailableParamsInPedal(settingsJson) {
+function drawAvailableParamsInPedal(pedalFileName) {
   // selectPedalSettingsList = document.getElementById("pedal-settings-edit-select");
   // removeAllChildNodes(selectPedalSettingsList);
   // Object.keys(pedalBeingEditedJson).forEach(setting => {
@@ -626,6 +647,20 @@ function redrawCurrentParamInPedal(settingsJson) {
   //   selectPedalSettingsList.appendChild(createOption(setting));
   // });
   // selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
+}
+
+function getPresetMinAndMax(settingsDict) {
+  if (Object.keys(dict).includes('min')) {
+    min = settingsDict['min'];
+    max = settingsDict['max'];
+    return (min, max) => new Array(max-min+1).fill().map((el, ind) => ind + start);
+  }
+}
+
+function getPresetOptions(settingsDict) {
+  if (Object.keys(settingsDict).includes('options')) {
+    return settingsDict['options']
+  }
 }
 
 function getJsonForSongDotYaml(songName) {
