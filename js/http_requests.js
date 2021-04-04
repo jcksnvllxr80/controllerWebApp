@@ -538,10 +538,10 @@ function populateSettingEditContent(pedalName, songFileName, partName, settingGr
   settingsJson = getJsonForSongDotYaml(songFileName).parts[partName].pedals[pedalName.concat('.yaml')];
   // document.getElementById("display-settings-name").value = settingGroupName;
   if (settingGroupName == "preset") {
-    drawAvailablePresetsInPedal(pedalName.concat('.yaml'));
+    drawAvailablePresetsInPedal(settingsJson["Set Preset"]);
     redrawCurrentPresetInPedal(settingsJson);
   } else if (settingGroupName == "params") {
-    drawAvailableParamsInPedal(settingsJson.concat('.yaml'));
+    drawAvailableParamsInPedal(settingsJson["Parameters"]);
     redrawCurrentParamInPedal(settingsJson);
   } else {
     handleUnhandledPedalSettingsType(settingGroupName);
@@ -592,11 +592,10 @@ function drawAvailablePedalSettings(pedalBeingEditedJson) {
   selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
 }
 
-function drawAvailablePresetsInPedal(pedalFileName) {
-  pedalSetPresetDict = pedalConfigDict[pedalFileName]["Set Preset"];
+function drawAvailablePresetsInPedal(pedalPresetDict) {
   selectPedalPreset = document.getElementById("pedal-preset-select");
   removeAllChildNodes(selectPedalPreset);  
-  getPresetList(pedalSetPresetDict).forEach(setting => {
+  getPresetList(pedalPresetDict).forEach(setting => {
     selectPedalPreset.appendChild(createOption(setting.toString()));
   });
   selectPedalPreset.value = selectPedalPreset.firstChild.value;
@@ -611,8 +610,7 @@ function redrawCurrentPresetInPedal(settingsJson) {
   // selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
 }
 
-function drawAvailableParamsInPedal(pedalFileName) {
-  pedalParamDict = pedalConfigDict[pedalFileName]["Parameters"];
+function drawAvailableParamsInPedal(pedalParamDict) {
   selectPedalParam = document.getElementById("pedal-param-select");
   removeAllChildNodes(selectPedalParam);  
   Object.keys(pedalParamDict).forEach(param => {
