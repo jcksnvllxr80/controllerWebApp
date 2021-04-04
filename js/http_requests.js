@@ -595,31 +595,11 @@ function drawAvailablePedalSettings(pedalBeingEditedJson) {
 function drawAvailablePresetsInPedal(pedalFileName) {
   pedalSetPresetDict = pedalConfigDict[pedalFileName]["Set Preset"];
   selectPedalPreset = document.getElementById("pedal-preset-select");
-  removeAllChildNodes(selectPedalPreset);
-  range = [];
-  if (Object.keys(pedalSetPresetDict).includes('min')) {
-    range = getPresetMinAndMax(pedalSetPresetDict);
-  } else {
-    deeperDict = {};
-    if (Object.keys(pedalSetPresetDict).includes('control change')) {
-      deeperDict = pedalSetPresetDict['control change'];
-    } else if (Object.keys(pedalSetPresetDict).includes('program change')) {
-      deeperDict = pedalSetPresetDict['program change'];
-    }
-    range = getPresetMinAndMax(deeperDict);
-    if (!range.length) {
-      range = getPresetOptions(deeperDict);
-    }
-    if (!range.length) {
-      console.error(`Cant find preset values for pedal, \'${pedalFileName}\'.`);
-    }
-    console.debug(range);
-    return range;
-  }
-  // Object.keys(pedalBeingEditedJson).forEach(setting => {
-  //   selectPedalPreset.appendChild(createOption(setting));
-  // });
-  // selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
+  removeAllChildNodes(selectPedalPreset);  
+  getPresetList(pedalSetPresetDict).forEach(setting => {
+    selectPedalPreset.appendChild(createOption(setting));
+  });
+  selectPedalPreset.value = selectPedalPreset.firstChild.value;
 }
 
 function redrawCurrentPresetInPedal(settingsJson) {
@@ -647,6 +627,29 @@ function redrawCurrentParamInPedal(settingsJson) {
   //   selectPedalSettingsList.appendChild(createOption(setting));
   // });
   // selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
+}
+
+function getPresetList(pedalSetPresetDict) {
+  range = [];
+  if (Object.keys(pedalSetPresetDict).includes('min')) {
+    range = getPresetMinAndMax(pedalSetPresetDict);
+  } else {
+    deeperDict = {};
+    if (Object.keys(pedalSetPresetDict).includes('control change')) {
+      deeperDict = pedalSetPresetDict['control change'];
+    } else if (Object.keys(pedalSetPresetDict).includes('program change')) {
+      deeperDict = pedalSetPresetDict['program change'];
+    }
+    range = getPresetMinAndMax(deeperDict);
+    if (!range.length) {
+      range = getPresetOptions(deeperDict);
+    }
+    if (!range.length) {
+      console.error(`Cant find preset values for pedal, \'${pedalFileName}\'.`);
+    }
+  }
+  console.debug(`range is ${range}`);
+  return range;
 }
 
 function getPresetMinAndMax(settingsDict) {
