@@ -650,7 +650,7 @@ function redrawCurrentParamInPedal(settingsJson) {
 }
 
 function getPresetMinAndMax(settingsDict) {
-  if (Object.keys(dict).includes('min')) {
+  if (Object.keys(settingsDict).includes('min')) {
     min = settingsDict['min'];
     max = settingsDict['max'];
     return (min, max) => new Array(max-min+1).fill().map((el, ind) => ind + start);
