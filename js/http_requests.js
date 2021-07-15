@@ -158,12 +158,12 @@ function redrawSongsContent() {
 }
 
 function redrawPartsContent() {
-  removeAllTabContentListChildNodes(document.getElementById("part-list"));
+  removeAllTabContentListChildNodes(document.getElementById("song-current-part-list"));
   reloadPartsContent();
 }
 
 function redrawPedalContent() {
-  removeAllTabContentListChildNodes(document.getElementById("pedal-list"));
+  removeAllTabContentListChildNodes(document.getElementById("part-current-pedal-list"));
   reloadPedalsContent();
 }
 
