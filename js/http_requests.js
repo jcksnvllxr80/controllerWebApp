@@ -130,18 +130,16 @@ function reloadSongsContent() {
 function reloadPartsContent() {
   songBeingEditedJson = getJsonForSongDotYaml(`${document.getElementById("song-name-input").value}.yaml`);
   songBeingEditedJson['parts'].forEach(part => {
-    addItemToList(document.getElementById("song-current-part-list"), part, 'song');
+    addItemToList(document.getElementById("song-current-part-list"), part, 'part');
   });
 }
 
 function reloadPedalsContent() {
-  // songs.forEach(song => {
-  //   if (song in songConfigDict) {
-  //     addItemToList(document.getElementById("song-list"), song, 'song');
-  //   } else {
-  //     addWipItemToList(document.getElementById("song-list"), song, 'song');
-  //   }
-  // });
+  songBeingEditedJson = getJsonForSongDotYaml(`${document.getElementById("song-name-input").value}.yaml`);
+  currentPart = songBeingEditedJson['parts'][document.getElementById("edit-part-name-input").value];
+  currentPart.forEach(pedal => {
+    addItemToList(document.getElementById("part-current-pedal-list"), pedal, 'pedal');
+  });
 }
 
 function redrawSetlistsContent() {
