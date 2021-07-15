@@ -137,6 +137,16 @@ function reloadPartsContent() {
   // });
 }
 
+function reloadPedalsContent() {
+  // songs.forEach(song => {
+  //   if (song in songConfigDict) {
+  //     addItemToList(document.getElementById("song-list"), song, 'song');
+  //   } else {
+  //     addWipItemToList(document.getElementById("song-list"), song, 'song');
+  //   }
+  // });
+}
+
 function redrawSetlistsContent() {
   removeAllTabContentListChildNodes(document.getElementById("set-list"));
   reloadSetlistsContent();
@@ -148,13 +158,13 @@ function redrawSongsContent() {
 }
 
 function redrawPartsContent() {
-  // removeAllTabContentListChildNodes(document.getElementById("part-list"));
-  // reloadPartsContent();
+  removeAllTabContentListChildNodes(document.getElementById("part-list"));
+  reloadPartsContent();
 }
 
 function redrawPedalContent() {
-  // removeAllTabContentListChildNodes(document.getElementById("part-list"));
-  // reloadPartsContent();
+  removeAllTabContentListChildNodes(document.getElementById("pedal-list"));
+  reloadPedalsContent();
 }
 
 function loadSongsContent() {
