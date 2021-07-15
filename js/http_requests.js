@@ -405,6 +405,7 @@ function removePedalFromPart(partName, pedalToRemove) {
   console.debug(`Removing pedal, \'${pedalToRemove}\', from part, \'${partName}\', of song, \'${songName}\'.`);
   partBeingEditedJson = getJsonForSongDotYaml(`${songName}.yaml`).parts[partName];
   delete partBeingEditedJson.pedals[pedalToRemove];
+  getJsonForSongDotYaml(`${songName}.yaml`).parts[partName] = partBeingEditedJson
   redrawCurrentPedalsInPart(partBeingEditedJson);
 }
 
