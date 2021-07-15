@@ -128,13 +128,10 @@ function reloadSongsContent() {
 }
 
 function reloadPartsContent() {
-  // songs.forEach(song => {
-  //   if (song in songConfigDict) {
-  //     addItemToList(document.getElementById("song-list"), song, 'song');
-  //   } else {
-  //     addWipItemToList(document.getElementById("song-list"), song, 'song');
-  //   }
-  // });
+  songBeingEditedJson = getJsonForSongDotYaml(`${document.getElementById("song-name-input").value}.yaml`);
+  songBeingEditedJson['parts'].forEach(part => {
+    addItemToList(document.getElementById("song-current-part-list"), part, 'song');
+  });
 }
 
 function reloadPedalsContent() {
