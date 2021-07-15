@@ -401,9 +401,9 @@ function removePartFromSong(songName, partToRemove) {
 }
 
 function removePedalFromPart(partName, pedalToRemove) {
-  songName = `${document.getElementById("song-name-input").value}.yaml`
+  songName = document.getElementById("song-name-input").value
   console.debug(`Removing pedal, \'${pedalToRemove}\', from part, \'${partName}\', of song, \'${songName}\'.`);
-  getJsonForSongDotYaml(`${songName}.yaml`).parts.removeChild(pedalToRemove);
+  delete getJsonForSongDotYaml(`${songName}.yaml`).parts[partName].pedals[pedalToRemove];
   redrawCurrentPedalsInPart(partName);
 }
 
