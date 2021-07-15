@@ -129,7 +129,7 @@ function reloadSongsContent() {
 
 function reloadPartsContent() {
   songBeingEditedJson = getJsonForSongDotYaml(`${document.getElementById("song-name-input").value}.yaml`);
-  songBeingEditedJson.parts.forEach(part => {
+  Object.keys(songBeingEditedJson.parts).forEach(part => {
     addItemToList(document.getElementById("song-current-part-list"), part, 'part');
   });
 }
@@ -137,7 +137,7 @@ function reloadPartsContent() {
 function reloadPedalsContent() {
   songBeingEditedJson = getJsonForSongDotYaml(`${document.getElementById("song-name-input").value}.yaml`);
   currentPart = songBeingEditedJson.parts[document.getElementById("edit-part-name-input").value];
-  currentPart.pedals.forEach(pedal => {
+  Object.keys(currentPart.pedals).forEach(pedal => {
     addItemToList(document.getElementById("part-current-pedal-list"), pedal, 'pedal');
   });
 }
