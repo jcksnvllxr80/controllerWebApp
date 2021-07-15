@@ -139,7 +139,7 @@ function reloadPedalsContent() {
   songBeingEditedJson = getJsonForSongDotYaml(`${document.getElementById("song-name-input").value}.yaml`);
   currentPart = songBeingEditedJson.parts[document.getElementById("edit-part-name-input").value];
   Object.keys(currentPart.pedals).forEach(pedal => {
-    currentPartList.appendChild(createEditableRemovableListItem(pedal, clickFunctionStr, "pedal"));
+    currentPedalList.appendChild(createEditableRemovableListItem(pedal, clickFunctionStr, "pedal"));
   });
 }
 
