@@ -531,7 +531,7 @@ function populatePartEditContent(partName, songFileName) {
 function populatePedalEditContent(pedalName, songFileName, partFileName) {
   pedalBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partFileName].pedals[pedalName.concat('.yaml')];
   document.getElementById("display-pedal-name").value = pedalName;
-  // drawAvailablePedalSettings(pedalBeingEditedJson);
+  drawAvailablePedalSettings(pedalBeingEditedJson);
   redrawCurrentSettingsInPedal(pedalBeingEditedJson);
 }
 
@@ -817,7 +817,7 @@ function addSelectedPedalToPart(addPedalBtn) {
   if (!Object.keys(partBeingEditedJson.pedals).includes(selectedPedal.concat('.yaml'))) {
     console.debug(`Add ${selectedPedal} to part, \'${partName}\'.`);
     initNewPedal(partBeingEditedJson, selectedPedal);
-    redrawCurrentPedalsInPart();
+    redrawCurrentPedalsInPart(partBeingEditedJson);
   } else {
     console.warn(`Not added! Pedal, \'${selectedPedal}\', already in part, \'${partName}\'.`)
   }
