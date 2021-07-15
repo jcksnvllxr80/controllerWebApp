@@ -816,11 +816,8 @@ function addSelectedPedalToPart(addPedalBtn) {
   partBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partName];
   if (!Object.keys(partBeingEditedJson.pedals).includes(selectedPedal.concat('.yaml'))) {
     console.debug(`Add ${selectedPedal} to part, \'${partName}\'.`);
-    // if (songFileName in songConfigDict) {
-    //   wipSongConfigDict[songFileName] = getJsonForSongDotYaml(songFileName);
-    //   delete songConfigDict[songFileName];
-    // }
     initNewPedal(partBeingEditedJson, selectedPedal);
+    redrawCurrentPedalsInPart();
   } else {
     console.warn(`Not added! Pedal, \'${selectedPedal}\', already in part, \'${partName}\'.`)
   }
