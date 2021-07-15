@@ -401,16 +401,10 @@ function removePartFromSong(songName, partToRemove) {
 }
 
 function removePedalFromPart(partName, pedalToRemove) {
-  console.debug(`Removing pedal, \'${pedalToRemove}\', from part, \'${partName}\'.`);
-  // if (document.getElementById(songName).className.localeCompare("work-in-progress") == 0) {
-  //   delete wipSongConfigDict[songName].parts[partToRemove];
-  // } else {
-  //   wipSongConfigDict[songName] = songConfigDict[songName];
-  //   delete songConfigDict[songName];
-  //   delete wipSongConfigDict[songName].parts[partToRemove];
-  //   redrawSongsContent();
-  // }
-  // redrawCurrentPartsInSong(songName);
+  songName = `${document.getElementById("song-name-input").value}.yaml`
+  console.debug(`Removing pedal, \'${pedalToRemove}\', from part, \'${partName}\', of song, \'${songName}\'.`);
+  getJsonForSongDotYaml(`${songName}.yaml`).parts.removeChild(pedalToRemove);
+  redrawCurrentPedalsInPart(partName);
 }
 
 function removeSettingFromPedal(pedalName, settingToRemove) {
