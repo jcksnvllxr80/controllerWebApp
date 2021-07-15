@@ -128,17 +128,18 @@ function reloadSongsContent() {
 }
 
 function reloadPartsContent() {
-  songBeingEditedJson = getJsonForSongDotYaml(`${document.getElementById("song-name-input").value}.yaml`);
-  Object.keys(songBeingEditedJson.parts).forEach(part => {
-    addItemToList(document.getElementById("song-current-part-list"), part, 'part');
+  clickFunctionStr = "remPartFromSongBtnAction";
+  Object.keys(getJsonForSongDotYaml(`${document.getElementById("song-name-input").value}.yaml`).parts).forEach(part => {
+    currentPartList.appendChild(createEditableRemovableListItem(part, clickFunctionStr, "part"));
   });
 }
 
 function reloadPedalsContent() {
+  clickFunctionStr = "remPedalFromPartBtnAction";
   songBeingEditedJson = getJsonForSongDotYaml(`${document.getElementById("song-name-input").value}.yaml`);
   currentPart = songBeingEditedJson.parts[document.getElementById("edit-part-name-input").value];
   Object.keys(currentPart.pedals).forEach(pedal => {
-    addItemToList(document.getElementById("part-current-pedal-list"), pedal, 'pedal');
+    currentPartList.appendChild(createEditableRemovableListItem(pedal, clickFunctionStr, "pedal"));
   });
 }
 
