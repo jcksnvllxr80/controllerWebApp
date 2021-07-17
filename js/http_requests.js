@@ -159,9 +159,10 @@ function redrawPartsContent() {
 }
 
 function redrawPedalContent() {
-  removeAllTabContentListChildNodes(document.getElementById("part-current-pedal-list"));
+  songBeingEditedJson = getJsonForSongDotYaml(`${document.getElementById("song-name-input").value}.yaml`);
+  currentPartJson = songBeingEditedJson.parts[document.getElementById("edit-part-name-input").value];
   // reloadPedalsContent();
-  redrawCurrentPedalsInPart(document.getElementById("part-edit-content").value);
+  redrawCurrentPedalsInPart(currentPartJson);
 }
 
 function loadSongsContent() {
