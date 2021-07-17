@@ -159,10 +159,8 @@ function redrawPartsContent() {
 }
 
 function redrawPedalContent() {
-  songBeingEditedJson = getJsonForSongDotYaml(`${document.getElementById("song-name-input").value}.yaml`);
-  currentPartJson = songBeingEditedJson.parts[document.getElementById("edit-part-name-input").value];
-  // reloadPedalsContent();
-  redrawCurrentPedalsInPart(currentPartJson);
+  removeAllTabContentListChildNodes(document.getElementById("part-current-pedal-list"));
+  reloadPedalsContent();
 }
 
 function loadSongsContent() {
@@ -819,7 +817,7 @@ function addSelectedPedalToPart(addPedalBtn) {
   if (!Object.keys(partBeingEditedJson.pedals).includes(selectedPedal.concat('.yaml'))) {
     console.debug(`Add ${selectedPedal} to part, \'${partName}\'.`);
     initNewPedal(partBeingEditedJson, selectedPedal);
-    // reloadPedalsContent();
+    reloadPedalsContent();
     redrawCurrentPedalsInPart(partBeingEditedJson);
   } else {
     console.warn(`Not added! Pedal, \'${selectedPedal}\', already in part, \'${partName}\'.`)
