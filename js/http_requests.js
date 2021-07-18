@@ -404,7 +404,7 @@ function removePedalFromPart(partName, pedalToRemove) {
   songName = document.getElementById("song-name-input").value;
   console.debug(`Removing pedal, \'${pedalToRemove}\', from part, \'${partName}\', of song, \'${songName}\'.`);
   partBeingEditedJson = getJsonForSongDotYaml(`${songName}.yaml`).parts[partName];
-  if (pedalToRemove == document.getElementById("song-name-input").value)
+  if (pedalToRemove == document.getElementById("display-pedal-name").value)
   { // hide the pedal settings editor content if the pedal being deleted is displayed there
     document.getElementById(`pedal-edit-window`).hidden = true;
   }
@@ -487,6 +487,11 @@ function modifySong(songFileName) {
 }
 
 function modifyPart(editObj) {
+  // hide the pedal settings editor content (if open) everytime a configure part button pressed
+  if (!document.getElementById(`pedal-edit-window`).hidden)
+  {
+    document.getElementById(`pedal-edit-window`).hidden = true;
+  }
   songFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.parentNode.value;
   partName = editObj.replace("edit-", "");
   console.debug(`Editing part, \'${partName}\' of \'${songFileName}\'.`);
