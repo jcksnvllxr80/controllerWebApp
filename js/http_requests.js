@@ -401,9 +401,13 @@ function removePartFromSong(songName, partToRemove) {
 }
 
 function removePedalFromPart(partName, pedalToRemove) {
-  songName = document.getElementById("song-name-input").value
+  songName = document.getElementById("song-name-input").value;
   console.debug(`Removing pedal, \'${pedalToRemove}\', from part, \'${partName}\', of song, \'${songName}\'.`);
   partBeingEditedJson = getJsonForSongDotYaml(`${songName}.yaml`).parts[partName];
+  if (pedalToRemove == document.getElementById("song-name-input").value)
+  { // hide the pedal settings editor content if the pedal being deleted is displayed there
+    document.getElementById(`pedal-edit-window`).hidden = true;
+  }
   delete partBeingEditedJson.pedals[`${pedalToRemove}.yaml`];
   redrawCurrentPedalsInPart(partBeingEditedJson);
 }
