@@ -693,10 +693,11 @@ function redrawCurrentPedalsInPart(partBeingEditedJson) {
   currentPedalList = document.getElementById("part-current-pedal-list");
   removeAllChildNodes(currentPedalList);
   redrawPartsContent();
-  clickFunctionStr = "remPedalFromPartBtnAction";
-  Object.keys(partBeingEditedJson.pedals).forEach(pedal => {
-    currentPedalList.appendChild(createEditableRemovableListItem(pedal, clickFunctionStr, "pedal"));
-  });
+  reloadPedalsContent();
+  // clickFunctionStr = "remPedalFromPartBtnAction";
+  // Object.keys(partBeingEditedJson.pedals).forEach(pedal => {
+  //   currentPedalList.appendChild(createEditableRemovableListItem(pedal, clickFunctionStr, "pedal"));
+  // });
 }
 
 function redrawCurrentSettingsInPedal(pedalBeingEditedJson) {
