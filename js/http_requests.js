@@ -816,8 +816,7 @@ function addSelectedPedalToPart(addPedalBtn) {
   if (!Object.keys(partBeingEditedJson.pedals).includes(selectedPedal.concat('.yaml'))) {
     console.debug(`Add ${selectedPedal} to part, \'${partName}\'.`);
     initNewPedal(partBeingEditedJson, selectedPedal);
-    reloadPedalsContent();
-    // redrawCurrentPedalsInPart(partBeingEditedJson);
+    redrawCurrentPedalsInPart(partBeingEditedJson);
   } else {
     console.warn(`Not added! Pedal, \'${selectedPedal}\', already in part, \'${partName}\'.`)
   }
