@@ -683,9 +683,7 @@ function redrawCurrentPartsInSong(songName) {
   currentPartList = document.getElementById("song-current-part-list");
   removeAllChildNodes(currentPartList);
   redrawSongsContent();
-  Object.keys(getJsonForSongDotYaml(songName).parts).forEach(part => {
-    currentPartList.appendChild(createEditableRemovableListItem(part, clickFunctionStr, "part"));
-  });
+  reloadPartsContent();
   reevaluatePartPositionInSong(getJsonForSongDotYaml(songName));
 }
 
@@ -694,10 +692,6 @@ function redrawCurrentPedalsInPart(partBeingEditedJson) {
   removeAllChildNodes(currentPedalList);
   redrawPartsContent();
   reloadPedalsContent();
-  // clickFunctionStr = "remPedalFromPartBtnAction";
-  // Object.keys(partBeingEditedJson.pedals).forEach(pedal => {
-  //   currentPedalList.appendChild(createEditableRemovableListItem(pedal, clickFunctionStr, "pedal"));
-  // });
 }
 
 function redrawCurrentSettingsInPedal(pedalBeingEditedJson) {
@@ -705,6 +699,10 @@ function redrawCurrentSettingsInPedal(pedalBeingEditedJson) {
   currentPedalSettingsList = document.getElementById("pedal-current-settings-list");
   removeAllChildNodes(currentPedalSettingsList);
   redrawPedalContent();
+  reloadSettingsContent(pedalBeingEditedJson);
+}
+
+function reloadSettingsContent(pedalBeingEditedJson) {
   Object.keys(pedalBeingEditedJson).filter(setting => setting != "engaged").forEach(setting => {
     currentPedalSettingsList.appendChild(createEditableRemovableListItem(setting, clickFunctionStr, "setting"));
   });
