@@ -690,10 +690,10 @@ function redrawCurrentPartsInSong(songName) {
 }
 
 function redrawCurrentPedalsInPart(partBeingEditedJson) {
-  clickFunctionStr = "remPedalFromPartBtnAction";
   currentPedalList = document.getElementById("part-current-pedal-list");
   removeAllChildNodes(currentPedalList);
   redrawPartsContent();
+  clickFunctionStr = "remPedalFromPartBtnAction";
   Object.keys(partBeingEditedJson.pedals).forEach(pedal => {
     currentPedalList.appendChild(createEditableRemovableListItem(pedal, clickFunctionStr, "pedal"));
   });
