@@ -810,12 +810,12 @@ function addSelectedPartToSong(addPartBtn) {
 
 function addSelectedPedalToPart(addPedalBtn) {
   selectedPedal = document.getElementById('part-pedal-edit-select').value;
-  songFileName = document.getElementById("song-name-edit-label").parentNode.value
-  partName = document.getElementById("part-name-edit-label").parentNode.value
+  songFileName = document.getElementById("song-name-edit-label").parentNode.value;
+  partName = document.getElementById("part-name-edit-label").parentNode.value;
   partBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partName];
   if (!Object.keys(partBeingEditedJson.pedals).includes(selectedPedal.concat('.yaml'))) {
     console.debug(`Add ${selectedPedal} to part, \'${partName}\'.`);
-    initNewPedal(partBeingEditedJson, selectedPedal);
+    initNewPedal(partBeingEditedJson, selectedPedal.concat('.yaml'));
     redrawCurrentPedalsInPart(partBeingEditedJson);
   } else {
     console.warn(`Not added! Pedal, \'${selectedPedal}\', already in part, \'${partName}\'.`)
