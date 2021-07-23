@@ -145,7 +145,9 @@ function reloadPedalsContent() {
 }
 
 function SetEngaged(engagedCheckboxClicked) {
-  console.log("checkbox clicked");
+  checked = document.getElementById(engagedCheckboxClicked.toElement.name).checked
+  console.log(`${engagedCheckboxClicked.toElement.name.replace(`-engaged-checkbox`, ``)} checkbox value set to ${checked}.`);
+  // TODO: set the pedals engagged value in the songconfigjson and move the song to WIP if its not already
 }
 
 function redrawSetlistsContent() {
