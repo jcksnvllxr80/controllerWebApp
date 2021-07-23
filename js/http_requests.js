@@ -149,13 +149,14 @@ function SetEngaged(engagedCheckboxClicked) {
   songBeingEditedJson = getJsonForSongDotYaml(`${songName}.yaml`);
   checked = document.getElementById(engagedCheckboxClicked.toElement.name).checked;
   pedalName = engagedCheckboxClicked.toElement.name.replace('-engaged-checkbox', '');
-  console.log(`${pedalName} engaged checkbox set to ${checked}.`);
+  console.debug(`${pedalName} engaged checkbox set to ${checked}.`);
+  currentPart = songBeingEditedJson.parts[document.getElementById("edit-part-name-input").value];
+  currentPart.pedals[pedalName].engaged = checked;
   if (songName in songConfigDict)
   {
     moveSongToWipConfig(songName);
+    redrawCurrentPartsInSong(songName)
   }
-  currentPart = songBeingEditedJson.parts[document.getElementById("edit-part-name-input").value];
-  currentPart.pedals[pedalName].engaged = checked;
 }
 
 function redrawSetlistsContent() {
