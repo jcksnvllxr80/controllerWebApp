@@ -216,7 +216,7 @@ function createEditableRemovableListItem(id, clickFunctionStr, type) {
   if (type.localeCompare('pedal') == 0) {
     engagedCheckbox = createEngagedCheckbox(id)
     engagedCheckbox.addEventListener("click", SetEngaged, false);
-    listItem.appendChild();
+    listItem.appendChild(engagedCheckbox);
   }
   return listItem;
 }
