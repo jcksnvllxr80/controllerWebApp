@@ -145,6 +145,8 @@ function reloadPedalsContent() {
 }
 
 function SetEngaged(engagedCheckboxClicked) {
+  songName = document.getElementById("song-name-input").value;
+  songBeingEditedJson = getJsonForSongDotYaml(`${songName}.yaml`);
   checked = document.getElementById(engagedCheckboxClicked.toElement.name).checked;
   pedalName = engagedCheckboxClicked.toElement.name.replace('-engaged-checkbox', '');
   console.log(`${pedalName} engaged checkbox set to ${checked}.`);
@@ -152,7 +154,6 @@ function SetEngaged(engagedCheckboxClicked) {
   {
     moveSongToWipConfig(songName);
   }
-  songBeingEditedJson = getJsonForSongDotYaml(`${document.getElementById("song-name-input").value}.yaml`);
   currentPart = songBeingEditedJson.parts[document.getElementById("edit-part-name-input").value];
   currentPart.pedals[pedalName].engaged = checked;
 }
