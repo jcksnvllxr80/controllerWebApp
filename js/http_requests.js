@@ -145,9 +145,16 @@ function reloadPedalsContent() {
 }
 
 function SetEngaged(engagedCheckboxClicked) {
-  checked = document.getElementById(engagedCheckboxClicked.toElement.name).checked
-  console.log(`${engagedCheckboxClicked.toElement.name.replace(`-engaged-checkbox`, ``)} engaged checkbox set to ${checked}.`);
-  // TODO: set the pedals engagged value in the songconfigjson and move the song to WIP if its not already
+  checked = document.getElementById(engagedCheckboxClicked.toElement.name).checked;
+  pedalName = engagedCheckboxClicked.toElement.name.replace('-engaged-checkbox', '');
+  console.log(`${pedalName} engaged checkbox set to ${checked}.`);
+  if (songName in songConfigDict)
+  {
+    moveSongToWipConfig(songName);
+  }
+  songBeingEditedJson = getJsonForSongDotYaml(`${document.getElementById("song-name-input").value}.yaml`);
+  currentPart = songBeingEditedJson.parts[document.getElementById("edit-part-name-input").value];
+  currentPart.pedals[pedalName].engaged = checked;
 }
 
 function redrawSetlistsContent() {
@@ -817,13 +824,17 @@ function addSelectedPartToSong(addPartBtn) {
   if (!Object.keys(partsInSong).includes(selectedPart)) {
     console.debug(`Add ${selectedPart} to song, \'${songName}\'.`);
     if (songName in songConfigDict) {
-      wipSongConfigDict[songName] = getJsonForSongDotYaml(songName);
-      delete songConfigDict[songName];
+      moveSongToWipConfig(songName);
     }
     initNewPart(songName, selectedPart);
   } else {
     console.warn(`Not added! Part, \'${selectedPart}\', already in song, \'${songName}\'.`)
   }
+}
+
+function moveSongToWipConfig(songName) {
+  wipSongConfigDict[songName] = getJsonForSongDotYaml(songName);
+  delete songConfigDict[songName];
 }
 
 function addSelectedPedalToPart(addPedalBtn) {
