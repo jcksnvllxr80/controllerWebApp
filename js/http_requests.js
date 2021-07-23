@@ -142,8 +142,12 @@ function reloadPedalsContent() {
     currentPedalList.appendChild(createEditableRemovableListItem(pedal, clickFunctionStr, "pedal"));
     appendedChildPedal = document.getElementById(`${pedal.replace('.yaml','')}-engaged-checkbox`);
     appendedChildPedal.checked = currentPart.pedals[pedal].engaged;
-    // appendedChildPedal.checkbox.
+    appendedChildPedal.checkbox.onClick = SetEngaged(this);
   });
+}
+
+function SetEngaged(engagedCheckboxClicked) {
+  console.log("checkbox clicked");
 }
 
 function redrawSetlistsContent() {
