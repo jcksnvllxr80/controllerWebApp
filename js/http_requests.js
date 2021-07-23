@@ -140,9 +140,7 @@ function reloadPedalsContent() {
   currentPart = songBeingEditedJson.parts[document.getElementById("edit-part-name-input").value];
   Object.keys(currentPart.pedals).forEach(pedal => {
     currentPedalList.appendChild(createEditableRemovableListItem(pedal, clickFunctionStr, "pedal"));
-    appendedChildPedal = document.getElementById(`${pedal.replace('.yaml','')}-engaged-checkbox`);
-    appendedChildPedal.checked = currentPart.pedals[pedal].engaged;
-    appendedChildPedal.checkbox.onClick = SetEngaged(this);
+    document.getElementById(`${pedal.replace('.yaml','')}-engaged-checkbox`).checked = currentPart.pedals[pedal].engaged;
   });
 }
 
@@ -216,7 +214,9 @@ function createEditableRemovableListItem(id, clickFunctionStr, type) {
   listItem = createRemovableListItem(id, clickFunctionStr);
   listItem.appendChild(createEditLinkA(id, type));
   if (type.localeCompare('pedal') == 0) {
-    listItem.appendChild(createEngagedCheckbox(id));
+    engagedCheckbox = createEngagedCheckbox(id)
+    engagedCheckbox.addEventListener("click", SetEngaged, false);
+    listItem.appendChild();
   }
   return listItem;
 }
