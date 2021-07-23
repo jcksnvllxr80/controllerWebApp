@@ -140,7 +140,9 @@ function reloadPedalsContent() {
   currentPart = songBeingEditedJson.parts[document.getElementById("edit-part-name-input").value];
   Object.keys(currentPart.pedals).forEach(pedal => {
     currentPedalList.appendChild(createEditableRemovableListItem(pedal, clickFunctionStr, "pedal"));
-    document.getElementById(`${pedal.replace('.yaml','')}-engaged-checkbox`).checked = currentPart.pedals[pedal].engaged;
+    appendedChildPedal = document.getElementById(`${pedal.replace('.yaml','')}-engaged-checkbox`);
+    appendedChildPedal.checked = currentPart.pedals[pedal].engaged;
+    // appendedChildPedal.checkbox.
   });
 }
 
