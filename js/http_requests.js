@@ -424,7 +424,7 @@ function removePedalFromPart(partName, pedalToRemove) {
   partBeingEditedJson = getJsonForSongDotYaml(`${songName}.yaml`).parts[partName];
   if (pedalToRemove == document.getElementById("display-pedal-name").value)
   { // hide the pedal settings editor content if the pedal being deleted is displayed there
-    document.getElementById(`pedal-edit-window`).hidden = true;
+    hideEditContent('pedal', true);
   }
   delete partBeingEditedJson.pedals[`${pedalToRemove}.yaml`];
   redrawCurrentPedalsInPart(partBeingEditedJson);
@@ -498,8 +498,8 @@ function removeAllTabContentListChildNodes(parent) {
 }
 
 function modifySong(songFileName) {
-  document.getElementById(`part-edit-window`).hidden = true;
-  document.getElementById(`pedal-edit-window`).hidden = true;
+  hideEditContent('part', true);
+  hideEditContent('pedal', true);
   console.debug(`Editing song, \'${songFileName}\'.`);
   hideEditContent('song', false);
   document.getElementById(`song-edit-content`).value = songFileName;
@@ -508,7 +508,7 @@ function modifySong(songFileName) {
 
 function modifyPart(editObj) {
   // hide the pedal settings editor content everytime a configure part button pressed
-  document.getElementById(`pedal-edit-window`).hidden = true;
+  hideEditContent('pedal', true);
   songFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.parentNode.value;
   partName = editObj.replace("edit-", "");
   console.debug(`Editing part, \'${partName}\' of \'${songFileName}\'.`);
