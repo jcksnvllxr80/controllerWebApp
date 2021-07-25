@@ -498,7 +498,7 @@ function removeAllTabContentListChildNodes(parent) {
 }
 
 function modifySong(songFileName) {
-  // hideEditContent('part', true);
+  hideEditContent('part', true);
   hideEditContent('pedal', true);
   console.debug(`Editing song, \'${songFileName}\'.`);
   hideEditContent('song', false);
