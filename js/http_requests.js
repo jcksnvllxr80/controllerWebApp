@@ -147,8 +147,8 @@ function reloadPedalsContent() {
 function SetEngaged(engagedCheckboxClicked) {
   songName = `${document.getElementById("song-name-input").value}.yaml`;
   songBeingEditedJson = getJsonForSongDotYaml(songName);
-  checked = document.getElementById(engagedCheckboxClicked.toElement.name).checked;
-  pedalName = engagedCheckboxClicked.toElement.name.replace('-engaged-checkbox', '');
+  checked = engagedCheckboxClicked.currentTarget.checked;
+  pedalName = engagedCheckboxClicked.currentTarget.name.replace('-engaged-checkbox', '');
   console.debug(`${pedalName} engaged checkbox set to ${checked}.`);
   currentPart = songBeingEditedJson.parts[document.getElementById("edit-part-name-input").value];
   currentPart.pedals[pedalName].engaged = checked;
