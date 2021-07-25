@@ -844,7 +844,7 @@ function addSelectedPedalToPart(addPedalBtn) {
   partName = document.getElementById("part-name-edit-label").parentNode.value;
   partBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partName];
   if (!Object.keys(partBeingEditedJson.pedals).includes(selectedPedal.concat('.yaml'))) {
-    console.debug(`Add ${selectedPedal} to part, \'${partName}\' of song, \'${songFileName}\'.`);
+    console.debug(`Add pedal \'${selectedPedal}\' to part, \'${partName}\' of song, \'${songFileName}\'.`);
     initNewPedal(partBeingEditedJson, selectedPedal);
     redrawCurrentPedalsInPart(partBeingEditedJson);
   } else {
