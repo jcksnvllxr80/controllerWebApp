@@ -498,6 +498,8 @@ function removeAllTabContentListChildNodes(parent) {
 }
 
 function modifySong(songFileName) {
+  document.getElementById(`part-edit-window`).hidden = true;
+  document.getElementById(`pedal-edit-window`).hidden = true;
   console.debug(`Editing song, \'${songFileName}\'.`);
   hideEditContent('song', false);
   document.getElementById(`song-edit-content`).value = songFileName;
@@ -505,11 +507,8 @@ function modifySong(songFileName) {
 }
 
 function modifyPart(editObj) {
-  // hide the pedal settings editor content (if open) everytime a configure part button pressed
-  if (!document.getElementById(`pedal-edit-window`).hidden)
-  {
-    document.getElementById(`pedal-edit-window`).hidden = true;
-  }
+  // hide the pedal settings editor content everytime a configure part button pressed
+  document.getElementById(`pedal-edit-window`).hidden = true;
   songFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.parentNode.value;
   partName = editObj.replace("edit-", "");
   console.debug(`Editing part, \'${partName}\' of \'${songFileName}\'.`);
