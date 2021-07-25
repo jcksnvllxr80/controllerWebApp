@@ -555,7 +555,7 @@ function populatePartEditContent(partName, songFileName) {
 }
 
 function populatePedalEditContent(pedalName, songFileName, partFileName) {
-  pedalBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partFileName].pedals[pedalName.concat('.yaml')];
+  pedalBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partFileName].pedals[pedalName];
   document.getElementById("display-pedal-name").value = pedalName;
   // drawAvailablePedalSettings(pedalBeingEditedJson);
   redrawCurrentSettingsInPedal(pedalBeingEditedJson);
