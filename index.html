@@ -173,12 +173,6 @@
 					<label for="display-pedal-name" id="pedal-name-display-label">Pedal Name:</label><br>
 					<input type="text" id="display-pedal-name" name="display-pedal-name" disabled="true">
 					<hr></hr>
-					<!-- <label for="edit-pedal-settings-list" id="pedal-settings-list-edit-label">Settings to Add:</label><br>
-					<select class="settings-select" id="pedal-settings-edit-select" name="edit-pedal-settings-list"></select>
-					<a class="edit-adder" id="edit-pedal-adder">
-						<img class="plus" onclick="addSelectedSettingToPedal(this.parentNode)" src="assets/plus.png">
-					</a><br>
-					<hr></hr> -->
 					<label for="show-pedal-settings-list" id="show-pedal-settings-list-label">Pedal Settings:</label><br>
 					<ol class="pedal-current-settings-list" id="pedal-current-settings-list" name="show-pedal-settings-list"></ol>
 					<hr></hr>
@@ -186,8 +180,14 @@
 						<div class="pedal-settings-content" id="setting-edit-content" hidden="true">
 							<label for="display-pedal-preset" id="pedal-preset-display-label">Preset:</label><br>
 							<select class="pedal-preset-select" id="pedal-preset-select" name="pedal-preset-list"></select><br>
+							<a class="edit-preset-check" id="edit-preset-enter">
+								<img class="check" onclick="replaceOldPresetWithNewPreset()" src="assets/check.png">
+							</a>
 							<label for="display-pedal-params" id="pedal-params-display-label">Parameters:</label><br>
 							<select class="pedal-param-select" id="pedal-param-select" name="pedal-param-list"></select>
+							<a class="edit-adder" id="edit-pedal-adder">
+								<img class="plus" onclick="addSelectedSettingToPedal(this.parentNode)" src="assets/plus.png">
+							</a><br>
 						</div>
 						<hr></hr>
 					</div>
