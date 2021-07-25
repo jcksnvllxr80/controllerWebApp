@@ -426,7 +426,7 @@ function removePedalFromPart(partName, pedalToRemove) {
   { // hide the pedal settings editor content if the pedal being deleted is displayed there
     hideEditContent('pedal', true);
   }
-  delete partBeingEditedJson.pedals[`${pedalToRemove}.yaml`];
+  delete partBeingEditedJson.pedals[pedalToRemove];
   redrawCurrentPedalsInPart(partBeingEditedJson);
 }
 
