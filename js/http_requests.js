@@ -562,7 +562,7 @@ function populatePedalEditContent(pedalName, songFileName, partFileName) {
 }
 
 function populateSettingEditContent(pedalName, songFileName, partName, settingGroupName) {
-  settingsJson = getJsonForSongDotYaml(songFileName).parts[partName].pedals[pedalName.concat('.yaml')];
+  settingsJson = getJsonForSongDotYaml(songFileName).parts[partName].pedals[pedalName];
   // document.getElementById("display-settings-name").value = settingGroupName;
   if (settingGroupName == "preset") {
     drawAvailablePresetsInPedal(pedalName.concat('.yaml'));
