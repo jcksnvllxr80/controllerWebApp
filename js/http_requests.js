@@ -519,7 +519,7 @@ function modifyPart(editObj) {
 
 function modifyPedal(editObj) {
   songFileName = document.getElementById("song-name-edit-label").parentNode.value
-  partFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.parentNode.value;
+  partFileName = document.getElementById(editObj).parentNode.parentNode.parentNode.value;
   pedalName = editObj.replace("edit-", "");
   console.debug(`Editing pedal, \'${pedalName}\' of the \'${partFileName}\' for \'${songFileName}\'.`);
   hideEditContent('pedal', false);
@@ -555,20 +555,20 @@ function populatePartEditContent(partName, songFileName) {
 }
 
 function populatePedalEditContent(pedalName, songFileName, partFileName) {
-  pedalBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partFileName].pedals[pedalName.concat('.yaml')];
+  pedalBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partFileName].pedals[pedalName];
   document.getElementById("display-pedal-name").value = pedalName;
   // drawAvailablePedalSettings(pedalBeingEditedJson);
   redrawCurrentSettingsInPedal(pedalBeingEditedJson);
 }
 
 function populateSettingEditContent(pedalName, songFileName, partName, settingGroupName) {
-  settingsJson = getJsonForSongDotYaml(songFileName).parts[partName].pedals[pedalName.concat('.yaml')];
+  settingsJson = getJsonForSongDotYaml(songFileName).parts[partName].pedals[pedalName];
   // document.getElementById("display-settings-name").value = settingGroupName;
   if (settingGroupName == "preset") {
-    drawAvailablePresetsInPedal(pedalName.concat('.yaml'));
+    drawAvailablePresetsInPedal(pedalName);
     redrawCurrentPresetInPedal(settingsJson);
   } else if (settingGroupName == "params") {
-    drawAvailableParamsInPedal(pedalName.concat('.yaml'));
+    drawAvailableParamsInPedal(pedalName);
     redrawCurrentParamInPedal(settingsJson);
   } else {
     handleUnhandledPedalSettingsType(settingGroupName);
