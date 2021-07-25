@@ -555,20 +555,20 @@ function populatePartEditContent(partName, songFileName) {
 }
 
 function populatePedalEditContent(pedalName, songFileName, partFileName) {
-  pedalBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partFileName].pedals[pedalName];
+  pedalBeingEditedJson = getJsonForSongDotYaml(songFileName).parts[partFileName].pedals[pedalName.concat('.yaml')];
   document.getElementById("display-pedal-name").value = pedalName;
   // drawAvailablePedalSettings(pedalBeingEditedJson);
   redrawCurrentSettingsInPedal(pedalBeingEditedJson);
 }
 
 function populateSettingEditContent(pedalName, songFileName, partName, settingGroupName) {
-  settingsJson = getJsonForSongDotYaml(songFileName).parts[partName].pedals[pedalName];
+  settingsJson = getJsonForSongDotYaml(songFileName).parts[partName].pedals[pedalName.concat('.yaml')];
   // document.getElementById("display-settings-name").value = settingGroupName;
   if (settingGroupName == "preset") {
-    drawAvailablePresetsInPedal(pedalName);
+    drawAvailablePresetsInPedal(pedalName.concat('.yaml'));
     redrawCurrentPresetInPedal(settingsJson);
   } else if (settingGroupName == "params") {
-    drawAvailableParamsInPedal(pedalName);
+    drawAvailableParamsInPedal(pedalName.concat('.yaml'));
     redrawCurrentParamInPedal(settingsJson);
   } else {
     handleUnhandledPedalSettingsType(settingGroupName);
