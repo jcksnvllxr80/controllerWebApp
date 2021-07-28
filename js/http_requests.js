@@ -216,8 +216,8 @@ function createListItem(id, itemType) {
 function createRemovableListItem(id, clickFunctionStr) {
   var listItem = document.createElement("li");
   listItem.setAttribute('class', 'edit-config-list-item');
+  listItem.appendChild(createRemovableLinkA(id));
   if (clickFunctionStr) {
-    listItem.appendChild(createRemovableLinkA(id));
     listItem.appendChild(createRemoveLinkA(id, clickFunctionStr));
   }
   return listItem;
