@@ -721,7 +721,7 @@ function redrawCurrentPedalsInPart(partBeingEditedJson) {
 }
 
 function redrawCurrentSettingsInPedal(pedalBeingEditedJson) {
-  clickFunctionStr = "remSettingFromPedalBtnAction";
+  // clickFunctionStr = "remSettingFromPedalBtnAction";
   currentPedalSettingsList = document.getElementById("pedal-current-settings-list");
   removeAllChildNodes(currentPedalSettingsList);
   redrawPedalContent();
@@ -730,7 +730,7 @@ function redrawCurrentSettingsInPedal(pedalBeingEditedJson) {
 
 function reloadSettingsContent(pedalBeingEditedJson) {
   Object.keys(pedalBeingEditedJson).filter(setting => setting != "engaged").forEach(setting => {
-    currentPedalSettingsList.appendChild(createEditableRemovableListItem(setting, clickFunctionStr, "setting"));
+    currentPedalSettingsList.appendChild(createEditLinkA(setting, "setting"));
   });
 }
 
