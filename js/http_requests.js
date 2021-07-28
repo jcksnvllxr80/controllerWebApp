@@ -731,17 +731,17 @@ function redrawCurrentSettingsInPedal(pedalBeingEditedJson) {
 }
 
 function reloadSettingsContent(pedalBeingEditedJson, clickFunctionStr=null) {
-  Object.keys(pedalBeingEditedJson).filter(setting => setting != "engaged").forEach(setting => {
-    currentPedalSettingsList.appendChild(createEditableRemovableListItem(setting, clickFunctionStr, "setting"));
-    addSettingSubcategoryList(pedalBeingEditedJson[setting]);
+  Object.keys(pedalBeingEditedJson).filter(settingType => settingType != "engaged").forEach(settingType => {
+    currentPedalSettingsList.appendChild(createEditableRemovableListItem(settingType, clickFunctionStr, "setting"));
+    addSettingSubcategoryList(pedalBeingEditedJson[settingType]);
   });
 }
 
 function addSettingSubcategoryList(pedalSettingsCategoryJson) {
   if (pedalSettingsCategoryJson) {
-    Object.keys(pedalSettingsCategoryJson).forEach(presetOrParam => {
-      clickFunctionStr = `remove${presetOrParam}FromPedalSettings`;
-      currentPedalSettingsList.appendChild(createEditableRemovableListItem(presetOrParam, clickFunctionStr, "presetOrParam"));
+    Object.keys(pedalSettingsCategoryJson).forEach(setting => {
+      clickFunctionStr = `remove${setting}FromPedalSettings`;
+      currentPedalSettingsList.appendChild(createEditableRemovableListItem(setting, clickFunctionStr, "setting"));
     });
   }
 }
