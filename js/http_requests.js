@@ -216,8 +216,10 @@ function createListItem(id, itemType) {
 function createRemovableListItem(id, clickFunctionStr) {
   var listItem = document.createElement("li");
   listItem.setAttribute('class', 'edit-config-list-item');
-  listItem.appendChild(createRemovableLinkA(id));
-  listItem.appendChild(createRemoveLinkA(id, clickFunctionStr));
+  if (clickFunctionStr) {
+    listItem.appendChild(createRemovableLinkA(id));
+    listItem.appendChild(createRemoveLinkA(id, clickFunctionStr));
+  }
   return listItem;
 }
 
@@ -728,9 +730,9 @@ function redrawCurrentSettingsInPedal(pedalBeingEditedJson) {
   reloadSettingsContent(pedalBeingEditedJson);
 }
 
-function reloadSettingsContent(pedalBeingEditedJson) {
+function reloadSettingsContent(pedalBeingEditedJson, clickFunctionStr=null) {
   Object.keys(pedalBeingEditedJson).filter(setting => setting != "engaged").forEach(setting => {
-    currentPedalSettingsList.appendChild(createEditLinkA(setting, "setting"));
+    currentPedalSettingsList.appendChild(createEditableRemovableListItem(setting, clickFunctionStr, "setting"));
   });
 }
 
