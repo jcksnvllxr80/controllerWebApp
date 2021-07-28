@@ -737,8 +737,7 @@ function reloadSettingsContent(pedalBeingEditedJson, clickFunctionStr=null) {
   });
 }
 
-addSettingSubcategoryList(pedalSettingsCategoryJson) 
-{
+function addSettingSubcategoryList(pedalSettingsCategoryJson) {
   if (pedalSettingsCategoryJson) {
     Object.keys(pedalSettingsCategoryJson).forEach(presetOrParam => {
       clickFunctionStr = `remove${presetOrParam}FromPedalSettings`;
