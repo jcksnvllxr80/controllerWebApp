@@ -864,10 +864,32 @@ function addSelectedPedalToPart(addPedalBtn) {
   }
 }
 
-function addSelectedSettingToPedal(addPartBtn) {
-  selectedSetting = document.getElementById('pedal-settings-edit-select').value;
-  // songName = addPartBtn.parentNode.value;
-  // partsInSong = getJsonForSongDotYaml(songName).parts;
+function addSelectedParamToPedal(addPedalParamBtn) {
+  selectedSetting = document.getElementById('pedal-param-select').value;
+  songName = document.getElementById("song-name-edit-label").parentNode.value;
+  selectedPart = document.getElementById('song-part-edit-select').value;
+  currentPart = getJsonForSongDotYaml(songName).parts[selectedPart];
+  pedalName = document.getElementById("display-pedal-name").value
+  pedalJson = currentPart.pedals[pedalName];
+  // if (!Object.keys(partsInSong).includes(selectedPart)) {
+  //   console.debug(`Add ${selectedPart} to song, \'${songName}\'.`);
+  //   if (songName in songConfigDict) {
+  //     wipSongConfigDict[songName] = getJsonForSongDotYaml(songName);
+  //     delete songConfigDict[songName];
+  //   }
+  //   initNewPart(songName, selectedPart);
+  // } else {
+  //   console.warn(`Not added! Part, \'${selectedPart}\', already in song, \'${songName}\'.`)
+  // }
+}
+
+function replaceOldPresetWithNewPreset(addPedalPresetBtn) {
+  selectedSetting = document.getElementById('pedal-preset-select').value;
+  songName = document.getElementById("song-name-edit-label").parentNode.value;
+  selectedPart = document.getElementById('song-part-edit-select').value;
+  currentPart = getJsonForSongDotYaml(songName).parts[selectedPart];
+  pedalName = document.getElementById("display-pedal-name").value
+  pedalJson = currentPart.pedals[pedalName];
   // if (!Object.keys(partsInSong).includes(selectedPart)) {
   //   console.debug(`Add ${selectedPart} to song, \'${songName}\'.`);
   //   if (songName in songConfigDict) {
