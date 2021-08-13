@@ -884,22 +884,11 @@ function addSelectedParamToPedal(addPedalParamBtn) {
 }
 
 function replaceOldPresetWithNewPreset(addPedalPresetBtn) {
-  selectedSetting = document.getElementById('pedal-preset-select').value;
   songName = document.getElementById("song-name-edit-label").parentNode.value;
   selectedPart = document.getElementById('song-part-edit-select').value;
   currentPart = getJsonForSongDotYaml(songName).parts[selectedPart];
   pedalName = document.getElementById("display-pedal-name").value
-  pedalJson = currentPart.pedals[pedalName];
-  // if (!Object.keys(partsInSong).includes(selectedPart)) {
-  //   console.debug(`Add ${selectedPart} to song, \'${songName}\'.`);
-  //   if (songName in songConfigDict) {
-  //     wipSongConfigDict[songName] = getJsonForSongDotYaml(songName);
-  //     delete songConfigDict[songName];
-  //   }
-  //   initNewPart(songName, selectedPart);
-  // } else {
-  //   console.warn(`Not added! Part, \'${selectedPart}\', already in song, \'${songName}\'.`)
-  // }
+  currentPart.pedals[pedalName].preset = document.getElementById('pedal-preset-select').value;
 }
 
 function changePartNameSelectEventHandler() {
@@ -1220,9 +1209,9 @@ function replaceOldSongNameWithNewSongName() {
 }
 
 function replaceOldPartNameWithNewPartName() {
-  // var editSongNameTextField = document.getElementById("song-name-input");
-  // var oldSongName = editSongNameTextField.parentNode.value;
-  // if (oldSongName.localeCompare(`${editSongNameTextField.value}.yaml`) != 0) {
+  // var editPartNameTextField = document.getElementById("song-name-input");
+  // var oldPartName = editPartNameTextField.parentNode.value;
+  // if (oldPartName.localeCompare(`${editPartNameTextField.value}.yaml`) != 0) {
   //   if (Object.keys(getJsonForSongDotYaml(oldSongName).parts).length > 0) {
   //     console.debug(`Changing old song name, \'${oldSongName}\', to new song name, \'${editSongNameTextField.value}.yaml\'.`)
   //     changeSongNameInGlobal(oldSongName, editSongNameTextField.value);
