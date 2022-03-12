@@ -1209,21 +1209,25 @@ function replaceOldSongNameWithNewSongName() {
 }
 
 function replaceOldPartNameWithNewPartName() {
-  // var editPartNameTextField = document.getElementById("song-name-input");
-  // var oldPartName = editPartNameTextField.parentNode.value;
-  // if (oldPartName.localeCompare(`${editPartNameTextField.value}.yaml`) != 0) {
-  //   if (Object.keys(getJsonForSongDotYaml(oldSongName).parts).length > 0) {
-  //     console.debug(`Changing old song name, \'${oldSongName}\', to new song name, \'${editSongNameTextField.value}.yaml\'.`)
-  //     changeSongNameInGlobal(oldSongName, editSongNameTextField.value);
-  //     editSongNameTextField.parentNode.value = `${editSongNameTextField.value}.yaml`;
-  //   } else {
-  //     alertMsg = `Song name, \'${oldSongName}\' has no parts yet! Please add parts and then change the name.`;
-  //     console.error(alertMsg)
-  //     alert(alertMsg);
-  //   }
-  // } else {
-  //   console.debug(`Not changing song name, \'${oldSongName}\', because that is already the song name.`)
-  // }
+  var editPartNameTextField = document.getElementById("edit-part-name-input");
+  var oldPartName = editPartNameTextField.parentNode.value;
+  if (oldPartName.localeCompare(`${editPartNameTextField.value}`) != 0) {
+    songName = document.getElementById("song-name-input").parentNode.value
+    console.debug(`Changing old part name, \'${oldPartName}\', to new part name, \'${editPartNameTextField.value}\'.`)
+    renameKey(getJsonForSongDotYaml(songName).parts, oldPartName, editPartNameTextField.value);
+    editPartNameTextField.parentNode.value = `${editPartNameTextField.value}`;
+    redrawCurrentPartsInSong(songName)
+  } else {
+    console.debug(`Not changing part name, \'${oldPartName}\', because that is already the part name.`)
+  }
+}
+
+function renameKey(object, key, newKey) {
+  const clonedObj = object;
+  const targetKey = clonedObj[key];
+  delete clonedObj[key];
+  clonedObj[newKey] = targetKey;
+  return clonedObj;
 }
 
 function setSongTempo() {
