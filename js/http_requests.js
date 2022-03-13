@@ -871,24 +871,29 @@ function addSelectedParamToPedal(addPedalParamBtn) {
   currentPart = getJsonForSongDotYaml(songName).parts[selectedPart];
   pedalName = document.getElementById("display-pedal-name").value
   pedalJson = currentPart.pedals[pedalName];
-  // if (!Object.keys(partsInSong).includes(selectedPart)) {
-  //   console.debug(`Add ${selectedPart} to song, \'${songName}\'.`);
-  //   if (songName in songConfigDict) {
-  //     wipSongConfigDict[songName] = getJsonForSongDotYaml(songName);
-  //     delete songConfigDict[songName];
-  //   }
-  //   initNewPart(songName, selectedPart);
-  // } else {
-  //   console.warn(`Not added! Part, \'${selectedPart}\', already in song, \'${songName}\'.`)
-  // }
+  logStr = `\'${selectedSetting}\' in song, \'${songName}\', part, \'${selectedPart}\', pedal \'${pedalName}\'.`;
+  if (!currentPart.pedals[pedalName].params.hasOwnProperty(selectedSetting)) {
+    currentPart.pedals[pedalName].params[selectedSetting] = {};
+    console.log(`Added param. ${logStr}`);
+  } else {
+    console.warn(`Did not add param. ${logStr}`);
+  }
 }
 
 function replaceOldPresetWithNewPreset(addPedalPresetBtn) {
   songName = document.getElementById("song-name-edit-label").parentNode.value;
   selectedPart = document.getElementById('song-part-edit-select').value;
   currentPart = getJsonForSongDotYaml(songName).parts[selectedPart];
-  pedalName = document.getElementById("display-pedal-name").value
-  currentPart.pedals[pedalName].preset = document.getElementById('pedal-preset-select').value;
+  pedalName = document.getElementById("display-pedal-name").value;
+  newPreset = document.getElementById('pedal-preset-select').value;
+  logStr = `\'${newPreset}\' in song, \'${songName}\', part, \'${selectedPart}\', pedal \'${pedalName}\'.`;
+  if (newPreset.localeCompare(currentPart.pedals[pedalName].preset) != 0) {
+    currentPart.pedals[pedalName].preset = newPreset;
+    console.log(`Set preset to ${logStr}`);
+  } else {
+    console.warn(`Did not change preset. Preset was already ${logStr}`);
+  }
+
 }
 
 function changePartNameSelectEventHandler() {
