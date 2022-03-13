@@ -287,10 +287,14 @@ function createRemoveLinkA(id, clickFunctionStr) {
   return editLink;
 }
 
-function createOption(content) {
+function createOption(content, friendly_name=null) {
   content = content.replace('.yaml', '')
   var option = document.createElement("option");
-  option.setAttribute('value', content);
+  if (friendly_name) {
+    option.setAttribute('value', friendly_name);
+  } else {
+    option.setAttribute('value', content);
+  }
   option.setAttribute('class', 'select-option');
   option.textContent = content;
   return option;
@@ -624,10 +628,16 @@ function drawAvailablePedalSettings(pedalBeingEditedJson) {
 function drawAvailablePresetsInPedal(pedalFileName) {
   pedalSetPresetDict = pedalConfigDict[pedalFileName]["Set Preset"];
   selectPedalPreset = document.getElementById("pedal-preset-select");
-  removeAllChildNodes(selectPedalPreset);  
-  getPresetList(pedalSetPresetDict).forEach(setting => {
-    selectPedalPreset.appendChild(createOption(setting.toString()));
-  });
+  removeAllChildNodes(selectPedalPreset);
+  if ('display' in pedalSetPresetDict) {
+    getPresetDisplayDict(pedalSetPresetDict).forEach((setting, display) => {
+      selectPedalPreset.appendChild(createOption(setting.toString(), display.toString()));
+    });
+  } else {
+    getPresetList(pedalSetPresetDict).forEach(setting => { 
+      selectPedalPreset.appendChild(createOption(setting.toString())); 
+    });
+  }
   selectPedalPreset.value = selectPedalPreset.firstChild.value;
 }
 
@@ -657,6 +667,20 @@ function redrawCurrentParamInPedal(settingsJson) {
   //   selectPedalSettingsList.appendChild(createOption(setting));
   // });
   // selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
+}
+
+function getPresetDisplayDict(pedalSetPresetDict) {
+  range = getPresetList(pedalSetPresetDict);
+  display_params = pedalSetPresetDict['display'];
+  first_page = display_params['first_page'];
+  page_width = display_params['page_width'];
+  preset_start_num = Math.min(...range);
+  func = (preset) => { 
+    page_num = parseInt((preset - preset_start_num) / page_width) + first_page;
+    preset_num = (preset % page_width) + (1 - preset_start_num);
+    return `Pg${page_num}-Btn${preset_num}`;
+  };
+  return range.map(func);
 }
 
 function getPresetList(pedalSetPresetDict) {
