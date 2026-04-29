@@ -355,6 +355,31 @@ function createEngagedCheckbox(pedalFileName) {
   return checkbox
 }
 
+function createParamEngagedCheckbox(paramName, engaged) {
+  var checkbox = document.createElement('input');
+  checkbox.setAttribute('type', 'checkbox');
+  checkbox.setAttribute('name', `${paramName}-param-engaged-checkbox`);
+  checkbox.checked = engaged || false;
+  checkbox.setAttribute('id', `${paramName}-param-engaged-checkbox`);
+  checkbox.setAttribute('class', 'engaged');
+  return checkbox;
+}
+
+function setParamEngaged(engagedCheckboxClicked) {
+  songName = document.getElementById("song-edit-content").value;
+  partName = document.getElementById("part-edit-content").value;
+  pedalName = document.getElementById("display-pedal-name").value;
+  checked = engagedCheckboxClicked.currentTarget.checked;
+  paramName = engagedCheckboxClicked.currentTarget.name.replace('-param-engaged-checkbox', '');
+  console.debug(`${paramName} param engaged set to ${checked}.`);
+  if (songName in songConfigDict) {
+    moveSongToWipConfig(songName);
+    redrawSongsContent();
+  }
+  currentPedal = getJsonForSongDotYaml(songName).parts[partName].pedals[pedalName];
+  currentPedal.params[paramName].engaged = checked;
+}
+
 function editListItem(btnObj) {
   editType = btnObj.parentNode.name;
   editObj = btnObj.id;
@@ -630,12 +655,14 @@ function drawAvailablePresetsInPedal(pedalFileName) {
   selectPedalPreset = document.getElementById("pedal-preset-select");
   removeAllChildNodes(selectPedalPreset);
   if ('display' in pedalSetPresetDict) {
-    getPresetDisplayDict(pedalSetPresetDict).forEach((setting, display) => {
-      selectPedalPreset.appendChild(createOption(setting.toString(), display.toString()));
+    const range = getPresetList(pedalSetPresetDict);
+    const displayLabels = getPresetDisplayDict(pedalSetPresetDict);
+    range.forEach((presetNum, i) => {
+      selectPedalPreset.appendChild(createOption(displayLabels[i].toString(), presetNum.toString()));
     });
   } else {
-    getPresetList(pedalSetPresetDict).forEach(setting => { 
-      selectPedalPreset.appendChild(createOption(setting.toString())); 
+    getPresetList(pedalSetPresetDict).forEach(setting => {
+      selectPedalPreset.appendChild(createOption(setting.toString()));
     });
   }
   selectPedalPreset.value = selectPedalPreset.firstChild.value;
@@ -758,7 +785,17 @@ function reloadSettingsContent(pedalBeingEditedJson) {
 function addParamSubcategoryList(paramsJson) {
   if (paramsJson) {
     Object.keys(paramsJson).forEach(paramName => {
-      currentPedalSettingsList.appendChild(createRemovableListItem(paramName, "remSettingFromPedalBtnAction"));
+      var listItem = createRemovableListItem(paramName, "remSettingFromPedalBtnAction");
+      var paramValue = paramsJson[paramName];
+      if (paramValue && typeof paramValue === 'object' && paramValue.hasOwnProperty('engaged')) {
+        if (paramValue.name) {
+          listItem.firstChild.textContent = `${paramName}: ${paramValue.name}`;
+        }
+        var checkbox = createParamEngagedCheckbox(paramName, paramValue.engaged);
+        checkbox.addEventListener("click", setParamEngaged, false);
+        listItem.appendChild(checkbox);
+      }
+      currentPedalSettingsList.appendChild(listItem);
     });
   }
 }
@@ -891,9 +928,12 @@ function addSelectedParamToPedal(addPedalParamBtn) {
     redrawSongsContent();
   }
   currentPart = getJsonForSongDotYaml(songName).parts[selectedPart];
+  if (!currentPart.pedals[pedalName].params) {
+    currentPart.pedals[pedalName].params = {};
+  }
   logStr = `\'${selectedSetting}\' in song, \'${songName}\', part, \'${selectedPart}\', pedal \'${pedalName}\'.`;
   if (!currentPart.pedals[pedalName].params.hasOwnProperty(selectedSetting)) {
-    currentPart.pedals[pedalName].params[selectedSetting] = {};
+    currentPart.pedals[pedalName].params[selectedSetting] = { engaged: false };
     console.log(`Added param. ${logStr}`);
     redrawCurrentSettingsInPedal(currentPart.pedals[pedalName]);
   } else {
@@ -905,14 +945,16 @@ function replaceOldPresetWithNewPreset(addPedalPresetBtn) {
   songName = document.getElementById("song-edit-content").value;
   selectedPart = document.getElementById('part-edit-content').value;
   pedalName = document.getElementById("display-pedal-name").value;
-  newPreset = document.getElementById('pedal-preset-select').value;
+  newPresetRaw = document.getElementById('pedal-preset-select').value;
   if (songName in songConfigDict) {
     moveSongToWipConfig(songName);
     redrawSongsContent();
   }
   currentPart = getJsonForSongDotYaml(songName).parts[selectedPart];
+  const originalPreset = currentPart.pedals[pedalName].preset;
+  const newPreset = (typeof originalPreset === 'number') ? Number(newPresetRaw) : newPresetRaw;
   logStr = `\'${newPreset}\' in song, \'${songName}\', part, \'${selectedPart}\', pedal \'${pedalName}\'.`;
-  if (newPreset.localeCompare(currentPart.pedals[pedalName].preset) != 0) {
+  if (newPreset !== originalPreset) {
     currentPart.pedals[pedalName].preset = newPreset;
     console.log(`Set preset to ${logStr}`);
   } else {
