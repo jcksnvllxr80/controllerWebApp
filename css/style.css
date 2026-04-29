@@ -129,12 +129,13 @@ html, body {
   width: 90%;
   max-width: 440px;
   min-width: 200px;
-  height: 150px;
+  height: 220px;
+  min-height: 120px;
   padding: 14px;
   font-size: 0.95rem;
   font-family: var(--font-mono);
   line-height: 1.5;
-  resize: none;
+  resize: vertical;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: var(--panel);
@@ -310,38 +311,51 @@ html, body {
   list-style-type: none;
   padding: 0;
   border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
 }
 
 .tab-content .config-list-item:last-of-type { border-bottom: none; }
 
-.tab-content .config-list-item > a {
-  display: block;
+/* Name link fills remaining space */
+.tab-content .config-list-item > a:first-child {
+  flex: 1;
   padding: 9px 10px;
   color: var(--text);
   text-decoration: none;
   font-size: 0.9rem;
   border-radius: var(--radius-sm);
   transition: background var(--t);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.tab-content .config-list-item > a:hover { background: var(--panel-hover); }
+.tab-content .config-list-item > a:first-child:hover { background: var(--panel-hover); }
+
+/* Icon links sit at the right, no float needed */
+.tab-content .config-list-item .delete-link,
+.tab-content .config-list-item .edit-link {
+  flex-shrink: 0;
+  padding: 4px 4px;
+  display: flex;
+  align-items: center;
+}
 
 .tab-content .config-list-item .delete {
-  float: right;
-  padding-top: 2px;
   cursor: pointer;
-  opacity: 0.45;
+  opacity: 0.4;
   transition: opacity var(--t);
+  display: block;
 }
 .tab-content .config-list-item .delete:hover { opacity: 1; }
 
 .tab-content .config-list-item .edit {
-  float: right;
-  padding-top: 2px;
-  padding-right: 6px;
   cursor: pointer;
-  opacity: 0.45;
+  opacity: 0.4;
   transition: opacity var(--t);
+  display: block;
 }
 .tab-content .config-list-item .edit:hover { opacity: 1; }
 
