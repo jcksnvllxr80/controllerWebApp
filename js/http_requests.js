@@ -402,24 +402,28 @@ function editListItem(btnObj) {
 function remSongFromSetBtnAction(remBtnObj) {
   songNameToRemove = remBtnObj.id.replace("remove-", "");
   setToRemoveSongFrom = document.getElementById("set-edit-content").value;
+  if (!confirm(`Remove "${songNameToRemove}" from this set?`)) return;
   removeSongFromSet(setToRemoveSongFrom, songNameToRemove);
 }
 
 function remPartFromSongBtnAction(remBtnObj) {
   partNameToRemove = remBtnObj.id.replace("remove-", "");
   songToRemovePartFrom = document.getElementById("song-edit-content").value;
+  if (!confirm(`Remove part "${partNameToRemove}" from this song?`)) return;
   removePartFromSong(songToRemovePartFrom, partNameToRemove);
 }
 
 function remPedalFromPartBtnAction(remBtnObj) {
   pedalNameToRemove = remBtnObj.id.replace("remove-", "");
   partToRemovePedalFrom = document.getElementById("part-edit-content").value;
+  if (!confirm(`Remove pedal "${pedalNameToRemove}" from this part?`)) return;
   removePedalFromPart(partToRemovePedalFrom, pedalNameToRemove);
 }
 
 function remSettingFromPedalBtnAction(remBtnObj) {
   settingNameToRemove = remBtnObj.id.replace("remove-", "");
   pedalToRemoveSettingFrom = document.getElementById("pedal-edit-content").value;
+  if (!confirm(`Remove parameter "${settingNameToRemove}" from this pedal?`)) return;
   removeSettingFromPedal(pedalToRemoveSettingFrom, settingNameToRemove);
 }
 
@@ -1145,13 +1149,15 @@ function deleteListItem(deleteBtn) {
   console.debug(`Delete button with id, \'${deleteBtn.id}\' was pressed.`);
   nameToDelete = deleteBtn.id.replace("delete-", "");
   filenameToDelete = `${nameToDelete}.yaml`;
-  deleteFileFromController(deleteBtn.parentNode.name, nameToDelete);
-  if (deleteBtn.parentNode.name.localeCompare('set') == 0) {
+  const type = deleteBtn.parentNode.name;
+  if (!confirm(`Permanently delete ${type} "${nameToDelete}"? This cannot be undone.`)) return;
+  deleteFileFromController(type, nameToDelete);
+  if (type.localeCompare('set') == 0) {
     deleteSetListItem(filenameToDelete);
-  } else if (deleteBtn.parentNode.name.localeCompare('song') == 0) {
+  } else if (type.localeCompare('song') == 0) {
     deleteSongListItem(filenameToDelete);
   }
-  hideEditContent(deleteBtn.parentNode.name, true);
+  hideEditContent(type, true);
 }
 
 function clearEditSetContent() {

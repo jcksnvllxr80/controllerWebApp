@@ -1,568 +1,616 @@
-.configurator-title {
-    display: block;
-    font-size: 1.5em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    padding-left: 5%;
-    padding-right: 5%;
-    font-weight: bold;
+/* ============================================================
+   MIDI Controller Configurator
+   ============================================================ */
+
+:root {
+  --panel:        rgba(10, 10, 20, 0.86);
+  --panel-raised: rgba(20, 20, 36, 0.93);
+  --panel-hover:  rgba(30, 30, 52, 0.98);
+  --accent:       #8b5cf6;
+  --accent-light: #a78bfa;
+  --accent-dim:   rgba(139, 92, 246, 0.18);
+  --danger:       #f87171;
+  --danger-dim:   rgba(248, 113, 113, 0.13);
+  --warning:      #fbbf24;
+  --success:      #4ade80;
+  --text:         #f1f5f9;
+  --text-dim:     #94a3b8;
+  --text-muted:   #64748b;
+  --border:       rgba(255, 255, 255, 0.1);
+  --radius-sm:    6px;
+  --radius:       10px;
+  --radius-lg:    14px;
+  --shadow:       0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-sm:    0 2px 8px rgba(0, 0, 0, 0.3);
+  --t:            0.15s ease;
+  --font:         Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:    ui-monospace, 'Courier New', monospace;
 }
 
-.container {
-    width: 1200px;
-    max-width: 100%;
-    padding: 0 15px;
-    margin: 0 auto;
-    box-sizing: border-box
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-width: 350px;
+  font-family: var(--font);
+  color: var(--text);
+  background: #080810;
 }
 
-.container1 {
-    width: auto;
-    max-width: 100%;
-    padding: 0 15px; 
-    margin: 0 auto;
-    box-sizing: border-box
-}
-
-.bloc {
-    margin-bottom: 75px
-}
-
-.canvas-interactive-wrapper {
-    position: relative;
-    height: auto;
-    text-align: center;
-    opacity: 0.85;
-}
-
-.canvas-interactive-wrapper canvas {
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-.canvas-interactive-wrapper .cta-wrapper {
-    margin-top: 25px;
-    margin-bottom: 25px;
-}
-
-.control-wrapper .cta-wrapper {
-    margin-top: 44px;
-    margin-bottom: 44px;
-}
-
-.control-wrapper .cta-wrapper-dpad {
-    margin-top: 4px;
-    margin-bottom: 4px;
-}
-
-pre {
-    border-radius: 4px
-}
-
-.canvas-interactive-wrapper .cta-wrapper a {
-    position: relative;
-    display: inline-block;
-    padding: 3px 7px;
-    border: solid 1px transparent;
-    margin-right: 10px;
-    margin-left: 10px;
-    z-index: 1;
-    text-decoration: none;
-    color: #222;
-    transition: border .3s;
-}
-
-.canvas-interactive-wrapper .cta-wrapper a.active {
-    border-color: #222;
-}
-
-.control-wrapper .cta-wrapper a {
-    position: relative;
-    display: inline-block;
-    padding: 3px 7px;
-    border: solid 1px transparent;
-    margin-right: 10px;
-    margin-left: 10px;
-    z-index: 1;
-    text-decoration: none;
-    color: #222;
-    transition: border .3s;
-    border-color: #222;
-} 
-
-.control-wrapper .cta-wrapper-dpad a {
-    position: relative;
-    display: inline-block;
-    padding: 3px 7px;
-    border: solid 1px transparent;
-    margin-right: 19px;
-    margin-left: 19px;
-    width: 19px;
-    height: 19px;
-    z-index: 1;
-    text-decoration: none;
-    color: #222;
-    transition: border .3s;
-    border-color: #222;
-}
+/* ── Canvas background ──────────────────────────────────── */
 
 .sandbox {
-    position: relative;
-    height: 20%;
-    border-radius: 0px;
-    background-color: #eee
-}
-
-.sandbox1 {
-    position: relative;
-    height: 25%;
-    border-radius: 0px
-}
-
-.sandbox2 {
-    position: relative;
-    height: 70%;
-    border-radius: 0px
+  position: relative;
+  height: auto;
 }
 
 .sandbox canvas {
-    position: absolute;
-    z-index:-1;
-    display: block;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: 0px
+  position: absolute;
+  z-index: -1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0; right: 0; bottom: 0; left: 0;
 }
 
-.sandbox1 canvas {
-    position: absolute;
-    z-index: 1;
-    display: contents;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: 0px
-}
+.sandbox1 { position: relative; height: auto; }
+.sandbox2 { position: relative; height: auto; }
 
-.sandbox-footer {
-    position: relative;
-    display: flex;
-    align-items: baseline;
-    padding: 10px 20px;
-    background-color: #f5f2f0;
-    margin-top: -4px;
-    border-radius: 0 0 4px 4px;
-    z-index: 1
-}
-
-.sandbox-footer .option {
-    font-size: 14px;
-    font-weight: bold;
-    margin-right: 15px
-}
-
-.sandbox-footer .option:last-child {
-    margin-right: 0
-}
-
-.sandbox-footer .option input[type=checkbox] {
-    position: relative;
-    top: 2px
-}
-
-.sandbox-footer .option select {
-    margin-left: 5px
-}
-
-.config-wrapper {
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 40px;
-    width: 90%;
-    opacity: 0.66;
-    z-index: 1
-}
-
-.control-wrapper {
-    position: relative;
-    height: auto;
-    text-align: center;
-    margin-top: 40px;
-    opacity: 0.66;
-    z-index: 1
-}
-
-.view-wrapper {
-    position: relative;
-    height: 75%;
-    text-align: center;
-    margin-top: 40px;
-    opacity: 0.66;
-    z-index: 1
-}
+/* ── Header / Nav ───────────────────────────────────────── */
 
 .canvas-interactive-wrapper {
-    text-align: center
+  text-align: center;
+  padding: 20px 16px 18px;
+  background: rgba(6, 6, 14, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
 }
 
-.tab-titles {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 -2px
+.configurator-title {
+  margin: 0 0 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
 }
 
-.tab-titles li {
-    display: inline-block
+/* Segmented nav pill */
+.canvas-interactive-wrapper .cta-wrapper {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 4px;
+  gap: 2px;
+  margin: 0;
 }
 
-.tab-titles li.active {
-    background-color: #f5f2f0;
-    border-radius: 4px 4px 0 0
+.canvas-interactive-wrapper .cta-wrapper a {
+  display: inline-block;
+  padding: 7px 22px;
+  border-radius: 50px;
+  border: none;
+  text-decoration: none;
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: color var(--t), background var(--t), box-shadow var(--t);
+  cursor: pointer;
 }
 
-.tab-titles li.active a {
-    font-weight: bold
+.canvas-interactive-wrapper .cta-wrapper a:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.tab-titles li a {
-    display: inline-block;
-    padding: 10px 20px 12px;
-    text-decoration: none;
-    color: #333
+.canvas-interactive-wrapper .cta-wrapper a.active {
+  color: #fff;
+  background: var(--accent);
+  box-shadow: 0 2px 10px rgba(139, 92, 246, 0.45);
 }
 
-.tab-content {
-    background-color: #f5f2f0;
-    border-radius: 4px;
-    padding-bottom: 15px;
-    height: 66%;
-    font-size: large;
-}
+/* ── Control State ──────────────────────────────────────── */
 
-.edit-box {
-    background-color: #f5f2f0;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    padding-bottom: 15px;
-    height: 10%;
-    max-height: 75%;
-    font-size: large;
-}
-
-.mini-edit-box {
-    background-color: #f5f2f0;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    padding-bottom: 15px;
-    max-height: 25%;
-    font-size: medium;
-}
-
-.config-wrapper .edit-box .set-content {
-    padding: 15px;
-}
-
-.config-wrapper .edit-box .song-content {
-    padding: 15px;
-}
-
-.config-wrapper .edit-box .part-content {
-    padding: 15px;
-}
-
-.config-wrapper .edit-box .pedal-content {
-    padding: 15px;
-}
-
-.config-wrapper .edit-box .pedal-settings-content {
-    padding-left: 5px;
-}
-
-.tab-content .tab {
-    padding: 15px;
-    display: none
-}
-
-.tab-content .tab.active {
-    display: block;
-}
-
-.controller-button {
-    background-color: #777777;
-    border: none;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 42px 2px;
-    cursor: pointer;
-    border-radius: 50%;
-    z-index: 1;
-}
-
-.controller-button:hover {
-    background-color: #AAAAAA;
-    color: blue;
+.control-wrapper {
+  position: relative;
+  z-index: 1;
+  padding: 28px 20px 36px;
+  text-align: center;
+  opacity: 1;
 }
 
 .controller-display {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    height: 200px;
-    width: 90%;
-    min-width: 200px;
-    font-size: large;
-    font-family: ui-monospace;
-    resize: none;
-    border-radius: 4px;
-    border: none;
+  display: block;
+  margin: 0 auto 28px;
+  width: 90%;
+  max-width: 440px;
+  min-width: 200px;
+  height: 150px;
+  padding: 14px;
+  font-size: 0.95rem;
+  font-family: var(--font-mono);
+  line-height: 1.5;
+  resize: none;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  backdrop-filter: blur(8px);
+}
+
+/* D-pad */
+.dpad {
+  display: grid;
+  grid-template-areas:
+    ". up ."
+    "left center right"
+    ". down .";
+  grid-template-columns: 52px 52px 52px;
+  grid-template-rows: 52px 52px 52px;
+  gap: 3px;
+  margin: 0 auto 24px;
+  width: fit-content;
+}
+
+.dpad-up    { grid-area: up; }
+.dpad-left  { grid-area: left; }
+.dpad-center {
+  grid-area: center;
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.dpad-right { grid-area: right; }
+.dpad-down  { grid-area: down; }
+
+.dpad-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--t), border-color var(--t), transform var(--t), color var(--t);
+}
+
+.dpad-btn:hover  { background: var(--accent-dim); border-color: var(--accent-light); color: var(--accent-light); }
+.dpad-btn:active { transform: scale(0.93); }
+
+/* Control action buttons */
+.control-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.button-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.ctrl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 82px;
+  padding: 10px 16px;
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--t), border-color var(--t), color var(--t), transform var(--t);
+}
+
+.ctrl-btn:hover  { background: var(--accent-dim); border-color: var(--accent-light); color: var(--accent-light); }
+.ctrl-btn:active { transform: scale(0.95); }
+
+.ctrl-btn.select-btn {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent-light);
+  font-weight: 600;
+}
+.ctrl-btn.select-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 3px 12px rgba(139, 92, 246, 0.4);
+}
+
+/* ── Configure State ────────────────────────────────────── */
+
+.config-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 24px auto 40px;
+  padding: 0 16px;
+  opacity: 1;
+}
+
+/* Tabs */
+.tab-titles {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 -1px;
+  display: flex;
+  gap: 4px;
+}
+
+.tab-titles li { display: inline-block; }
+
+.tab-titles li a {
+  display: inline-block;
+  padding: 8px 20px 10px;
+  text-decoration: none;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: var(--radius) var(--radius) 0 0;
+  border: 1px solid transparent;
+  border-bottom: none;
+  transition: color var(--t), background var(--t);
+}
+
+.tab-titles li.active a {
+  color: var(--text);
+  font-weight: 600;
+  background: var(--panel);
+  border-color: var(--border);
+}
+
+.tab-titles li:not(.active) a:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-content {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0 var(--radius) var(--radius) var(--radius);
+  padding: 0;
+  font-size: 1rem;
+}
+
+.tab-content .tab {
+  padding: 12px 14px;
+  display: none;
+}
+
+.tab-content .tab.active { display: block; }
+
+/* List items in tabs */
+.tab-content .set-list,
+.tab-content .song-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tab-content .config-list-item {
+  list-style-type: none;
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab-content .config-list-item:last-of-type { border-bottom: none; }
+
+.tab-content .config-list-item > a {
+  display: block;
+  padding: 9px 10px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--t);
+}
+
+.tab-content .config-list-item > a:hover { background: var(--panel-hover); }
+
+.tab-content .config-list-item .delete {
+  float: right;
+  padding-top: 2px;
+  cursor: pointer;
+  opacity: 0.45;
+  transition: opacity var(--t);
+}
+.tab-content .config-list-item .delete:hover { opacity: 1; }
+
+.tab-content .config-list-item .edit {
+  float: right;
+  padding-top: 2px;
+  padding-right: 6px;
+  cursor: pointer;
+  opacity: 0.45;
+  transition: opacity var(--t);
+}
+.tab-content .config-list-item .edit:hover { opacity: 1; }
+
+.tab-content .add-item {
+  list-style-type: none;
+  border-top: 1px solid var(--border);
+  padding: 7px 10px;
+}
+
+.tab-content .add-item .adder {
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  transition: color var(--t);
+}
+
+.tab-content .add-item .adder:hover {
+  background: transparent;
+  color: var(--accent-light);
+}
+
+.tab-content .work-in-progress {
+  background: transparent;
+  border: none;
+  font-style: italic;
+  color: var(--warning);
+}
+
+/* ── Edit Boxes ─────────────────────────────────────────── */
+
+.edit-box {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-top: 10px;
+  padding: 0;
+  height: auto;
+  max-height: none;
+  font-size: 1rem;
+}
+
+.config-wrapper .edit-box .set-content,
+.config-wrapper .edit-box .song-content,
+.config-wrapper .edit-box .part-content,
+.config-wrapper .edit-box .pedal-content {
+  padding: 16px;
+}
+
+.config-wrapper .edit-box .pedal-settings-content {
+  padding-left: 6px;
+  padding-top: 4px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 14px 0;
+}
+
+/* Section labels */
+.edit-box label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* Text inputs */
+.edit-box input[type="text"] {
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 7px 10px;
+  font-size: 0.9rem;
+  font-family: var(--font);
+  width: calc(100% - 38px);
+  transition: border-color var(--t), box-shadow var(--t);
+}
+
+.edit-box input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-dim);
+}
+
+.edit-box input[type="text"]:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Selects */
+.edit-box select {
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 7px 10px;
+  font-size: 0.875rem;
+  font-family: var(--font);
+  max-width: calc(100% - 36px);
+  cursor: pointer;
+  transition: border-color var(--t);
+}
+
+.edit-box select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.config-wrapper .edit-box .song-select,
+.config-wrapper .edit-box .part-select,
+.config-wrapper .edit-box .tempo-select,
+.config-wrapper .edit-box .pedal-select,
+.config-wrapper .edit-box .pedal-preset-select,
+.config-wrapper .edit-box .pedal-param-select {
+  padding: 7px 10px;
+}
+
+/* Icons in edit boxes */
+.config-wrapper .edit-box .check,
+.config-wrapper .edit-box .plus,
+.config-wrapper .edit-box .remove {
+  float: right;
+  padding-top: 2px;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity var(--t);
+}
+.config-wrapper .edit-box .check:hover  { opacity: 1; }
+.config-wrapper .edit-box .plus:hover   { opacity: 1; }
+.config-wrapper .edit-box .remove:hover { opacity: 1; }
+
+.config-wrapper .edit-box .edit-adder {
+  background: transparent;
+  float: right;
+  cursor: pointer;
+}
+
+.config-wrapper .edit-box .edit-set-name-check,
+.config-wrapper .edit-box .edit-song-name-check {
+  background: transparent;
+  float: right;
+}
+
+/* Save button */
+.config-wrapper .edit-box .edit-write-file {
+  display: inline-block;
+  padding: 8px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--t), box-shadow var(--t);
+  margin-top: 4px;
+}
+
+.config-wrapper .edit-box .edit-write-file:hover {
+  background: var(--accent-light);
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.4);
+}
+
+/* Editable/removable items inside edit boxes */
+.config-wrapper .edit-box .edit-config-list-item {
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--text);
+}
+
+.config-wrapper .edit-box .edit-config-list-item:last-child {
+  border-bottom: none;
+}
+
+.config-wrapper .song-content .edit-config-list-item .edit,
+.config-wrapper .part-content .edit-config-list-item .edit,
+.config-wrapper .pedal-content .edit-config-list-item .edit {
+  float: right;
+  padding-top: 2px;
+  padding-right: 6px;
+  opacity: 0.45;
+  cursor: pointer;
+  transition: opacity var(--t);
+}
+.config-wrapper .song-content .edit-config-list-item .edit:hover,
+.config-wrapper .part-content .edit-config-list-item .edit:hover,
+.config-wrapper .pedal-content .edit-config-list-item .edit:hover {
+  opacity: 1;
+}
+
+/* Inner ordered lists */
+.config-wrapper .edit-box .set-current-song-list,
+.config-wrapper .edit-box .song-current-part-list,
+.config-wrapper .edit-box .part-current-pedal-list,
+.config-wrapper .edit-box .pedal-current-settings-list {
+  font-size: 0.875rem;
+  padding-left: 18px;
+  list-style-type: decimal;
+  margin: 4px 0 0;
+  color: var(--text);
+}
+
+/* Engaged checkbox */
+.config-wrapper .edit-box .engaged {
+  float: right;
+  margin-top: 3px;
+  margin-right: 6px;
+  margin-bottom: 0;
+  margin-left: 0;
+  padding-top: 2px;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+/* Mini edit box (settings editor) */
+.mini-edit-box {
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 10px 10px 0;
+  font-size: 0.875rem;
+}
+
+/* ── View State ─────────────────────────────────────────── */
+
+.view-wrapper {
+  position: relative;
+  z-index: 1;
+  padding: 24px 16px 48px;
+  text-align: center;
+  opacity: 1;
 }
 
 .viewer-display {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 40px;
-    margin-bottom: 60px;
-    height: 75%;
-    /* min-height: 400; */
-    width: 90%;
-    min-width: 200px;
-    font-size: small;
-    font-family: ui-monospace;
-    resize: none;
-    border-radius: 4px;
-    border: none;
+  display: block;
+  margin: 0 auto;
+  height: 70vh;
+  width: 90%;
+  max-width: 800px;
+  min-width: 200px;
+  padding: 14px;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  line-height: 1.5;
+  resize: none;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
 }
 
-.config-wrapper .tab-content .set-list {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 0;
-}
+/* ── Misc ───────────────────────────────────────────────── */
 
-.config-wrapper .tab-content .song-list {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 0;
-}
+.delete-link, .remove-link { background: transparent; }
 
-.config-wrapper .tab-content .config-list-item {
-    list-style-type: none;
-    padding: 0;
-}
-
-.config-wrapper .tab-content .config-list-item a {
-    padding: 0;
-    color: black;
-}
-
-.config-wrapper .tab-content .config-list-item a:hover {
-    padding: 0;
-    background-color: #777777;
-    color: #dddddd;
-}
-
-.config-wrapper .tab-content .config-list-item a:focus {
-    padding: 0;
-    border: #222222;
-}
-
-.config-wrapper .tab-content .add-item {
-    list-style-type: none
-}
-
-.config-wrapper .tab-content .add-item .adder {
-    background-color: transparent;
-    /* border: solid 1px transparent;
-    border-color: #222; */
-} 
-
-.config-wrapper .edit-box .edit-adder {
-    /* color: blue; */
-    background-color: transparent;
-    /* border: solid 1px transparent;
-    border-color: #222; */
-    float: right;
-}
-
-.config-wrapper .tab-content .work-in-progress {
-    background-color: transparent;
-    border: solid 1px transparent;
-    font-style: italic;
-    color: #777777;
-} 
-
-.config-wrapper .tab-content .add-item .adder:hover {
-    background-color: #777777;
-    color: #dddddd;
-} 
-
-.config-wrapper .tab-content .config-list-item .edit {
-    padding-top: 2px;
-    float: right;
-}
-
-.config-wrapper .song-content .edit-config-list-item .edit {
-    padding-top: 2px;
-    padding-right: 5px;
-    float: right;
-}
-
-.config-wrapper .part-content .edit-config-list-item .edit {
-    padding-top: 2px;
-    padding-right: 5px;
-    float: right;
-}
-
-.config-wrapper .pedal-content .edit-config-list-item .edit {
-    padding-top: 2px;
-    padding-right: 5px;
-    float: right;
-}
-
-.config-wrapper .tab-content .config-list-item .delete {
-    padding-top: 2px;
-    padding-right: 5px;
-    float: right;
-}
-
-.config-wrapper .edit-box .check {
-    padding-top: 2px;
-    float: right;
-}
-
-.config-wrapper .edit-box .plus {
-    padding-top: 2px;
-    float: right;
-}
-
-.config-wrapper .edit-box .remove {
-    padding-top: 2px;
-    float: right;
-}
-
-.config-wrapper .edit-box .engaged {
-    margin-top: 4px;
-    margin-right: 6px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    padding-top: 2px;
-    float: right;
-}
-
-.config-wrapper .edit-box .edit-config-list-item {
-    padding-left: none;
-    padding-top: 1px;
-} 
-
-.config-wrapper .edit-box .set-current-song-list {
-    font-size: smaller;
-    padding-left: 15px;
-    display: block;
-    list-style-type: decimal;
-    margin-block-start: 0px;
-    margin-block-end: 0px;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    /* padding-inline-start: 40px; */
-}
-
-.config-wrapper .edit-box .song-current-part-list {
-    font-size: smaller;
-    padding-left: 15px;
-    display: block;
-    list-style-type: decimal;
-    margin-block-start: 0px;
-    margin-block-end: 0px;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    /* padding-inline-start: 40px; */
-}
-
-.config-wrapper .edit-box .part-current-pedal-list {
-    font-size: smaller;
-    padding-left: 15px;
-    display: block;
-    list-style-type: decimal;
-    margin-block-start: 0px;
-    margin-block-end: 0px;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    /* padding-inline-start: 40px; */
-}
-
-.config-wrapper .edit-box .pedal-current-settings-list {
-    font-size: smaller;
-    padding-left: 15px;
-    display: block;
-    list-style-type: decimal;
-    margin-block-start: 0px;
-    margin-block-end: 0px;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    /* padding-inline-start: 40px; */
-}
-
-.config-wrapper .edit-box .song-select .select-option {
-    white-space: normal;
-}
-
-.config-wrapper .edit-box .part-select .select-option {
-    white-space: normal;
-}
-
-.config-wrapper .edit-box .tempo-select .select-option {
-    white-space: normal;
-}
-
-.config-wrapper .edit-box .edit-write-file {
-    padding: 3px 7px;
-    border: solid 1px transparent;
-    border-color: #222;
-}
-
-.config-wrapper .edit-box .edit-set-name-check {
-    /* font-size: smaller; */
-    /* color: green; */
-    background-color: transparent;
-    /* border: solid 1px transparent;
-    border-color: #222; */
-    float: right;
-}
-
-.config-wrapper .edit-box .song-select {
-    padding: 1px 2px;
-}
-
-.config-wrapper .edit-box .part-select {
-    padding: 1px 2px;
-}
-
-.config-wrapper .edit-box .tempo-select {
-    padding: 1px 2px;
-}
+.container  { width: 1200px; max-width: 100%; padding: 0 15px; margin: 0 auto; box-sizing: border-box; }
+.container1 { width: auto;   max-width: 100%; padding: 0 15px; margin: 0 auto; box-sizing: border-box; }
