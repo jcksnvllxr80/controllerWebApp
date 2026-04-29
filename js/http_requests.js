@@ -438,15 +438,15 @@ function removePedalFromPart(partName, pedalToRemove) {
 
 function removeSettingFromPedal(pedalName, settingToRemove) {
   console.debug(`Removing setting, \'${settingToRemove}\', from pedal, \'${pedalName}\'.`);
-  // if (document.getElementById(songName).className.localeCompare("work-in-progress") == 0) {
-  //   delete wipSongConfigDict[songName].parts[partToRemove];
-  // } else {
-  //   wipSongConfigDict[songName] = songConfigDict[songName];
-  //   delete songConfigDict[songName];
-  //   delete wipSongConfigDict[songName].parts[partToRemove];
-  //   redrawSongsContent();
-  // }
-  // redrawCurrentPartsInSong(songName);
+  songName = document.getElementById("song-edit-content").value;
+  partName = document.getElementById("part-edit-content").value;
+  if (songName in songConfigDict) {
+    moveSongToWipConfig(songName);
+    redrawSongsContent();
+  }
+  pedalJson = getJsonForSongDotYaml(songName).parts[partName].pedals[pedalName];
+  delete pedalJson.params[settingToRemove];
+  redrawCurrentSettingsInPedal(pedalJson);
 }
 
 function modifySet(setFileName) {
@@ -642,12 +642,9 @@ function drawAvailablePresetsInPedal(pedalFileName) {
 }
 
 function redrawCurrentPresetInPedal(settingsJson) {
-  // selectPedalSettingsList = document.getElementById("pedal-settings-edit-select");
-  // removeAllChildNodes(selectPedalSettingsList);
-  // Object.keys(pedalBeingEditedJson).forEach(setting => {
-  //   selectPedalSettingsList.appendChild(createOption(setting));
-  // });
-  // selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
+  if (settingsJson.preset != null) {
+    document.getElementById("pedal-preset-select").value = settingsJson.preset;
+  }
 }
 
 function drawAvailableParamsInPedal(pedalFileName) {
@@ -661,12 +658,7 @@ function drawAvailableParamsInPedal(pedalFileName) {
 }
 
 function redrawCurrentParamInPedal(settingsJson) {
-  // selectPedalSettingsList = document.getElementById("pedal-settings-edit-select");
-  // removeAllChildNodes(selectPedalSettingsList);
-  // Object.keys(pedalBeingEditedJson).forEach(setting => {
-  //   selectPedalSettingsList.appendChild(createOption(setting));
-  // });
-  // selectPedalSettingsList.value = selectPedalSettingsList.firstChild.value;
+  // params already in the pedal are shown in the settings list; nothing extra needed here
 }
 
 function getPresetDisplayDict(pedalSetPresetDict) {
@@ -754,18 +746,19 @@ function redrawCurrentSettingsInPedal(pedalBeingEditedJson) {
   reloadSettingsContent(pedalBeingEditedJson);
 }
 
-function reloadSettingsContent(pedalBeingEditedJson, clickFunctionStr=null) {
+function reloadSettingsContent(pedalBeingEditedJson) {
   Object.keys(pedalBeingEditedJson).filter(settingType => settingType != "engaged").forEach(settingType => {
-    currentPedalSettingsList.appendChild(createEditableRemovableListItem(settingType, clickFunctionStr, "setting"));
-    addSettingSubcategoryList(pedalBeingEditedJson[settingType]);
+    currentPedalSettingsList.appendChild(createEditableRemovableListItem(settingType, null, "setting"));
+    if (settingType === "params") {
+      addParamSubcategoryList(pedalBeingEditedJson[settingType]);
+    }
   });
 }
 
-function addSettingSubcategoryList(pedalSettingsCategoryJson) {
-  if (pedalSettingsCategoryJson) {
-    Object.keys(pedalSettingsCategoryJson).forEach(setting => {
-      clickFunctionStr = `remove${setting}FromPedalSettings`;
-      currentPedalSettingsList.appendChild(createEditableRemovableListItem(setting, clickFunctionStr, "setting"));
+function addParamSubcategoryList(paramsJson) {
+  if (paramsJson) {
+    Object.keys(paramsJson).forEach(paramName => {
+      currentPedalSettingsList.appendChild(createRemovableListItem(paramName, "remSettingFromPedalBtnAction"));
     });
   }
 }
@@ -890,26 +883,34 @@ function addSelectedPedalToPart(addPedalBtn) {
 
 function addSelectedParamToPedal(addPedalParamBtn) {
   selectedSetting = document.getElementById('pedal-param-select').value;
-  songName = document.getElementById("song-name-edit-label").parentNode.value;
-  selectedPart = document.getElementById('song-part-edit-select').value;
+  songName = document.getElementById("song-edit-content").value;
+  selectedPart = document.getElementById('part-edit-content').value;
+  pedalName = document.getElementById("display-pedal-name").value;
+  if (songName in songConfigDict) {
+    moveSongToWipConfig(songName);
+    redrawSongsContent();
+  }
   currentPart = getJsonForSongDotYaml(songName).parts[selectedPart];
-  pedalName = document.getElementById("display-pedal-name").value
-  pedalJson = currentPart.pedals[pedalName];
   logStr = `\'${selectedSetting}\' in song, \'${songName}\', part, \'${selectedPart}\', pedal \'${pedalName}\'.`;
   if (!currentPart.pedals[pedalName].params.hasOwnProperty(selectedSetting)) {
     currentPart.pedals[pedalName].params[selectedSetting] = {};
     console.log(`Added param. ${logStr}`);
+    redrawCurrentSettingsInPedal(currentPart.pedals[pedalName]);
   } else {
     console.warn(`Did not add param. ${logStr}`);
   }
 }
 
 function replaceOldPresetWithNewPreset(addPedalPresetBtn) {
-  songName = document.getElementById("song-name-edit-label").parentNode.value;
-  selectedPart = document.getElementById('song-part-edit-select').value;
-  currentPart = getJsonForSongDotYaml(songName).parts[selectedPart];
+  songName = document.getElementById("song-edit-content").value;
+  selectedPart = document.getElementById('part-edit-content').value;
   pedalName = document.getElementById("display-pedal-name").value;
   newPreset = document.getElementById('pedal-preset-select').value;
+  if (songName in songConfigDict) {
+    moveSongToWipConfig(songName);
+    redrawSongsContent();
+  }
+  currentPart = getJsonForSongDotYaml(songName).parts[selectedPart];
   logStr = `\'${newPreset}\' in song, \'${songName}\', part, \'${selectedPart}\', pedal \'${pedalName}\'.`;
   if (newPreset.localeCompare(currentPart.pedals[pedalName].preset) != 0) {
     currentPart.pedals[pedalName].preset = newPreset;
@@ -917,7 +918,6 @@ function replaceOldPresetWithNewPreset(addPedalPresetBtn) {
   } else {
     console.warn(`Did not change preset. Preset was already ${logStr}`);
   }
-
 }
 
 function changePartNameSelectEventHandler() {
@@ -984,50 +984,50 @@ function validateAndWriteSet(writeSetBtn) {
 
 function validateAndWriteSong(writeSongBtn) {
   songName = writeSongBtn.parentNode.value;
-  // if (document.getElementById(setlistName).className.localeCompare('work-in-progress') == 0) {
-  //   setJson = wipSetConfigDict[setlistName];
-  //   if (validateSetJson(setJson)) {
-  //     writeSetToController(setJson);
-  //     moveSetJsonOutOfWip(setlistName);
-  //     redrawSetlistsContent();
-  //     hideEditContent('set', true);
-  //     // TODO: display a success message somehow
-  //   }
-  // } else {
-  //   console.warn(`There have been no changes to ${setlistName} so this file will not be written to the controller.`)
-  // }
+  if (document.getElementById(songName).className.localeCompare('work-in-progress') == 0) {
+    songJson = wipSongConfigDict[songName];
+    writeSongToController(songJson).done(function() {
+      moveSongJsonOutOfWip(songName);
+      redrawSongsContent();
+      hideEditContent('setting', true);
+      hideEditContent('pedal', true);
+      hideEditContent('part', true);
+      hideEditContent('song', true);
+    });
+  } else {
+    console.warn(`There have been no changes to ${songName} so this file will not be written to the controller.`);
+  }
 }
 
 function validateAndWritePart(writePartBtn) {
-  partName = writePartBtn.parentNode.value;
-  // if (document.getElementById(setlistName).className.localeCompare('work-in-progress') == 0) {
-  //   setJson = wipSetConfigDict[setlistName];
-  //   if (validateSetJson(setJson)) {
-  //     writeSetToController(setJson);
-  //     moveSetJsonOutOfWip(setlistName);
-  //     redrawSetlistsContent();
-  //     hideEditContent('set', true);
-  //     // TODO: display a success message somehow
-  //   }
-  // } else {
-  //   console.warn(`There have been no changes to ${setlistName} so this file will not be written to the controller.`)
-  // }
+  songName = document.getElementById("song-edit-content").value;
+  if (document.getElementById(songName).className.localeCompare('work-in-progress') == 0) {
+    songJson = wipSongConfigDict[songName];
+    writeSongToController(songJson).done(function() {
+      moveSongJsonOutOfWip(songName);
+      redrawSongsContent();
+      hideEditContent('setting', true);
+      hideEditContent('pedal', true);
+      hideEditContent('part', true);
+    });
+  } else {
+    console.warn(`There have been no changes to ${songName} so this file will not be written to the controller.`);
+  }
 }
 
 function validateAndWritePedal(writePedalBtn) {
-  pedalName = writePedalBtn.parentNode.value;
-  // if (document.getElementById(setlistName).className.localeCompare('work-in-progress') == 0) {
-  //   setJson = wipSetConfigDict[setlistName];
-  //   if (validateSetJson(setJson)) {
-  //     writeSetToController(setJson);
-  //     moveSetJsonOutOfWip(setlistName);
-  //     redrawSetlistsContent();
-  //     hideEditContent('set', true);
-  //     // TODO: display a success message somehow
-  //   }
-  // } else {
-  //   console.warn(`There have been no changes to ${setlistName} so this file will not be written to the controller.`)
-  // }
+  songName = document.getElementById("song-edit-content").value;
+  if (document.getElementById(songName).className.localeCompare('work-in-progress') == 0) {
+    songJson = wipSongConfigDict[songName];
+    writeSongToController(songJson).done(function() {
+      moveSongJsonOutOfWip(songName);
+      redrawSongsContent();
+      hideEditContent('setting', true);
+      hideEditContent('pedal', true);
+    });
+  } else {
+    console.warn(`There have been no changes to ${songName} so this file will not be written to the controller.`);
+  }
 }
 
 function moveSetJsonOutOfWip() {
@@ -1046,6 +1046,19 @@ function writeSetToController(setJson) {
     console.log(`Post function returned ${results}`);
     return true;
   });
+}
+
+function writeSongToController(songJson) {
+  return writeFileToController("song", songJson).done(function (results, status) {
+    console.log(`Post function returned ${results}`);
+    return true;
+  });
+}
+
+function moveSongJsonOutOfWip(songName) {
+  console.debug(`Moving song, \'${songName}\', out of WIP and into standard song dictionary.`);
+  songConfigDict[songName] = wipSongConfigDict[songName];
+  delete wipSongConfigDict[songName];
 }
 
 function writeFileToController(type, json) {
