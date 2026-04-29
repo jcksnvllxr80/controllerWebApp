@@ -488,10 +488,13 @@ function populateSetEditContent(setFileName) {
 }
 
 function redrawAvailableSongs() {
+  const setFileName = document.getElementById("set-edit-content").value;
+  const songsInSet = setFileName ? getJsonForSetDotYaml(setFileName).songs : [];
   selectSongList = document.getElementById("set-song-edit-select");
   removeAllChildNodes(selectSongList);
   songs.forEach(song => {
-    if (song in songConfigDict) {
+    const songName = song.replace('.yaml', '');
+    if ((song in songConfigDict) && !songsInSet.includes(songName)) {
       selectSongList.appendChild(createOption(song));
     }
   });
@@ -513,6 +516,7 @@ function redrawCurrentSongsInSet(setName) {
   getJsonForSetDotYaml(setName).songs.forEach(song => {
     currentSongList.appendChild(createRemovableListItem(song, clickFunctionStr));
   });
+  redrawAvailableSongs();
 }
 
 function removeAllTabContentListChildNodes(parent) {
